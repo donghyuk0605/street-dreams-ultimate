@@ -1536,7 +1536,10 @@ export default function StreetDreamsSoccer() {
 
         {/* 게임 탭 */}
         <Tabs value={activeTab} onValueChange={setActiveTab} className="space-y-6">
-          <TabsList className="grid w-full grid-cols-8 bg-black/30 backdrop-blur-sm border-2 border-yellow-400">
+          {/* 상단에 고정되어 항상 노출되는 네비게이션 */}
+          <TabsList
+            className="grid w-full grid-cols-8 bg-black/30 backdrop-blur-sm border-2 border-yellow-400 sticky top-14 z-30 overflow-x-auto whitespace-nowrap"
+          >
             <TabsTrigger value="dashboard" className="data-[state=active]:bg-yellow-500 data-[state=active]:text-black">
               <Gamepad2 className="w-4 h-4 mr-2" />
               대시보드
