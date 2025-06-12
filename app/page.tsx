@@ -64,6 +64,7 @@ import { GameMenu } from "@/components/ui/game-menu"
 import { NotificationSystem, type Notification } from "@/components/ui/notification-system"
 import { GameHud } from "@/components/ui/game-hud"
 import { MatchSystem } from "@/components/match-system"
+import { ScoreboardOverlay } from "@/components/ui/scoreboard-overlay"
 
 // 지역 및 학교 데이터
 const REGIONS = {
@@ -631,6 +632,8 @@ export default function StreetDreamsSoccer() {
   const setDayEvents = useGameUIStore((s) => s.setDayEvents)
   const selectedTemplate = useGameUIStore((s) => s.selectedTemplate)
   const setSelectedTemplate = useGameUIStore((s) => s.setSelectedTemplate)
+  const scoreboardResult = useGameUIStore((s) => s.scoreboardResult)
+  const setScoreboardResult = useGameUIStore((s) => s.setScoreboardResult)
 
   // 활동 목록 (기존과 동일)
   const activities: Activity[] = [
@@ -1109,10 +1112,18 @@ export default function StreetDreamsSoccer() {
           <Trophy className="w-4 h-4" />,
         )
 
+        setScoreboardResult({
+          opponent: newState.upcomingMatches[idx].opponent,
+          score: result.score,
+          result: result.result,
+          homeLogo: "/placeholder-logo.png",
+          opponentLogo: "/placeholder-logo.png",
+        })
+
         return newState
       })
     },
-    [addNotification],
+    [addNotification, setScoreboardResult],
   )
 
   // 주간 템플릿 적용
@@ -1498,6 +1509,8 @@ export default function StreetDreamsSoccer() {
       <GameMenu onSave={handleSave} onLoad={handleLoad} onReset={handleReset} onExit={handleExit} />
 
       <NotificationSystem notifications={notifications} onRemove={removeNotification} />
+
+      <ScoreboardOverlay data={scoreboardResult} onClose={() => setScoreboardResult(null)} />
 
       <div className="max-w-7xl mx-auto relative z-10 pt-20">
         {/* 월간 결과 모달 */}
