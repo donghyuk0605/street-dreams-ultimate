@@ -1,6 +1,7 @@
 "use client"
 
 import { useState } from "react"
+import { useTheme } from "next-themes"
 import { Button } from "@/components/ui/button"
 import { Settings, Save, Volume2, VolumeX, Moon, Sun, Home, RefreshCw, X, Info } from "lucide-react"
 
@@ -15,7 +16,7 @@ export function GameMenu({ onSave, onLoad, onReset, onExit }: GameMenuProps) {
   const [isOpen, setIsOpen] = useState(false)
   const [activeTab, setActiveTab] = useState<"settings" | "help" | "about">("settings")
   const [isMuted, setIsMuted] = useState(false)
-  const [isDarkMode, setIsDarkMode] = useState(true)
+  const { theme = "dark", setTheme } = useTheme()
 
   const toggleMenu = () => {
     setIsOpen(!isOpen)
@@ -26,7 +27,7 @@ export function GameMenu({ onSave, onLoad, onReset, onExit }: GameMenuProps) {
   }
 
   const toggleTheme = () => {
-    setIsDarkMode(!isDarkMode)
+    setTheme(theme === "dark" ? "light" : "dark")
   }
 
   if (!isOpen) {
@@ -104,18 +105,22 @@ export function GameMenu({ onSave, onLoad, onReset, onExit }: GameMenuProps) {
               <div className="space-y-3">
                 <div className="flex justify-between items-center">
                   <label className="text-white font-medium flex items-center gap-2">
-                    {isDarkMode ? <Moon className="w-5 h-5" /> : <Sun className="w-5 h-5" />}
-                    {isDarkMode ? "다크 모드" : "라이트 모드"}
+                    {theme === "dark" ? (
+                      <Moon className="w-5 h-5" />
+                    ) : (
+                      <Sun className="w-5 h-5" />
+                    )}
+                    {theme === "dark" ? "다크 모드" : "라이트 모드"}
                   </label>
                   <button
                     onClick={toggleTheme}
                     className={`w-12 h-6 rounded-full ${
-                      isDarkMode ? "bg-blue-600" : "bg-gray-600"
+                      theme === "dark" ? "bg-blue-600" : "bg-gray-600"
                     } relative transition-colors`}
                   >
                     <div
                       className={`w-5 h-5 bg-white rounded-full absolute top-0.5 transition-transform ${
-                        isDarkMode ? "translate-x-6" : "translate-x-0.5"
+                        theme === "dark" ? "translate-x-6" : "translate-x-0.5"
                       }`}
                     />
                   </button>
