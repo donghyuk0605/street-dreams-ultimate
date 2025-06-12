@@ -1429,7 +1429,7 @@ export default function StreetDreamsSoccer() {
   }
 
   return (
-    <div className="min-h-screen bg-gradient-to-br from-green-300 via-blue-400 to-purple-500 relative overflow-x-hidden">
+    <div className="min-h-screen bg-gradient-to-br from-[hsl(var(--gradient-start))] to-[hsl(var(--gradient-end))] relative overflow-x-hidden">
       <GameHud
         level={gameState.level}
         experience={gameState.experience}
@@ -1455,14 +1455,14 @@ export default function StreetDreamsSoccer() {
         {/* 월간 결과 모달 */}
         {monthlyResult && (
           <div className="fixed inset-0 bg-black/70 flex items-center justify-center z-50 p-4">
-            <Card className="max-w-4xl w-full bg-gradient-to-br from-purple-600 to-blue-600 text-white max-h-[80vh] overflow-y-auto border-2 border-yellow-400">
-              <CardHeader className="bg-gradient-to-r from-yellow-500 to-orange-500 text-black rounded-t-lg">
+            <Card className="max-w-4xl w-full bg-background text-white max-h-[80vh] overflow-y-auto border-2 border-primary">
+              <CardHeader className="bg-primary text-primary-foreground rounded-t-lg">
                 <CardTitle className="text-3xl text-center font-bold flex items-center justify-center gap-2">
                   <PartyPopper className="w-6 h-6" /> MONTHLY REPORT <PartyPopper className="w-6 h-6" />
                 </CardTitle>
               </CardHeader>
               <CardContent className="p-8 space-y-6">
-                <div className="text-center p-4 bg-gradient-to-r from-purple-600 to-pink-600 rounded-lg border-2 border-purple-400">
+                <div className="text-center p-4 bg-muted rounded-lg border-2 border-primary">
                   <div className="text-xl font-bold text-yellow-300 mb-2 flex items-center gap-2">
                     <Star className="w-5 h-5" /> LEVEL STATUS
                   </div>
@@ -1523,7 +1523,7 @@ export default function StreetDreamsSoccer() {
         {/* 메인 대시보드 */}
         <div className="grid grid-cols-1 lg:grid-cols-4 gap-6 mb-8">
           {/* 캐릭터 카드 */}
-          <Card className="bg-gradient-to-br from-blue-600 to-purple-600 text-white border-2 border-yellow-400">
+          <Card className="bg-background text-white border-2 border-primary">
             <CardHeader>
               <CardTitle className="flex items-center justify-center gap-3">
                 <GameCharacterSVG />

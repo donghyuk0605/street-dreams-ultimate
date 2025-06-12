@@ -34,7 +34,7 @@ export function GameMenu({ onSave, onLoad, onReset, onExit }: GameMenuProps) {
     return (
       <button
         onClick={toggleMenu}
-        className="fixed top-20 right-4 z-50 bg-gradient-to-r from-blue-600 to-purple-600 p-3 rounded-full shadow-lg border-2 border-blue-400 hover:scale-110 transition-transform"
+        className="fixed top-20 right-4 z-50 bg-primary p-3 rounded-full shadow-lg border-2 border-primary hover:scale-110 transition-transform"
       >
         <Settings className="w-6 h-6 text-white" />
       </button>
@@ -43,19 +43,19 @@ export function GameMenu({ onSave, onLoad, onReset, onExit }: GameMenuProps) {
 
   return (
     <div className="fixed inset-0 bg-black/70 backdrop-blur-sm z-50 flex items-center justify-center p-4">
-      <div className="bg-gradient-to-br from-gray-900 to-blue-900 rounded-lg border-2 border-blue-500 shadow-2xl w-full max-w-md overflow-hidden">
-        <div className="flex justify-between items-center p-4 border-b border-blue-500">
+      <div className="bg-background rounded-lg border-2 border-primary shadow-2xl w-full max-w-md overflow-hidden">
+        <div className="flex justify-between items-center p-4 border-b border-primary">
           <h2 className="text-2xl font-bold text-white">게임 메뉴</h2>
-          <Button variant="ghost" size="icon" onClick={toggleMenu} className="rounded-full hover:bg-blue-800/50">
+          <Button variant="ghost" size="icon" onClick={toggleMenu} className="rounded-full hover:bg-primary/50">
             <X className="w-5 h-5 text-gray-300" />
           </Button>
         </div>
 
-        <div className="flex border-b border-blue-500">
+        <div className="flex border-b border-primary">
           <button
             onClick={() => setActiveTab("settings")}
             className={`flex-1 py-3 px-4 text-center font-medium ${
-              activeTab === "settings" ? "bg-blue-700 text-white" : "text-gray-300 hover:bg-blue-800/30"
+              activeTab === "settings" ? "bg-primary text-white" : "text-gray-300 hover:bg-primary/30"
             }`}
           >
             설정
@@ -63,7 +63,7 @@ export function GameMenu({ onSave, onLoad, onReset, onExit }: GameMenuProps) {
           <button
             onClick={() => setActiveTab("help")}
             className={`flex-1 py-3 px-4 text-center font-medium ${
-              activeTab === "help" ? "bg-blue-700 text-white" : "text-gray-300 hover:bg-blue-800/30"
+              activeTab === "help" ? "bg-primary text-white" : "text-gray-300 hover:bg-primary/30"
             }`}
           >
             도움말
@@ -71,7 +71,7 @@ export function GameMenu({ onSave, onLoad, onReset, onExit }: GameMenuProps) {
           <button
             onClick={() => setActiveTab("about")}
             className={`flex-1 py-3 px-4 text-center font-medium ${
-              activeTab === "about" ? "bg-blue-700 text-white" : "text-gray-300 hover:bg-blue-800/30"
+              activeTab === "about" ? "bg-primary text-white" : "text-gray-300 hover:bg-primary/30"
             }`}
           >
             정보
@@ -90,7 +90,7 @@ export function GameMenu({ onSave, onLoad, onReset, onExit }: GameMenuProps) {
                   <button
                     onClick={toggleMute}
                     className={`w-12 h-6 rounded-full ${
-                      isMuted ? "bg-gray-600" : "bg-blue-600"
+                      isMuted ? "bg-gray-600" : "bg-primary"
                     } relative transition-colors`}
                   >
                     <div
@@ -115,7 +115,7 @@ export function GameMenu({ onSave, onLoad, onReset, onExit }: GameMenuProps) {
                   <button
                     onClick={toggleTheme}
                     className={`w-12 h-6 rounded-full ${
-                      theme === "dark" ? "bg-blue-600" : "bg-gray-600"
+                      theme === "dark" ? "bg-primary" : "bg-gray-600"
                     } relative transition-colors`}
                   >
                     <div
@@ -130,7 +130,7 @@ export function GameMenu({ onSave, onLoad, onReset, onExit }: GameMenuProps) {
               <div className="grid grid-cols-2 gap-3 pt-3">
                 <Button
                   variant="outline"
-                  className="bg-blue-900/50 border-blue-500 text-white hover:bg-blue-800"
+                  className="bg-primary/50 border-primary text-white hover:bg-primary"
                   onClick={onSave}
                 >
                   <Save className="w-4 h-4 mr-2" />
@@ -138,7 +138,7 @@ export function GameMenu({ onSave, onLoad, onReset, onExit }: GameMenuProps) {
                 </Button>
                 <Button
                   variant="outline"
-                  className="bg-purple-900/50 border-purple-500 text-white hover:bg-purple-800"
+                  className="bg-primary/50 border-primary text-white hover:bg-primary"
                   onClick={onLoad}
                 >
                   <RefreshCw className="w-4 h-4 mr-2" />
@@ -146,7 +146,7 @@ export function GameMenu({ onSave, onLoad, onReset, onExit }: GameMenuProps) {
                 </Button>
                 <Button
                   variant="outline"
-                  className="bg-red-900/50 border-red-500 text-white hover:bg-red-800"
+                  className="bg-destructive/50 border-destructive text-white hover:bg-destructive"
                   onClick={onReset}
                 >
                   <RefreshCw className="w-4 h-4 mr-2" />
@@ -154,7 +154,7 @@ export function GameMenu({ onSave, onLoad, onReset, onExit }: GameMenuProps) {
                 </Button>
                 <Button
                   variant="outline"
-                  className="bg-green-900/50 border-green-500 text-white hover:bg-green-800"
+                  className="bg-primary/50 border-primary text-white hover:bg-primary"
                   onClick={onExit}
                 >
                   <Home className="w-4 h-4 mr-2" />
@@ -166,7 +166,7 @@ export function GameMenu({ onSave, onLoad, onReset, onExit }: GameMenuProps) {
 
           {activeTab === "help" && (
             <div className="space-y-4">
-              <div className="bg-blue-900/30 p-4 rounded-lg border border-blue-500">
+              <div className="bg-primary/30 p-4 rounded-lg border border-primary">
                 <h3 className="text-lg font-bold text-blue-300 mb-2">게임 방법</h3>
                 <ul className="space-y-2 text-sm text-gray-300">
                   <li className="flex gap-2">
@@ -196,7 +196,7 @@ export function GameMenu({ onSave, onLoad, onReset, onExit }: GameMenuProps) {
                 </ul>
               </div>
 
-              <div className="bg-purple-900/30 p-4 rounded-lg border border-purple-500">
+              <div className="bg-primary/30 p-4 rounded-lg border border-primary">
                 <h3 className="text-lg font-bold text-purple-300 mb-2">팁</h3>
                 <ul className="space-y-2 text-sm text-gray-300">
                   <li className="flex gap-2">
@@ -223,14 +223,12 @@ export function GameMenu({ onSave, onLoad, onReset, onExit }: GameMenuProps) {
           {activeTab === "about" && (
             <div className="space-y-4">
               <div className="text-center">
-                <h3 className="text-2xl font-bold text-transparent bg-clip-text bg-gradient-to-r from-yellow-400 to-orange-500">
-                  STREET DREAMS
-                </h3>
+                <h3 className="text-2xl font-bold text-primary">STREET DREAMS</h3>
                 <p className="text-blue-300 mt-1">European Journey</p>
                 <p className="text-gray-400 text-sm mt-2">버전 1.0.0</p>
               </div>
 
-              <div className="bg-black/30 p-4 rounded-lg border border-blue-500 mt-4">
+              <div className="bg-black/30 p-4 rounded-lg border border-primary mt-4">
                 <p className="text-sm text-gray-300 text-center">
                   축구 꿈나무의 성장 스토리를 그리는 RPG 게임
                   <br />
@@ -239,7 +237,7 @@ export function GameMenu({ onSave, onLoad, onReset, onExit }: GameMenuProps) {
               </div>
 
               <div className="flex justify-center mt-4">
-                <Button variant="link" className="text-blue-400 hover:text-blue-300">
+                <Button variant="link" className="text-primary hover:text-primary/80">
                   <Info className="w-4 h-4 mr-2" />
                   크레딧 보기
                 </Button>

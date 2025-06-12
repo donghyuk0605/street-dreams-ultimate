@@ -67,12 +67,10 @@ export function GameHud({
           {/* 로고 및 레벨 */}
           <div className="flex items-center gap-3">
             <div className="hidden md:block">
-              <h1 className="text-xl font-bold text-transparent bg-clip-text bg-gradient-to-r from-yellow-400 to-orange-500">
-                STREET DREAMS
-              </h1>
+              <h1 className="text-xl font-bold text-primary">STREET DREAMS</h1>
               <p className="text-xs text-blue-300 -mt-1">European Journey</p>
             </div>
-            <Badge className="bg-gradient-to-r from-yellow-500 to-orange-500 text-black font-bold px-3 py-1 text-sm">
+            <Badge className="bg-primary text-primary-foreground font-bold px-3 py-1 text-sm">
               Lv.{level}
             </Badge>
           </div>
