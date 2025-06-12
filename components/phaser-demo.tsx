@@ -1,7 +1,7 @@
 "use client"
 
 import { useEffect, useRef } from "react"
-import Phaser from "phaser"
+import * as Phaser from "phaser"
 
 export default function PhaserDemo() {
   const containerRef = useRef<HTMLDivElement>(null)
