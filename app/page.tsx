@@ -13,6 +13,7 @@ import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs"
 import { Hero } from "@/components/Hero"
 import { Gallery } from "@/components/Gallery"
 import { Footer } from "@/components/Footer"
+import { ParallaxBackground } from "@/components/ui/parallax-background"
 import {
   Heart,
   Brain,
@@ -1161,6 +1162,7 @@ export default function StreetDreamsSoccer() {
 
   return (
     <div className="min-h-screen bg-gradient-to-br from-[hsl(var(--gradient-start))] to-[hsl(var(--gradient-end))] relative overflow-x-hidden">
+      <ParallaxBackground />
       <Hero />
       <Gallery />
       <GameHUD state={gameState} />

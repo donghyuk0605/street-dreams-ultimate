@@ -402,11 +402,11 @@ textarea:focus {
 
 /* 메뉴 탭 개선 */
 .menu-tabs {
-  @apply grid w-full grid-cols-9 sticky top-14 z-30 overflow-x-auto whitespace-nowrap bg-background/70 backdrop-blur-md border-b border-yellow-400 shadow-md rounded-b-md;
+  @apply grid w-full grid-cols-10 gap-2 sticky top-14 z-30 overflow-x-auto whitespace-nowrap bg-background/80 backdrop-blur-md border-b-2 border-primary shadow-lg rounded-b-lg;
 }
 
 .menu-tabs .tab-button {
-  @apply flex items-center justify-center gap-1 px-3 py-2 text-sm font-semibold transition-colors hover:bg-primary/20 data-[state=active]:bg-primary data-[state=active]:text-primary-foreground rounded-md;
+  @apply flex items-center justify-center gap-1 px-3 py-2 text-sm font-semibold transition-colors border border-transparent hover:bg-primary/30 hover:border-primary/50 data-[state=active]:bg-primary data-[state=active]:text-primary-foreground data-[state=active]:ring-2 data-[state=active]:ring-primary rounded-md;
 }
 
 /* 대시보드 카드 스타일 */
