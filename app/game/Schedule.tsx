@@ -30,8 +30,11 @@ export function Schedule({
       </CardHeader>
       <CardContent>
         <div className="grid grid-cols-7 gap-1 mb-4">
-          {["일", "월", "화", "수", "목", "금", "토"].map((d) => (
-            <div key={d} className="text-center text-xs font-bold p-1 text-purple-300">
+          {["일", "월", "화", "수", "목", "금", "토"].map((d, idx) => (
+            <div
+              key={d}
+              className={`text-center text-xs font-bold p-1 ${idx === 0 || idx === 6 ? "text-red-300" : "text-purple-300"}`}
+            >
               {d}
             </div>
           ))}
@@ -42,6 +45,7 @@ export function Schedule({
             const isSelected = selectedDay === day
             const isCompleted = gameState.isMonthRunning && day < gameState.currentDay
             const isCurrent = gameState.isMonthRunning && day === gameState.currentDay
+            const isWeekend = day % 7 === 0 || day % 7 === 6
 
             return (
               <motion.div
@@ -57,7 +61,9 @@ export function Schedule({
                         ? "bg-gray-600 text-gray-300 border-gray-500"
                         : activity
                           ? "bg-blue-600 text-white border-blue-400"
-                          : "bg-black/30 text-gray-400 border-gray-600"
+                          : isWeekend
+                            ? "bg-red-600/50 text-white border-red-400"
+                            : "bg-black/30 text-gray-400 border-gray-600"
                 }`}
                 onClick={() => !gameState.isMonthRunning && setSelectedDay(day)}
               >
