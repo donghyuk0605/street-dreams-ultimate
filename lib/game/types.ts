@@ -85,6 +85,13 @@ export interface Record {
   value: number
 }
 
+export interface CareerCollectionItem {
+  id: string
+  name: string
+  description: string
+  obtained: boolean
+}
+
 export interface Match {
   id: string
   opponent: string
@@ -185,6 +192,7 @@ export interface GameState {
   trophies: TrophyType[]
   achievements: Achievement[]
   records: Record[]
+  careerCollection: CareerCollectionItem[]
 
   memories: string[]
   growthHistory: GrowthData[]
