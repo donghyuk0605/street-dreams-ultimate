@@ -1411,7 +1411,7 @@ export default function StreetDreamsSoccer() {
 
           {/* 대시보드 탭 */}
           <TabsContent value="dashboard" className="space-y-6">
-            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+            <div className="dashboard-grid">
               {/* 골목축구 현황 */}
               <Card className="bg-gradient-to-br from-orange-600 to-red-600 text-white border-2 border-orange-400">
                 <CardHeader>
@@ -1547,7 +1547,7 @@ export default function StreetDreamsSoccer() {
 
           {/* 스케줄 탭 */}
           <TabsContent value="schedule" className="space-y-6">
-            <div className="grid grid-cols-1 lg:grid-cols-3 gap-6">
+            <div className="dashboard-grid">
               {/* 플레이스타일 선택 */}
                 <Card className="bg-gradient-to-br from-blue-600 to-purple-600 text-white border-2 border-blue-400">
                 <CardHeader>
@@ -1629,7 +1629,7 @@ export default function StreetDreamsSoccer() {
 
           {/* 시스템 탭 */}
           <TabsContent value="systems" className="space-y-6">
-            <div className="grid grid-cols-1 lg:grid-cols-2 gap-6">
+            <div className="dashboard-grid">
               {/* 계절 이벤트 시스템 */}
               <SeasonEventSystem
                 currentSeason={gameState.currentSeason}

@@ -1,4 +1,5 @@
 import type { Config } from "tailwindcss";
+import tokens from "./styles/design-tokens.json";
 
 const config: Config = {
     darkMode: ["class"],
@@ -10,8 +11,20 @@ const config: Config = {
   ],
   theme: {
         extend: {
+                fontWeight: tokens.typography.weight,
+                spacing: {
+                        base: tokens.spacing.base,
+                },
                 fontFamily: {
-                        sans: ['var(--font-inter)', 'sans-serif'],
+                        sans: [
+                                'Pretendard Variable',
+                                '-apple-system',
+                                'BlinkMacSystemFont',
+                                'Segoe UI',
+                                'Malgun Gothic',
+                                'var(--font-inter)',
+                                'sans-serif'
+                        ],
                         orbitron: ['var(--font-orbitron)', 'sans-serif'],
                         russo: ['var(--font-russo)', 'sans-serif'],
                         bebas: ['var(--font-bebas)', 'sans-serif'],
