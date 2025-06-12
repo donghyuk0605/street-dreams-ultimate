@@ -1,4 +1,5 @@
 import type { Config } from "tailwindcss";
+import tokens from "./styles/design-tokens.json";
 
 const config: Config = {
     darkMode: ["class"],
@@ -10,6 +11,10 @@ const config: Config = {
   ],
   theme: {
         extend: {
+                fontWeight: tokens.typography.weight,
+                spacing: {
+                        base: tokens.spacing.base,
+                },
                 fontFamily: {
                         sans: [
                                 'Pretendard Variable',
