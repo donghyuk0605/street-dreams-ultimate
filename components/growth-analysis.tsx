@@ -46,7 +46,7 @@ interface GrowthAnalysisProps {
   }[]
 }
 
-export function GrowthAnalysis({
+export default function GrowthAnalysis({
   growthData,
   playerAge,
   playerLevel,
@@ -479,3 +479,5 @@ export function GrowthAnalysis({
     </Card>
   )
 }
+
+export { GrowthAnalysis }
