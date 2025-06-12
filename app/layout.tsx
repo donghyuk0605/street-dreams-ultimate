@@ -10,7 +10,11 @@ import "./globals.css"
 
 const inter = Inter({ subsets: ["latin"], variable: "--font-inter" })
 const orbitron = Orbitron({ subsets: ["latin"], variable: "--font-orbitron" })
-const russo = Russo_One({ subsets: ["latin"], variable: "--font-russo" })
+const russo = Russo_One({
+  weight: "400",
+  subsets: ["latin"],
+  variable: "--font-russo",
+})
 const bebas = Bebas_Neue({
   weight: "400",
   subsets: ["latin"],
