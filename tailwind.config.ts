@@ -28,6 +28,7 @@ const config: Config = {
                         orbitron: ['var(--font-orbitron)', 'sans-serif'],
                         russo: ['var(--font-russo)', 'sans-serif'],
                         bebas: ['var(--font-bebas)', 'sans-serif'],
+                        montserrat: ['var(--font-montserrat)', 'sans-serif'],
                 },
                 colors: {
                         background: 'hsl(var(--background))',

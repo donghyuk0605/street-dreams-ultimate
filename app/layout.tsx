@@ -5,6 +5,7 @@ import {
   Orbitron,
   Russo_One,
   Bebas_Neue,
+  Montserrat,
 } from "next/font/google"
 import "./globals.css"
 import "../styles/animations.css"
@@ -22,6 +23,10 @@ const bebas = Bebas_Neue({
   subsets: ["latin"],
   variable: "--font-bebas",
 })
+const montserrat = Montserrat({
+  subsets: ["latin"],
+  variable: "--font-montserrat",
+})
 
 export const metadata: Metadata = {
   title: "Street Dreams: European Journey",
@@ -35,8 +40,8 @@ export default function RootLayout({
   children: React.ReactNode
 }) {
   return (
-    <html lang="ko" className={`${inter.variable} ${orbitron.variable} ${russo.variable} ${bebas.variable}`}>
-      <body className="font-pretendard">{children}</body>
+    <html lang="ko" className={`${inter.variable} ${orbitron.variable} ${russo.variable} ${bebas.variable} ${montserrat.variable}` }>
+      <body className="font-montserrat">{children}</body>
     </html>
   )
 }
