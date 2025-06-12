@@ -38,6 +38,16 @@ export function SeasonEventSystem({ currentSeason, currentMonth, onEventSelect }
         energyCost: 25,
         rarity: "common",
       },
+      {
+        id: "rainy_day_match",
+        name: "봄비 속 친선 경기",
+        description: "비 오는 날에도 거침없는 실력을 보여 주세요",
+        icon: <Cloud className="w-5 h-5 text-blue-200" />,
+        effects: { stamina: 4, technique: 3, experience: 20 },
+        duration: "1일",
+        energyCost: 30,
+        rarity: "common",
+      },
     ],
     summer: [
       {
@@ -58,6 +68,16 @@ export function SeasonEventSystem({ currentSeason, currentMonth, onEventSelect }
         effects: { stamina: 10, physical: 5, happiness: 8, experience: 20 },
         duration: "2일",
         energyCost: 35,
+        rarity: "rare",
+      },
+      {
+        id: "fireworks_night_match",
+        name: "불꽃 야간 경기",
+        description: "한여름 밤 불꽃놀이와 함께하는 경기",
+        icon: <Sun className="w-5 h-5 text-red-400" />,
+        effects: { creativity: 5, happiness: 10, experience: 25 },
+        duration: "1일",
+        energyCost: 30,
         rarity: "rare",
       },
     ],
@@ -82,6 +102,16 @@ export function SeasonEventSystem({ currentSeason, currentMonth, onEventSelect }
         energyCost: 50,
         rarity: "epic",
       },
+      {
+        id: "harvest_festival_match",
+        name: "수확 축제 매치",
+        description: "풍성한 가을을 기념하는 지역 경기",
+        icon: <Cloud className="w-5 h-5 text-orange-300" />,
+        effects: { teamwork: 6, reputation: 5, experience: 35 },
+        duration: "2일",
+        energyCost: 30,
+        rarity: "common",
+      },
     ],
     winter: [
       {
@@ -103,6 +133,16 @@ export function SeasonEventSystem({ currentSeason, currentMonth, onEventSelect }
         duration: "2일",
         energyCost: 30,
         rarity: "common",
+      },
+      {
+        id: "new_year_challenge",
+        name: "신년맞이 챌린지 경기",
+        description: "새해 첫날 열리는 특별 매치",
+        icon: <Snowflake className="w-5 h-5 text-yellow-200" />,
+        effects: { confidence: 8, technique: 5, experience: 40 },
+        duration: "1일",
+        energyCost: 40,
+        rarity: "epic",
       },
     ],
   }
