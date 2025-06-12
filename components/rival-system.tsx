@@ -1,6 +1,7 @@
 "use client"
 
 import { useState } from "react"
+import { ImageWithSkeleton as Image } from "@/components/ui/image-with-skeleton"
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card"
 import { Badge } from "@/components/ui/badge"
 import { Button } from "@/components/ui/button"
@@ -131,9 +132,11 @@ export function RivalSystem({ playerStats, rivals, onChallengeRival }: RivalSyst
               <div className="flex items-center justify-between mb-3">
                 <div className="flex items-center gap-3">
                   {rival.image ? (
-                    <img
+                    <Image
                       src={rival.image || "/placeholder.svg"}
                       alt={rival.name}
+                      width={48}
+                      height={48}
                       className="w-12 h-12 rounded-full object-cover border border-primary"
                     />
                   ) : (
