@@ -9,10 +9,16 @@ const config: Config = {
     "*.{js,ts,jsx,tsx,mdx}"
   ],
   theme: {
-  	extend: {
-  		colors: {
-  			background: 'hsl(var(--background))',
-  			foreground: 'hsl(var(--foreground))',
+        extend: {
+                fontFamily: {
+                        sans: ['var(--font-inter)', 'sans-serif'],
+                        orbitron: ['var(--font-orbitron)', 'sans-serif'],
+                        russo: ['var(--font-russo)', 'sans-serif'],
+                        bebas: ['var(--font-bebas)', 'sans-serif'],
+                },
+                colors: {
+                        background: 'hsl(var(--background))',
+                        foreground: 'hsl(var(--foreground))',
   			card: {
   				DEFAULT: 'hsl(var(--card))',
   				foreground: 'hsl(var(--card-foreground))'

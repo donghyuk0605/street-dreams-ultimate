@@ -51,3 +51,14 @@ The Firebase client is initialized in [`lib/firebase.ts`](lib/firebase.ts) and e
 The `arcade` tab showcases a lightweight Phaser demo built with Next.js. The new
 component is loaded dynamically and allows simple keyboard controls for a square
 avatar. Dependencies are managed via `pnpm` and include `phaser`.
+
+## FIFA Style Theme
+
+The app now ships with a darker FIFA-inspired palette and Google Fonts:
+
+- **Orbitron** for futuristic headings
+- **Russo One** for numeric displays
+- **Bebas Neue** for impactful titles
+- **Inter** as the default body font
+
+Player cards can use the classes `fifa-card-gold`, `fifa-card-diamond`, or `fifa-card-legend` for special backgrounds. Use the `bg-fifa-gradient` utility for the default dark gradient background.
