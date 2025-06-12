@@ -25,6 +25,7 @@ export function ScoreboardOverlay({ data, onClose }: ScoreboardOverlayProps) {
 
   return (
     <div className="fixed inset-0 z-50 flex items-center justify-center bg-black/80 p-4">
+
       <Card className="relative w-full max-w-lg overflow-hidden text-white border-4 border-yellow-500 bg-fifa-gradient animate-slide-in-up">
         <Image
           src="https://images.unsplash.com/photo-1517927033932-b3d18e61fb3a?auto=format&fit=crop&w=1200&q=60"
@@ -59,6 +60,39 @@ export function ScoreboardOverlay({ data, onClose }: ScoreboardOverlayProps) {
           </div>
         </CardHeader>
         <CardContent className="relative z-10 p-6">
+
+      <Card className="relative w-full max-w-md overflow-hidden text-white border-2 border-yellow-500 bg-fifa-gradient animate-slide-in-right">
+        <Image
+          src="https://images.unsplash.com/photo-1517927033932-b3d18e61fb3a?auto=format&fit=crop&w=800&q=60"
+          alt="scoreboard background"
+          fill
+          className="object-cover opacity-30"
+        />
+        <CardHeader className="relative z-10">
+          <CardTitle className="text-center text-4xl font-orbitron">
+            {data.score}
+          </CardTitle>
+        </CardHeader>
+        <CardContent className="relative z-10 space-y-4">
+          <div className="flex items-center justify-center gap-4">
+            <Image
+              src={data.homeLogo ?? "/placeholder-logo.png"}
+              alt="Street Dreams"
+              width={40}
+              height={40}
+            />
+            <div className="text-2xl font-bold">{resultText}</div>
+            <Image
+              src={data.opponentLogo ?? "/placeholder-logo.png"}
+              alt={data.opponent}
+              width={40}
+              height={40}
+            />
+          </div>
+          <div className="text-center text-xl">
+            Street Dreams <span className="text-yellow-400">vs</span> {data.opponent}
+          </div>
+
           <Button onClick={onClose} className="w-full bg-primary text-primary-foreground">
             확인
           </Button>
