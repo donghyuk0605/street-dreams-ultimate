@@ -70,3 +70,4 @@ Player cards can use the classes `fifa-card-gold`, `fifa-card-diamond`, or `fifa
 ## Scoreboard Overlay
 
 Matches now display a FIFA style scoreboard after each match. Home and away logos sit over a stadium backdrop thanks to open source imagery, giving it a proper game-day vibe. Dismiss the overlay with the **확인** button.
+The overlay now features larger logos and bold typography for a more immersive presentation.
