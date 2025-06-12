@@ -26,7 +26,7 @@ export function ScoreboardOverlay({ data, onClose }: ScoreboardOverlayProps) {
   return (
     <div className="fixed inset-0 z-50 flex items-center justify-center bg-black/80 p-4">
 
-      <Card className="relative w-full max-w-lg overflow-hidden text-white border-4 border-yellow-500 bg-fifa-gradient animate-slide-in-up">
+      <Card className="relative w-full max-w-lg overflow-hidden text-white border-4 border-yellow-500 bg-fifa-gradient glass-dark shadow-3d animate-slide-in-up">
         <Image
           src="https://images.unsplash.com/photo-1517927033932-b3d18e61fb3a?auto=format&fit=crop&w=1200&q=60"
           alt="scoreboard background"
@@ -93,7 +93,7 @@ export function ScoreboardOverlay({ data, onClose }: ScoreboardOverlayProps) {
             Street Dreams <span className="text-yellow-400">vs</span> {data.opponent}
           </div>
 
-          <Button onClick={onClose} className="w-full bg-primary text-primary-foreground">
+          <Button onClick={onClose} variant="game" className="w-full">
             확인
           </Button>
         </CardContent>

@@ -24,7 +24,7 @@ export default function LoginPage() {
         <CardContent className="space-y-4">
           <Input type="email" placeholder="이메일" />
           <Input type="password" placeholder="비밀번호" />
-          <Button className="w-full bg-primary text-primary-foreground">입장하기</Button>
+          <Button variant="game" className="w-full">입장하기</Button>
           <Button asChild variant="secondary" className="w-full">
             <Link href="/">게스트 입장</Link>
           </Button>

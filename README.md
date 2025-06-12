@@ -73,6 +73,8 @@ Matches now display a FIFA style scoreboard after each match. Home and away logo
 
 The overlay now features larger logos and bold typography for a more immersive presentation.
 
+Buttons can use the new **game** variant which applies the `game-button` style for a glossy gradient look. It's showcased in the scoreboard overlay and login page.
+
 ## Tournament System
 
 A lightweight knockout tournament is now available under the **토너먼트** tab. Four teams face off in semi-finals and a final, letting you crown a champion.
