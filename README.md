@@ -45,3 +45,9 @@ NEXT_PUBLIC_FIREBASE_MEASUREMENT_ID=YOUR_MEASUREMENT_ID
 ## Firebase Client
 
 The Firebase client is initialized in [`lib/firebase.ts`](lib/firebase.ts) and exports the Firestore instance and Analytics (when supported).
+
+## Phaser Mini Game
+
+The `arcade` tab showcases a lightweight Phaser demo built with Next.js. The new
+component is loaded dynamically and allows simple keyboard controls for a square
+avatar. Dependencies are managed via `pnpm` and include `phaser`.

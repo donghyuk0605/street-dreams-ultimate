@@ -56,6 +56,9 @@ import { RivalSystem } from "@/components/rival-system"
 const GrowthAnalysis = dynamic(() => import("@/components/growth-analysis"), {
   ssr: false,
 })
+const PhaserDemo = dynamic(() => import("@/components/phaser-demo"), {
+  ssr: false,
+})
 import { useGameUIStore } from "@/lib/store"
 import { GameMenu } from "@/components/ui/game-menu"
 import { NotificationSystem, type Notification } from "@/components/ui/notification-system"
@@ -1667,7 +1670,7 @@ export default function StreetDreamsSoccer() {
         <Tabs value={activeTab} onValueChange={setActiveTab} className="space-y-6">
           {/* 상단에 고정되어 항상 노출되는 네비게이션 */}
           <TabsList
-            className="grid w-full grid-cols-8 bg-black/30 backdrop-blur-sm border-2 border-yellow-400 sticky top-14 z-30 overflow-x-auto whitespace-nowrap"
+            className="grid w-full grid-cols-9 bg-black/30 backdrop-blur-sm border-2 border-yellow-400 sticky top-14 z-30 overflow-x-auto whitespace-nowrap"
           >
             <TabsTrigger value="dashboard" className="data-[state=active]:bg-yellow-500 data-[state=active]:text-black">
               <Gamepad2 className="w-4 h-4 mr-2" />
@@ -1703,6 +1706,10 @@ export default function StreetDreamsSoccer() {
             <TabsTrigger value="analysis" className="data-[state=active]:bg-yellow-500 data-[state=active]:text-black">
               <Star className="w-4 h-4 mr-2" />
               분석
+            </TabsTrigger>
+            <TabsTrigger value="arcade" className="data-[state=active]:bg-yellow-500 data-[state=active]:text-black">
+              <Rocket className="w-4 h-4 mr-2" />
+              아케이드
             </TabsTrigger>
           </TabsList>
 
@@ -2007,6 +2014,18 @@ export default function StreetDreamsSoccer() {
                 },
               ]}
             />
+          </TabsContent>
+
+          {/* 아케이드 탭 */}
+          <TabsContent value="arcade" className="space-y-6">
+            <Card className="bg-gradient-to-br from-blue-700 to-cyan-500 text-white border-2 border-blue-400">
+              <CardHeader>
+                <CardTitle>미니 게임</CardTitle>
+              </CardHeader>
+              <CardContent>
+                <PhaserDemo />
+              </CardContent>
+            </Card>
           </TabsContent>
 
           {/* 스킬 탭 */}
