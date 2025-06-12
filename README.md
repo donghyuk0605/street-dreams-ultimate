@@ -18,11 +18,15 @@ This project uses Next.js. To connect Firebase Hosting and Firestore, follow the
    ```
    Select **Hosting** and **Firestore** when prompted. Use `build` as the public directory for Hosting.
 4. Copy `.env.example` to `.env.local` and fill in your Firebase project values.
-5. Run the development server:
+5. Install dependencies before running any npm scripts:
+   ```
+   pnpm install
+   ```
+6. Run the development server:
    ```
    pnpm dev
    ```
-6. Deploy after building:
+7. Deploy after building:
    ```
    pnpm build
    firebase deploy
@@ -51,3 +55,14 @@ The Firebase client is initialized in [`lib/firebase.ts`](lib/firebase.ts) and e
 The `arcade` tab showcases a lightweight Phaser demo built with Next.js. The new
 component is loaded dynamically and allows simple keyboard controls for a square
 avatar. Dependencies are managed via `pnpm` and include `phaser`.
+
+## FIFA Style Theme
+
+The app now ships with a darker FIFA-inspired palette and Google Fonts:
+
+- **Orbitron** for futuristic headings
+- **Russo One** for numeric displays
+- **Bebas Neue** for impactful titles
+- **Inter** as the default body font
+
+Player cards can use the classes `fifa-card-gold`, `fifa-card-diamond`, or `fifa-card-legend` for special backgrounds. Use the `bg-fifa-gradient` utility for the default dark gradient background.
