@@ -37,6 +37,7 @@ import {
   Folder,
   AlertTriangle,
   XCircle,
+  Shield,
   PartyPopper,
   Rocket,
   Lightbulb,
@@ -99,6 +100,7 @@ interface GameState {
   region: keyof typeof REGIONS
   level: number
   experience: number
+  skillPoints: number
   maxExperience: number
 
   // 핵심 능력치 (0-100)
@@ -392,6 +394,7 @@ export default function StreetDreamsSoccer() {
     region: "seoul",
     level: 1,
     experience: 0,
+    skillPoints: 3,
     maxExperience: 100,
 
     physical: 30,
@@ -869,7 +872,9 @@ export default function StreetDreamsSoccer() {
     try {
       const savedState = localStorage.getItem("streetDreamsGameState")
       if (savedState) {
-        setGameState(JSON.parse(savedState))
+        const parsed = JSON.parse(savedState)
+        if (parsed.skillPoints === undefined) parsed.skillPoints = 0
+        setGameState(parsed)
         addNotification(
           "게임을 불러왔습니다!",
           "success",
@@ -922,6 +927,7 @@ export default function StreetDreamsSoccer() {
             level: newLevel,
             experience: remainingExp,
             maxExperience: prev.maxExperience + 20,
+            skillPoints: prev.skillPoints + 1,
           }
         }
 
@@ -1087,6 +1093,17 @@ export default function StreetDreamsSoccer() {
       )
     },
     [addNotification],
+  )
+
+  const upgradeSkill = useCallback(
+    (skill: "shooting" | "passing" | "dribbling" | "defending" | "speed") => {
+      setGameState((prev) => {
+        if (prev.skillPoints <= 0) return prev
+        const newValue = Math.min(100, (prev as any)[skill] + 1)
+        return { ...prev, [skill]: newValue, skillPoints: prev.skillPoints - 1 }
+      })
+    },
+    [],
   )
 
   // 스케줄 설정
@@ -1422,7 +1439,7 @@ export default function StreetDreamsSoccer() {
         {/* 월간 결과 모달 */}
         {monthlyResult && (
           <div className="fixed inset-0 bg-black/70 flex items-center justify-center z-50 p-4">
-            <Card className="max-w-4xl w-full bg-gradient-to-br from-purple-900 to-blue-900 text-white max-h-[80vh] overflow-y-auto border-2 border-yellow-400">
+            <Card className="max-w-4xl w-full bg-gradient-to-br from-purple-700 to-blue-700 text-white max-h-[80vh] overflow-y-auto border-2 border-yellow-400">
               <CardHeader className="bg-gradient-to-r from-yellow-500 to-orange-500 text-black rounded-t-lg">
                 <CardTitle className="text-3xl text-center font-bold flex items-center justify-center gap-2">
                   <PartyPopper className="w-6 h-6" /> MONTHLY REPORT <PartyPopper className="w-6 h-6" />
@@ -1490,7 +1507,7 @@ export default function StreetDreamsSoccer() {
         {/* 메인 대시보드 */}
         <div className="grid grid-cols-1 lg:grid-cols-4 gap-6 mb-8">
           {/* 캐릭터 카드 */}
-          <Card className="bg-gradient-to-br from-blue-900 to-purple-900 text-white border-2 border-yellow-400">
+          <Card className="bg-gradient-to-br from-blue-700 to-purple-700 text-white border-2 border-yellow-400">
             <CardHeader>
               <CardTitle className="flex items-center justify-center gap-3">
                 <GameCharacterSVG />
@@ -1530,7 +1547,7 @@ export default function StreetDreamsSoccer() {
           </Card>
 
           {/* 능력치 레이더 */}
-          <Card className="bg-gradient-to-br from-green-900 to-blue-900 text-white border-2 border-green-400">
+          <Card className="bg-gradient-to-br from-green-700 to-blue-700 text-white border-2 border-green-400">
             <CardHeader>
               <CardTitle className="flex items-center">
                 <Flame className="w-5 h-5 mr-2 text-red-400" />
@@ -1559,7 +1576,7 @@ export default function StreetDreamsSoccer() {
           </Card>
 
           {/* 상태 정보 */}
-          <Card className="bg-gradient-to-br from-purple-900 to-pink-900 text-white border-2 border-purple-400">
+          <Card className="bg-gradient-to-br from-purple-700 to-pink-700 text-white border-2 border-purple-400">
             <CardHeader>
               <CardTitle className="flex items-center">
                 <Heart className="w-5 h-5 mr-2 text-pink-400" />
@@ -1588,7 +1605,7 @@ export default function StreetDreamsSoccer() {
           </Card>
 
           {/* 진행 상황 */}
-          <Card className="bg-gradient-to-br from-orange-900 to-red-900 text-white border-2 border-orange-400">
+          <Card className="bg-gradient-to-br from-orange-700 to-red-700 text-white border-2 border-orange-400">
             <CardHeader>
               <CardTitle className="flex items-center">
                 <Clock className="w-5 h-5 mr-2 text-orange-400" />
@@ -1677,7 +1694,7 @@ export default function StreetDreamsSoccer() {
           <TabsContent value="dashboard" className="space-y-6">
             <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
               {/* 골목축구 현황 */}
-              <Card className="bg-gradient-to-br from-orange-900 to-red-900 text-white border-2 border-orange-400">
+              <Card className="bg-gradient-to-br from-orange-700 to-red-700 text-white border-2 border-orange-400">
                 <CardHeader>
                   <CardTitle className="flex items-center">
                     <Crown className="w-5 h-5 mr-2 text-yellow-400" />
@@ -1703,7 +1720,7 @@ export default function StreetDreamsSoccer() {
               </Card>
 
               {/* 다가오는 경기 */}
-              <Card className="bg-gradient-to-br from-blue-900 to-purple-900 text-white border-2 border-blue-400">
+              <Card className="bg-gradient-to-br from-blue-700 to-purple-700 text-white border-2 border-blue-400">
                 <CardHeader>
                   <CardTitle className="flex items-center">
                     <Swords className="w-5 h-5 mr-2 text-red-400" />
@@ -1739,7 +1756,7 @@ export default function StreetDreamsSoccer() {
               </Card>
 
               {/* 업적 진행도 */}
-              <Card className="bg-gradient-to-br from-purple-900 to-pink-900 text-white border-2 border-purple-400">
+              <Card className="bg-gradient-to-br from-purple-700 to-pink-700 text-white border-2 border-purple-400">
                 <CardHeader>
                   <CardTitle className="flex items-center">
                     <Medal className="w-5 h-5 mr-2 text-yellow-400" />
@@ -1779,7 +1796,7 @@ export default function StreetDreamsSoccer() {
           <TabsContent value="schedule" className="space-y-6">
             <div className="grid grid-cols-1 lg:grid-cols-3 gap-6">
               {/* 플레이스타일 선택 */}
-              <Card className="bg-gradient-to-br from-blue-900 to-purple-900 text-white border-2 border-blue-400">
+              <Card className="bg-gradient-to-br from-blue-700 to-purple-700 text-white border-2 border-blue-400">
                 <CardHeader>
                   <CardTitle className="flex items-center">
                     <Gamepad2 className="w-5 h-5 mr-2 text-blue-400" />
@@ -1811,7 +1828,7 @@ export default function StreetDreamsSoccer() {
               </Card>
 
               {/* 활동 목록 */}
-              <Card className="bg-gradient-to-br from-green-900 to-blue-900 text-white border-2 border-green-400">
+              <Card className="bg-gradient-to-br from-green-700 to-blue-700 text-white border-2 border-green-400">
                 <CardHeader>
                   <CardTitle className="flex items-center">
                     <Target className="w-5 h-5 mr-2 text-green-400" />
@@ -1848,7 +1865,7 @@ export default function StreetDreamsSoccer() {
               </Card>
 
               {/* 30일 달력 */}
-              <Card className="bg-gradient-to-br from-purple-900 to-pink-900 text-white border-2 border-purple-400">
+              <Card className="bg-gradient-to-br from-purple-700 to-pink-700 text-white border-2 border-purple-400">
                 <CardHeader>
                   <CardTitle className="flex items-center">
                     <Calendar className="w-5 h-5 mr-2 text-purple-400" />
@@ -1875,7 +1892,7 @@ export default function StreetDreamsSoccer() {
                           key={day}
                           className={`aspect-square p-1 text-xs rounded cursor-pointer transition-all hover:scale-110 border-2 ${
                             isSelected
-                              ? "bg-yellow-500 text-black border-yellow-300"
+                              ? "bg-yellow-500 text-black border-yellow-300 ring-2 ring-yellow-400"
                               : isCurrent
                                 ? "bg-green-500 text-white border-green-300 animate-pulse"
                                 : isCompleted
@@ -1974,20 +1991,47 @@ export default function StreetDreamsSoccer() {
             />
           </TabsContent>
 
-          {/* 기타 탭들은 간단한 플레이스홀더로 */}
+          {/* 스킬 탭 */}
           <TabsContent value="skills" className="space-y-6">
-            <Card className="bg-gradient-to-br from-red-900 to-orange-900 text-white border-2 border-red-400">
+            <Card className="bg-gradient-to-br from-red-700 to-orange-600 text-white border-2 border-red-400">
               <CardHeader>
-                <CardTitle>스킬 개발</CardTitle>
+                <CardTitle className="flex items-center justify-between">
+                  스킬 개발
+                  <span className="text-sm">보유 포인트: {gameState.skillPoints}</span>
+                </CardTitle>
               </CardHeader>
-              <CardContent>
-                <p>스킬 시스템이 곧 추가됩니다!</p>
+              <CardContent className="space-y-4">
+                {[
+                  { key: "shooting", label: "슈팅", icon: <Target className="w-4 h-4" /> },
+                  { key: "passing", label: "패스", icon: <Swords className="w-4 h-4" /> },
+                  { key: "dribbling", label: "드리블", icon: <Zap className="w-4 h-4" /> },
+                  { key: "defending", label: "수비", icon: <Shield className="w-4 h-4" /> },
+                  { key: "speed", label: "스피드", icon: <Wind className="w-4 h-4" /> },
+                ].map((s) => (
+                  <div key={s.key}>
+                    <div className="flex justify-between items-center mb-1">
+                      <span className="flex items-center gap-2">
+                        {s.icon}
+                        {s.label}: <span className="font-bold">{(gameState as any)[s.key]}/100</span>
+                      </span>
+                      <Button
+                        size="icon"
+                        variant="secondary"
+                        disabled={gameState.skillPoints <= 0}
+                        onClick={() => upgradeSkill(s.key as any)}
+                      >
+                        +
+                      </Button>
+                    </div>
+                    <Progress value={(gameState as any)[s.key]} className="h-2 bg-gray-700" />
+                  </div>
+                ))}
               </CardContent>
             </Card>
           </TabsContent>
 
           <TabsContent value="matches" className="space-y-6">
-            <Card className="bg-gradient-to-br from-green-900 to-blue-900 text-white border-2 border-green-400">
+            <Card className="bg-gradient-to-br from-green-700 to-blue-700 text-white border-2 border-green-400">
               <CardHeader>
                 <CardTitle>경기 시스템</CardTitle>
               </CardHeader>
@@ -1998,7 +2042,7 @@ export default function StreetDreamsSoccer() {
           </TabsContent>
 
           <TabsContent value="career" className="space-y-6">
-            <Card className="bg-gradient-to-br from-purple-900 to-pink-900 text-white border-2 border-purple-400">
+            <Card className="bg-gradient-to-br from-purple-700 to-pink-700 text-white border-2 border-purple-400">
               <CardHeader>
                 <CardTitle>진로 시스템</CardTitle>
               </CardHeader>
@@ -2009,7 +2053,7 @@ export default function StreetDreamsSoccer() {
           </TabsContent>
 
           <TabsContent value="collection" className="space-y-6">
-            <Card className="bg-gradient-to-br from-yellow-900 to-orange-900 text-white border-2 border-yellow-400">
+            <Card className="bg-gradient-to-br from-yellow-700 to-orange-600 text-white border-2 border-yellow-400">
               <CardHeader>
                 <CardTitle>컬렉션</CardTitle>
               </CardHeader>
