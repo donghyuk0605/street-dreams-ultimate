@@ -11,7 +11,15 @@ const config: Config = {
   theme: {
         extend: {
                 fontFamily: {
-                        sans: ['var(--font-inter)', 'sans-serif'],
+                        sans: [
+                                'Pretendard Variable',
+                                '-apple-system',
+                                'BlinkMacSystemFont',
+                                'Segoe UI',
+                                'Malgun Gothic',
+                                'var(--font-inter)',
+                                'sans-serif'
+                        ],
                         orbitron: ['var(--font-orbitron)', 'sans-serif'],
                         russo: ['var(--font-russo)', 'sans-serif'],
                         bebas: ['var(--font-bebas)', 'sans-serif'],

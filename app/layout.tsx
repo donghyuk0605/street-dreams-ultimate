@@ -35,8 +35,8 @@ export default function RootLayout({
   children: React.ReactNode
 }) {
   return (
-    <html lang="ko" className={`${inter.variable} ${orbitron.variable} ${russo.variable} ${bebas.variable}`}> 
-      <body className="font-inter">{children}</body>
+    <html lang="ko" className={`${inter.variable} ${orbitron.variable} ${russo.variable} ${bebas.variable}`}>
+      <body className="font-pretendard">{children}</body>
     </html>
   )
 }
