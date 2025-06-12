@@ -1,0 +1,23 @@
+{
+  "color": {
+    "primary": {
+      "50": "#E8F5E8",
+      "500": "#4CAF50",
+      "900": "#1B5E20"
+    },
+    "success": "#4CAF50",
+    "warning": "#FF9800",
+    "error": "#F44336"
+  },
+  "spacing": {
+    "scale": "1.25",
+    "base": "16px"
+  },
+  "typography": {
+    "weight": {
+      "regular": "400",
+      "medium": "500",
+      "bold": "700"
+    }
+  }
+}
