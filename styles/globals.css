@@ -38,6 +38,8 @@ body {
     --chart-3: 196 100% 54%;
     --chart-4: 32 100% 61%;
     --chart-5: 340 75% 55%;
+    --gradient-start: 220 40% 40%;
+    --gradient-end: 220 60% 20%;
     --radius: 0.5rem;
     --sidebar-background: 240 5% 90%;
     --sidebar-foreground: 240 5% 20%;
@@ -73,6 +75,8 @@ body {
     --chart-3: 196 100% 54%;
     --chart-4: 32 100% 61%;
     --chart-5: 340 75% 55%;
+    --gradient-start: 220 30% 20%;
+    --gradient-end: 220 50% 10%;
     --sidebar-background: 240 5% 12%;
     --sidebar-foreground: 0 0% 98%;
     --sidebar-primary: 250 67% 54%;

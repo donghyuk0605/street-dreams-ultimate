@@ -46,7 +46,7 @@ export function LoadingScreen({ onComplete, tips = [] }: LoadingScreenProps) {
       initial={{ opacity: 1 }}
       animate={{ opacity: 1 }}
       exit={{ opacity: 0 }}
-      className="fixed inset-0 z-50 flex flex-col items-center justify-center bg-gradient-to-br from-blue-900 via-purple-900 to-indigo-900"
+      className="fixed inset-0 z-50 flex flex-col items-center justify-center bg-gradient-to-br from-[hsl(var(--gradient-start))] to-[hsl(var(--gradient-end))]"
     >
       <motion.div
         initial={{ y: -20, opacity: 0 }}
@@ -54,9 +54,7 @@ export function LoadingScreen({ onComplete, tips = [] }: LoadingScreenProps) {
         transition={{ delay: 0.2 }}
         className="mb-8"
       >
-        <h1 className="text-4xl md:text-6xl font-russo text-transparent bg-clip-text bg-gradient-to-r from-yellow-400 to-orange-500 text-center">
-          STREET DREAMS
-        </h1>
+        <h1 className="text-4xl md:text-6xl font-russo text-primary text-center">STREET DREAMS</h1>
         <p className="text-lg text-blue-300 text-center mt-2">European Journey</p>
       </motion.div>
 
@@ -66,7 +64,7 @@ export function LoadingScreen({ onComplete, tips = [] }: LoadingScreenProps) {
         transition={{ delay: 0.4 }}
         className="w-64 h-64 relative mb-8"
       >
-        <div className="absolute inset-0 rounded-full bg-gradient-to-r from-blue-500 to-purple-500 animate-pulse"></div>
+        <div className="absolute inset-0 rounded-full bg-primary animate-pulse"></div>
         <div className="absolute inset-2 rounded-full bg-black flex items-center justify-center overflow-hidden">
           <div className="w-full h-full bg-[url('/images/soccer-ball.png')] bg-contain bg-center bg-no-repeat animate-spin-slow"></div>
         </div>
