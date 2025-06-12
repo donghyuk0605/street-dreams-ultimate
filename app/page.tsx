@@ -33,6 +33,16 @@ import {
   Crown,
   Medal,
   Sparkles,
+  Save,
+  Folder,
+  AlertTriangle,
+  XCircle,
+  PartyPopper,
+  Rocket,
+  Lightbulb,
+  Wind,
+  Goal,
+  Cake,
 } from "lucide-react"
 
 // 새로운 컴포넌트들 import
@@ -257,7 +267,7 @@ interface TrophyType {
   id: string
   name: string
   description: string
-  icon: string
+  icon: React.ReactNode
   rarity: "bronze" | "silver" | "gold" | "platinum" | "legendary"
   dateEarned: string
   category: "academic" | "soccer" | "social" | "special" | "street"
@@ -270,7 +280,7 @@ interface Achievement {
   progress: number
   maxProgress: number
   reward?: string
-  icon: string
+  icon: React.ReactNode
 }
 
 interface Record {
@@ -442,7 +452,7 @@ export default function StreetDreamsSoccer() {
         id: "first_ball",
         name: "첫 축구공",
         description: "인생 첫 축구공을 받았다",
-        icon: "⚽",
+        icon: <Goal className="w-4 h-4" />,
         rarity: "bronze",
         dateEarned: "1년 3월",
         category: "special",
@@ -456,7 +466,7 @@ export default function StreetDreamsSoccer() {
         progress: 0,
         maxProgress: 10,
         reward: "골목 명성 +50",
-        icon: "👑",
+        icon: <Crown className="w-4 h-4" />,
       },
       {
         id: "first_goal",
@@ -465,7 +475,7 @@ export default function StreetDreamsSoccer() {
         progress: 0,
         maxProgress: 1,
         reward: "자신감 +10",
-        icon: "⚽",
+        icon: <Goal className="w-4 h-4" />,
       },
     ],
     records: [],
@@ -599,7 +609,7 @@ export default function StreetDreamsSoccer() {
   const [monthlyResult, setMonthlyResult] = useState<any>(null)
   const [selectedDay, setSelectedDay] = useState<number | null>(null)
   const [currentActivity, setCurrentActivity] = useState<string | null>(null)
-  const [dayEvents, setDayEvents] = useState<string[]>([])
+  const [dayEvents, setDayEvents] = useState<React.ReactNode[]>([])
   const [selectedTemplate, setSelectedTemplate] = useState<string>("street_warrior")
 
   // 활동 목록 (기존과 동일)
@@ -817,7 +827,11 @@ export default function StreetDreamsSoccer() {
 
   // 알림 추가
   const addNotification = useCallback(
-    (message: string, type: "success" | "info" | "warning" | "error" | "achievement" = "info", icon?: string) => {
+    (
+      message: string,
+      type: "success" | "info" | "warning" | "error" | "achievement" = "info",
+      icon?: React.ReactNode,
+    ) => {
       const newNotification: Notification = {
         id: Date.now().toString(),
         message,
@@ -837,9 +851,17 @@ export default function StreetDreamsSoccer() {
   const handleSave = useCallback(() => {
     try {
       localStorage.setItem("streetDreamsGameState", JSON.stringify(gameState))
-      addNotification("게임이 저장되었습니다!", "success", "💾")
+      addNotification(
+        "게임이 저장되었습니다!",
+        "success",
+        <Save className="w-4 h-4" />,
+      )
     } catch (error) {
-      addNotification("저장에 실패했습니다.", "error", "❌")
+      addNotification(
+        "저장에 실패했습니다.",
+        "error",
+        <XCircle className="w-4 h-4" />,
+      )
     }
   }, [gameState, addNotification])
 
@@ -848,12 +870,24 @@ export default function StreetDreamsSoccer() {
       const savedState = localStorage.getItem("streetDreamsGameState")
       if (savedState) {
         setGameState(JSON.parse(savedState))
-        addNotification("게임을 불러왔습니다!", "success", "📁")
+        addNotification(
+          "게임을 불러왔습니다!",
+          "success",
+          <Folder className="w-4 h-4" />,
+        )
       } else {
-        addNotification("저장된 게임이 없습니다.", "warning", "⚠️")
+        addNotification(
+          "저장된 게임이 없습니다.",
+          "warning",
+          <AlertTriangle className="w-4 h-4" />,
+        )
       }
     } catch (error) {
-      addNotification("불러오기에 실패했습니다.", "error", "❌")
+      addNotification(
+        "불러오기에 실패했습니다.",
+        "error",
+        <XCircle className="w-4 h-4" />,
+      )
     }
   }, [addNotification])
 
@@ -878,7 +912,11 @@ export default function StreetDreamsSoccer() {
         const remainingExp = newExp % prev.maxExperience
 
         if (newLevel > prev.level) {
-          addNotification(`🎉 레벨업! Lv.${newLevel}`, "achievement", "⭐")
+          addNotification(
+            `레벨업! Lv.${newLevel}`,
+            "achievement",
+            <Star className="w-4 h-4" />,
+          )
           return {
             ...prev,
             level: newLevel,
@@ -913,7 +951,11 @@ export default function StreetDreamsSoccer() {
         return newState
       })
 
-      addNotification(`🎉 계절 이벤트 완료!`)
+      addNotification(
+        `계절 이벤트 완료!`,
+        "achievement",
+        <PartyPopper className="w-4 h-4" />,
+      )
     },
     [gainExperience, addNotification],
   )
@@ -950,7 +992,11 @@ export default function StreetDreamsSoccer() {
           newState.isInjured = false
           newState.injuryType = undefined
           newState.injuryName = undefined
-          addNotification("🎉 부상이 완전히 회복되었습니다!")
+          addNotification(
+            "부상이 완전히 회복되었습니다!",
+            "achievement",
+            <PartyPopper className="w-4 h-4" />,
+          )
         }
 
         return newState
@@ -983,11 +1029,19 @@ export default function StreetDreamsSoccer() {
             newState.confidence = Math.min(100, newState.confidence + 5)
             newState.reputation = Math.min(100, newState.reputation + 3)
             newState.streetCredits += 10
-            addNotification(`🏆 ${rival.name}을(를) 이겼습니다!`)
+            addNotification(
+              `${rival.name}을(를) 이겼습니다!`,
+              "success",
+              <Trophy className="w-4 h-4" />,
+            )
           } else {
             updatedRivals[rivalIndex].matchHistory.losses += 1
             newState.confidence = Math.max(0, newState.confidence - 3)
-            addNotification(`😔 ${rival.name}에게 졌습니다...`)
+            addNotification(
+              `${rival.name}에게 졌습니다...`,
+              "error",
+              <Frown className="w-4 h-4" />,
+            )
           }
 
           updatedRivals[rivalIndex].matchHistory.lastMatch = {
@@ -1026,7 +1080,11 @@ export default function StreetDreamsSoccer() {
         weeklyTemplate: template.schedule,
       }))
 
-      addNotification(`⚡ ${template.name} 스타일 적용!`)
+      addNotification(
+        `${template.name} 스타일 적용!`,
+        "info",
+        <Zap className="w-4 h-4" />,
+      )
     },
     [addNotification],
   )
@@ -1043,7 +1101,11 @@ export default function StreetDreamsSoccer() {
       }))
       setSelectedDay(null)
       const activity = activities.find((a) => a.id === activityId)
-      addNotification(`📅 ${day}일: ${activity?.name || "휴식"} 계획!`)
+      addNotification(
+        `${day}일: ${activity?.name || "휴식"} 계획!`,
+        "info",
+        <Calendar className="w-4 h-4" />,
+      )
     },
     [addNotification],
   )
@@ -1108,14 +1170,24 @@ export default function StreetDreamsSoccer() {
 
             if (activity.rarity === "legendary" || Math.random() < 0.1) {
               const events = [
-                "🌟 완벽한 플레이를 선보였다!",
-                "⚡ 새로운 기술을 깨달았다!",
-                "🔥 오늘은 컨디션이 최고였다!",
-                "💫 팀원들이 감탄했다!",
-                "🎯 정확한 슈팅이 골대를 흔들었다!",
+                <>
+                  <Sparkles className="inline w-4 h-4 mr-1" /> 완벽한 플레이를 선보였다!
+                </>,
+                <>
+                  <Zap className="inline w-4 h-4 mr-1" /> 새로운 기술을 깨달았다!
+                </>,
+                <>
+                  <Flame className="inline w-4 h-4 mr-1" /> 오늘은 컨디션이 최고였다!
+                </>,
+                <>
+                  <Sparkles className="inline w-4 h-4 mr-1" /> 팀원들이 감탄했다!
+                </>,
+                <>
+                  <Target className="inline w-4 h-4 mr-1" /> 정확한 슈팅이 골대를 흔들었다!
+                </>,
               ]
               const randomEvent = events[Math.floor(Math.random() * events.length)]
-              setDayEvents((prev) => [...prev, `${currentDay}일: ${randomEvent}`])
+              setDayEvents((prev) => [...prev, <span key={currentDay}>{currentDay}일: {randomEvent}</span>])
             }
           }
         }
@@ -1150,7 +1222,11 @@ export default function StreetDreamsSoccer() {
             newState.month = 1
             newState.year += 1
             newState.age += 1
-            addNotification(`🎂 ${newState.childName}이가 ${newState.age}살이 되었습니다!`)
+            addNotification(
+              `${newState.childName}이가 ${newState.age}살이 되었습니다!`,
+              "info",
+              <Cake className="w-4 h-4" />,
+            )
           }
 
           // 계절 업데이트
@@ -1183,9 +1259,9 @@ export default function StreetDreamsSoccer() {
             events: dayEvents,
             achievements: [],
             totalCost: 0,
-            parentComment: "이번 달도 열심히 했구나! 💪",
-            coachComment: "실력이 늘고 있어! 계속 해보자! ⚽",
-            streetComment: "골목에서 소문이 자자하다! 🔥",
+            parentComment: "이번 달도 열심히 했구나!",
+            coachComment: "실력이 늘고 있어! 계속 해보자!",
+            streetComment: "골목에서 소문이 자자하다!",
             levelInfo: `레벨 ${newState.level} (경험치: ${newState.experience}/${newState.maxExperience})`,
             regionInfo: `${REGIONS[newState.region].name} 지역`,
           }
@@ -1206,7 +1282,11 @@ export default function StreetDreamsSoccer() {
   const completeMonth = useCallback(() => {
     setMonthlyResult(null)
     setDayEvents([])
-    addNotification("🚀 새로운 달이 시작되었습니다!")
+    addNotification(
+      "새로운 달이 시작되었습니다!",
+      "info",
+      <Rocket className="w-4 h-4" />,
+    )
   }, [addNotification])
 
   // 감정 상태 아이콘
@@ -1344,33 +1424,45 @@ export default function StreetDreamsSoccer() {
           <div className="fixed inset-0 bg-black/70 flex items-center justify-center z-50 p-4">
             <Card className="max-w-4xl w-full bg-gradient-to-br from-purple-900 to-blue-900 text-white max-h-[80vh] overflow-y-auto border-2 border-yellow-400">
               <CardHeader className="bg-gradient-to-r from-yellow-500 to-orange-500 text-black rounded-t-lg">
-                <CardTitle className="text-3xl text-center font-bold">🎉 MONTHLY REPORT 🎉</CardTitle>
+                <CardTitle className="text-3xl text-center font-bold flex items-center justify-center gap-2">
+                  <PartyPopper className="w-6 h-6" /> MONTHLY REPORT <PartyPopper className="w-6 h-6" />
+                </CardTitle>
               </CardHeader>
               <CardContent className="p-8 space-y-6">
                 <div className="text-center p-4 bg-gradient-to-r from-purple-600 to-pink-600 rounded-lg border-2 border-purple-400">
-                  <div className="text-xl font-bold text-yellow-300 mb-2">⭐ LEVEL STATUS</div>
+                  <div className="text-xl font-bold text-yellow-300 mb-2 flex items-center gap-2">
+                    <Star className="w-5 h-5" /> LEVEL STATUS
+                  </div>
                   <div className="text-white text-lg">{monthlyResult.levelInfo}</div>
                 </div>
 
                 <div className="text-center p-4 bg-gradient-to-r from-orange-600 to-red-600 rounded-lg border-2 border-orange-400">
-                  <div className="text-xl font-bold text-yellow-300 mb-2">🔥 STREET REPUTATION</div>
+                  <div className="text-xl font-bold text-yellow-300 mb-2 flex items-center gap-2">
+                    <Flame className="w-5 h-5" /> STREET REPUTATION
+                  </div>
                   <div className="text-white text-lg">{monthlyResult.streetComment}</div>
                 </div>
 
                 <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
                   <div className="text-center p-4 bg-gradient-to-r from-pink-600 to-purple-600 rounded-lg border-2 border-pink-400">
-                    <div className="text-lg font-bold text-yellow-300 mb-2">👨‍👩‍👧‍👦 PARENTS</div>
+                  <div className="text-lg font-bold text-yellow-300 mb-2 flex items-center gap-2">
+                    <Users className="w-5 h-5" /> PARENTS
+                  </div>
                     <div className="text-white">"{monthlyResult.parentComment}"</div>
                   </div>
                   <div className="text-center p-4 bg-gradient-to-r from-blue-600 to-cyan-600 rounded-lg border-2 border-blue-400">
-                    <div className="text-lg font-bold text-yellow-300 mb-2">⚽ COACH</div>
+                  <div className="text-lg font-bold text-yellow-300 mb-2 flex items-center gap-2">
+                    <Goal className="w-5 h-5" /> COACH
+                  </div>
                     <div className="text-white">"{monthlyResult.coachComment}"</div>
                   </div>
                 </div>
 
                 {dayEvents.length > 0 && (
                   <div>
-                    <h3 className="font-bold text-yellow-300 mb-3 text-xl">🎮 MONTHLY HIGHLIGHTS</h3>
+                    <h3 className="font-bold text-yellow-300 mb-3 text-xl flex items-center gap-2">
+                      <Gamepad2 className="w-5 h-5" /> MONTHLY HIGHLIGHTS
+                    </h3>
                     <div className="space-y-2 max-h-40 overflow-y-auto">
                       {dayEvents.map((event, index) => (
                         <div
@@ -1407,7 +1499,9 @@ export default function StreetDreamsSoccer() {
                   <div className="text-sm text-blue-300">{gameState.currentTeam}</div>
                   <div className="text-xs text-purple-300">{gameState.position}</div>
                   {currentActivity && (
-                    <div className="text-xs text-green-400 animate-pulse mt-2">🎮 {currentActivity}</div>
+                    <div className="text-xs text-green-400 animate-pulse mt-2 flex items-center gap-1">
+                      <Gamepad2 className="w-3 h-3" /> {currentActivity}
+                    </div>
                   )}
                 </div>
               </CardTitle>
@@ -1444,12 +1538,12 @@ export default function StreetDreamsSoccer() {
               </CardTitle>
             </CardHeader>
             <CardContent className="space-y-3">
-              {[
-                { name: "슈팅", value: gameState.shooting, icon: "🎯", color: "text-red-400" },
-                { name: "패스", value: gameState.passing, icon: "🎪", color: "text-blue-400" },
-                { name: "드리블", value: gameState.dribbling, icon: "⚡", color: "text-yellow-400" },
-                { name: "스피드", value: gameState.speed, icon: "💨", color: "text-green-400" },
-              ].map((skill) => (
+                {[
+                  { name: "슈팅", value: gameState.shooting, icon: <Target className="w-4 h-4" />, color: "text-red-400" },
+                  { name: "패스", value: gameState.passing, icon: <Swords className="w-4 h-4" />, color: "text-blue-400" },
+                  { name: "드리블", value: gameState.dribbling, icon: <Zap className="w-4 h-4" />, color: "text-yellow-400" },
+                  { name: "스피드", value: gameState.speed, icon: <Wind className="w-4 h-4" />, color: "text-green-400" },
+                ].map((skill) => (
                 <div key={skill.name}>
                   <div className="flex justify-between mb-1">
                     <span className="flex items-center gap-2">
@@ -1474,10 +1568,10 @@ export default function StreetDreamsSoccer() {
             </CardHeader>
             <CardContent className="space-y-3">
               {[
-                { name: "에너지", value: gameState.energy, icon: "⚡", color: getEnergyColor() },
-                { name: "행복", value: gameState.happiness, icon: "😊", color: "text-yellow-400" },
-                { name: "건강", value: gameState.health, icon: "❤️", color: "text-red-400" },
-                { name: "동기", value: gameState.motivation, icon: "🔥", color: "text-orange-400" },
+                { name: "에너지", value: gameState.energy, icon: <Zap className="w-4 h-4" />, color: getEnergyColor() },
+                { name: "행복", value: gameState.happiness, icon: <Smile className="w-4 h-4" />, color: "text-yellow-400" },
+                { name: "건강", value: gameState.health, icon: <Heart className="w-4 h-4" />, color: "text-red-400" },
+                { name: "동기", value: gameState.motivation, icon: <Flame className="w-4 h-4" />, color: "text-orange-400" },
               ].map((stat) => (
                 <div key={stat.name}>
                   <div className="flex justify-between mb-1">
@@ -1513,7 +1607,9 @@ export default function StreetDreamsSoccer() {
 
                 {gameState.isMonthRunning ? (
                   <div className="text-center">
-                    <div className="text-sm text-orange-300 mb-2">🎮 Day {gameState.currentDay}</div>
+                    <div className="text-sm text-orange-300 mb-2 flex items-center gap-1">
+                      <Gamepad2 className="w-4 h-4" /> Day {gameState.currentDay}
+                    </div>
                     <div className="flex items-center justify-center gap-2">
                       <Zap className="w-4 h-4 text-yellow-400 animate-pulse" />
                       <span className="text-sm text-gray-300">게임 진행 중...</span>
@@ -1623,7 +1719,15 @@ export default function StreetDreamsSoccer() {
                           <div className="text-sm text-blue-300">{match.venue}</div>
                           <div className="text-xs text-gray-400">{match.date}</div>
                           <div className="text-xs text-orange-400">
-                            {match.type === "street" ? "🔥 골목축구" : "⚽ 정식경기"}
+                            {match.type === "street" ? (
+                              <span className="flex items-center gap-1">
+                                <Flame className="w-4 h-4" /> 골목축구
+                              </span>
+                            ) : (
+                              <span className="flex items-center gap-1">
+                                <Goal className="w-4 h-4" /> 정식경기
+                              </span>
+                            )}
                           </div>
                         </div>
                       ))}

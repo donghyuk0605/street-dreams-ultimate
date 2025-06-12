@@ -1,12 +1,13 @@
 "use client"
 
+import type React from "react"
 import { useEffect } from "react"
 
 export interface Notification {
   id: string
   message: string
   type: "success" | "info" | "warning" | "error" | "achievement"
-  icon?: string
+  icon?: React.ReactNode
   duration?: number
 }
 

@@ -6,6 +6,7 @@ import { useState, useEffect, useRef } from "react"
 import { motion } from "framer-motion"
 import { Button } from "@/components/ui/button"
 import { useSound } from "@/components/sound-context"
+import { Target, Zap, Swords } from "lucide-react"
 
 interface MiniGameProps {
   type: "shooting" | "dribbling" | "passing"
@@ -297,7 +298,15 @@ export function MiniGame({ type, difficulty = "medium", onComplete, onCancel }: 
 
         {!gameStarted ? (
           <div className="p-8 text-center">
-            <div className="text-4xl mb-6">{type === "shooting" ? "🎯" : type === "dribbling" ? "⚡" : "🎪"}</div>
+            <div className="text-4xl mb-6">
+              {type === "shooting" ? (
+                <Target className="w-8 h-8 mx-auto" />
+              ) : type === "dribbling" ? (
+                <Zap className="w-8 h-8 mx-auto" />
+              ) : (
+                <Swords className="w-8 h-8 mx-auto" />
+              )}
+            </div>
             <h3 className="text-xl font-bold text-white mb-4">
               {type === "shooting"
                 ? "골대를 향해 슈팅하세요!"

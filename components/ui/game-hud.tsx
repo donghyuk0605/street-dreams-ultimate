@@ -3,7 +3,7 @@
 import { useState, useEffect } from "react"
 import { Progress } from "@/components/ui/progress"
 import { Badge } from "@/components/ui/badge"
-import { Zap, Crown, Star, Heart, Brain, Calendar, Clock } from "lucide-react"
+import { Zap, Crown, Star, Heart, Brain, Calendar, Clock, Smile } from "lucide-react"
 
 interface GameHudProps {
   level: number
@@ -101,7 +101,7 @@ export function GameHud({
               </div>
 
               <div className="flex items-center gap-1" title={`행복: ${happiness}/100`}>
-                <span className="text-lg">😊</span>
+                <Smile className="w-4 h-4 text-yellow-400" />
                 <span className="font-bold text-yellow-400">{happiness}</span>
               </div>
 

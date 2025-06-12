@@ -4,7 +4,7 @@ import { useState } from "react"
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card"
 import { Badge } from "@/components/ui/badge"
 import { Button } from "@/components/ui/button"
-import { Sun, Cloud, Snowflake, Flower } from "lucide-react"
+import { Sun, Cloud, Snowflake, Flower, Zap } from "lucide-react"
 
 interface SeasonEventProps {
   currentSeason: "spring" | "summer" | "fall" | "winter"
@@ -201,7 +201,9 @@ export function SeasonEventSystem({ currentSeason, currentMonth, onEventSelect }
                 </div>
                 <div className="flex justify-between text-xs">
                   <span>에너지 소모:</span>
-                  <span className="font-bold text-red-300">⚡ {event.energyCost}</span>
+                  <span className="font-bold text-red-300 flex items-center gap-1">
+                    <Zap className="w-3 h-3" /> {event.energyCost}
+                  </span>
                 </div>
                 <div className="text-xs uppercase font-bold mt-1 text-yellow-300">{event.rarity}</div>
               </div>
