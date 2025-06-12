@@ -31,42 +31,42 @@ export function PersonalitySystem({ traits }: PersonalitySystemProps) {
     {
       name: "경쟁심",
       value: traits.competitiveness,
-      icon: <Flame className="w-5 h-5 text-red-400" />,
+      icon: <Flame className="w-5 h-5 text-accent" />,
       description: "승부욕과 경쟁에 대한 열정",
       effects: ["슈팅 능력 향상", "중요 경기 퍼포먼스 증가", "스트레스 증가"],
     },
     {
       name: "팀워크",
       value: traits.teamwork,
-      icon: <Users className="w-5 h-5 text-blue-400" />,
+      icon: <Users className="w-5 h-5 text-accent" />,
       description: "동료와의 협력 능력",
       effects: ["패스 능력 향상", "팀원 관계 개선", "어시스트 증가"],
     },
     {
       name: "창의성",
       value: traits.creativity,
-      icon: <Zap className="w-5 h-5 text-yellow-400" />,
+      icon: <Zap className="w-5 h-5 text-accent" />,
       description: "독창적인 플레이와 문제 해결 능력",
       effects: ["드리블 능력 향상", "예측 불가능한 플레이", "위험한 패스 시도"],
     },
     {
       name: "규율성",
       value: traits.discipline,
-      icon: <Target className="w-5 h-5 text-green-400" />,
+      icon: <Target className="w-5 h-5 text-accent" />,
       description: "자기 관리와 규칙 준수 능력",
       effects: ["체력 관리 향상", "일관된 퍼포먼스", "전술 이해도 증가"],
     },
     {
       name: "자신감",
       value: traits.confidence,
-      icon: <Brain className="w-5 h-5 text-purple-400" />,
+      icon: <Brain className="w-5 h-5 text-accent" />,
       description: "자신의 능력에 대한 믿음",
       effects: ["중요한 순간 결정력 향상", "실수 후 회복력", "과신 위험"],
     },
     {
       name: "침착함",
       value: traits.calmness,
-      icon: <Shield className="w-5 h-5 text-cyan-400" />,
+      icon: <Shield className="w-5 h-5 text-accent" />,
       description: "압박 상황에서의 평정심",
       effects: ["스트레스 저항", "정확한 판단력", "위기 상황 대처 능력"],
     },
@@ -99,19 +99,19 @@ export function PersonalitySystem({ traits }: PersonalitySystemProps) {
   const personalityType = getPersonalityType()
 
   return (
-    <Card className="bg-gradient-to-br from-purple-900 to-blue-900 text-white border-2 border-purple-400">
+    <Card className="bg-gradient-to-br from-gray-800 to-gray-900 text-white border border-primary">
       <CardHeader>
         <CardTitle className="flex items-center justify-between">
           <div className="flex items-center gap-2">
-            <Brain className="w-5 h-5 text-purple-400" />
+            <Brain className="w-5 h-5 text-primary" />
             <span>성격 시스템</span>
           </div>
-          <Badge className="bg-gradient-to-r from-purple-500 to-pink-500">{personalityType.type}</Badge>
+          <Badge className="bg-primary">{personalityType.type}</Badge>
         </CardTitle>
       </CardHeader>
       <CardContent className="space-y-4">
-        <div className="text-center p-4 bg-black/30 rounded-lg border border-purple-400">
-          <div className="text-lg font-bold text-purple-300 mb-2">{personalityType.type}</div>
+        <div className="text-center p-4 bg-black/30 rounded-lg border border-primary">
+          <div className="text-lg font-bold text-primary mb-2">{personalityType.type}</div>
           <div className="text-sm text-gray-300">{personalityType.description}</div>
         </div>
 
@@ -128,13 +128,13 @@ export function PersonalitySystem({ traits }: PersonalitySystemProps) {
               <Progress value={trait.value} className="h-2 bg-gray-700" />
               <div className="text-xs text-gray-400">{trait.description}</div>
               <div className="text-xs text-gray-300">
-                <span className="font-bold text-purple-300">효과:</span> {trait.effects.join(", ")}
+                <span className="font-bold text-primary">효과:</span> {trait.effects.join(", ")}
               </div>
             </div>
           ))}
         </div>
 
-        <div className="text-sm text-purple-300 mt-4">
+        <div className="text-sm text-primary mt-4">
           <div className="font-bold mb-1 flex items-center gap-1">
             <Lightbulb className="w-4 h-4" /> 성격 시스템:
           </div>

@@ -113,15 +113,15 @@ export function InjurySystem({
 
   return (
     <Card
-      className={`bg-gradient-to-br from-gray-900 to-${isInjured ? "red" : "green"}-900 text-white border-2 border-${isInjured ? "red" : "green"}-400`}
+      className={`bg-gradient-to-br from-gray-800 to-gray-900 text-white border ${isInjured ? "border-destructive" : "border-primary"}`}
     >
       <CardHeader>
         <CardTitle className="flex items-center justify-between">
           <div className="flex items-center gap-2">
             {isInjured ? (
-              <AlertTriangle className="w-5 h-5 text-red-400" />
+              <AlertTriangle className="w-5 h-5 text-destructive" />
             ) : (
-              <Heart className="w-5 h-5 text-green-400" />
+              <Heart className="w-5 h-5 text-primary" />
             )}
             <span>{isInjured ? "부상 관리" : "건강 상태"}</span>
           </div>
@@ -131,7 +131,7 @@ export function InjurySystem({
       <CardContent className="space-y-4">
         {isInjured ? (
           <>
-            <div className="text-center p-4 bg-black/30 rounded-lg border border-red-400">
+            <div className="text-center p-4 bg-black/30 rounded-lg border border-destructive">
               <div className={`text-xl font-bold ${getInjurySeverityColor()} mb-2`}>{injuryName}</div>
               <div className="text-sm text-gray-300">
                 회복까지 남은 일수: {recoveryDays}일 / {totalRecoveryDays}일
@@ -140,14 +140,14 @@ export function InjurySystem({
             </div>
 
             <div className="space-y-3">
-              <div className="text-sm font-bold text-red-300">치료 옵션:</div>
+              <div className="text-sm font-bold text-primary">치료 옵션:</div>
               <div className="grid grid-cols-1 md:grid-cols-2 gap-3">
                 {treatmentOptions.map((treatment) => (
                   <div
                     key={treatment.id}
                     className={`p-3 rounded-lg cursor-pointer transition-all hover:scale-105 border ${
                       selectedTreatment === treatment.id
-                        ? "bg-gradient-to-r from-blue-600 to-purple-600 border-blue-400"
+                        ? "bg-gradient-to-r from-accent to-primary border-primary"
                         : "bg-black/30 border-gray-600"
                     }`}
                     onClick={() => handleTreatmentSelect(treatment.id)}
@@ -158,10 +158,10 @@ export function InjurySystem({
                     </div>
                     <div className="text-xs text-gray-300 mt-1">{treatment.description}</div>
                     <div className="flex justify-between mt-2 text-xs">
-                      <span className="text-green-400">{treatment.effect}</span>
-                      <span className="text-yellow-400">비용: {treatment.cost.toLocaleString()}원</span>
+                      <span className="text-primary">{treatment.effect}</span>
+                      <span className="text-accent">비용: {treatment.cost.toLocaleString()}원</span>
                     </div>
-                    <div className="text-xs text-blue-300 mt-1">에너지 회복: +{treatment.energyGain}</div>
+                    <div className="text-xs text-primary mt-1">에너지 회복: +{treatment.energyGain}</div>
                   </div>
                 ))}
               </div>
@@ -170,7 +170,7 @@ export function InjurySystem({
             {selectedTreatment && (
               <Button
                 onClick={applyTreatment}
-                className="w-full bg-gradient-to-r from-blue-600 to-purple-600 hover:from-blue-700 hover:to-purple-700 text-white font-bold border-2 border-blue-400"
+                className="w-full bg-gradient-to-r from-accent to-primary hover:opacity-90 text-white font-bold border border-primary"
               >
                 치료 적용하기
               </Button>
