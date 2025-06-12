@@ -18,11 +18,15 @@ This project uses Next.js. To connect Firebase Hosting and Firestore, follow the
    ```
    Select **Hosting** and **Firestore** when prompted. Use `build` as the public directory for Hosting.
 4. Copy `.env.example` to `.env.local` and fill in your Firebase project values.
-5. Run the development server:
+5. Install dependencies before running any npm scripts:
+   ```
+   pnpm install
+   ```
+6. Run the development server:
    ```
    pnpm dev
    ```
-6. Deploy after building:
+7. Deploy after building:
    ```
    pnpm build
    firebase deploy
