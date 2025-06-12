@@ -69,6 +69,7 @@ import { REGIONS, WEEKLY_TEMPLATES, getEnergyColor, getMoodIcon, getRarityColor 
 import { MatchSystem } from "@/components/match-system"
 import { ScoreboardOverlay } from "@/components/ui/scoreboard-overlay"
 import { CareerCollection } from "@/components/career-collection"
+import { TournamentSystem } from "@/components/tournament-system"
 
 
 
@@ -1399,6 +1400,10 @@ export default function StreetDreamsSoccer() {
               <Trophy className="w-4 h-4 mr-2" />
               경기
             </TabsTrigger>
+            <TabsTrigger value="tournament" className="data-[state=active]:bg-yellow-500 data-[state=active]:text-black">
+              <Crown className="w-4 h-4 mr-2" />
+              토너먼트
+            </TabsTrigger>
             <TabsTrigger value="career" className="data-[state=active]:bg-yellow-500 data-[state=active]:text-black">
               <GraduationCap className="w-4 h-4 mr-2" />
               진로
@@ -1765,6 +1770,10 @@ export default function StreetDreamsSoccer() {
               matches={gameState.upcomingMatches}
               onPlayMatch={handlePlayMatch}
             />
+          </TabsContent>
+
+          <TabsContent value="tournament" className="space-y-6">
+            <TournamentSystem teams={["Street FC", "강남 FC", "홍대 드림", "동네 형들"]} />
           </TabsContent>
 
           <TabsContent value="career" className="space-y-6">

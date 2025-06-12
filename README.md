@@ -73,6 +73,10 @@ Matches now display a FIFA style scoreboard after each match. Home and away logo
 
 The overlay now features larger logos and bold typography for a more immersive presentation.
 
+## Tournament System
+
+A lightweight knockout tournament is now available under the **토너먼트** tab. Four teams face off in semi-finals and a final, letting you crown a champion.
+
 ## 로그인 화면
 
 `/login` 경로에서 만나볼 수 있는 로그인 페이지는 어두운 배경과 팀 로고가 돋보이는 카드 레이아웃을 사용합니다. 이메일과 비밀번호 입력 필드를 제공하며 애니메이션 효과로 부드럽게 등장합니다.
