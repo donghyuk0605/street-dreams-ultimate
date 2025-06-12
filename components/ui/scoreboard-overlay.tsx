@@ -61,7 +61,7 @@ export function ScoreboardOverlay({ data, onClose }: ScoreboardOverlayProps) {
         </CardHeader>
         <CardContent className="relative z-10 p-6">
 
-      <Card className="relative w-full max-w-md overflow-hidden text-white border-2 border-yellow-500 bg-fifa-gradient animate-slide-in-right">
+          <Card className="relative w-full max-w-md overflow-hidden text-white border-2 border-yellow-500 bg-fifa-gradient animate-slide-in-right">
         <Image
           src="https://images.unsplash.com/photo-1517927033932-b3d18e61fb3a?auto=format&fit=crop&w=800&q=60"
           alt="scoreboard background"
@@ -96,6 +96,8 @@ export function ScoreboardOverlay({ data, onClose }: ScoreboardOverlayProps) {
           <Button onClick={onClose} className="w-full bg-primary text-primary-foreground">
             확인
           </Button>
+        </CardContent>
+      </Card>
         </CardContent>
       </Card>
     </div>
