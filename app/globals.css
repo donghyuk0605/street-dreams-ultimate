@@ -396,4 +396,18 @@ textarea:focus {
     rgba(255, 255, 255, 0.05), 0 8px 16px rgba(255, 255, 255, 0.03);
 }
 
+/* 메뉴 탭 개선 */
+.menu-tabs {
+  @apply grid w-full grid-cols-9 sticky top-14 z-30 overflow-x-auto whitespace-nowrap bg-background/70 backdrop-blur-md border-b border-yellow-400 shadow-md rounded-b-md;
+}
+
+.menu-tabs .tab-button {
+  @apply flex items-center justify-center gap-1 px-3 py-2 text-sm font-semibold transition-colors hover:bg-primary/20 data-[state=active]:bg-primary data-[state=active]:text-primary-foreground rounded-md;
+}
+
+/* 대시보드 카드 스타일 */
+.dashboard-card {
+  @apply bg-card text-card-foreground border border-border rounded-lg shadow-md;
+}
+
 

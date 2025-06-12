@@ -1381,49 +1381,47 @@ export default function StreetDreamsSoccer() {
         {/* 게임 탭 */}
         <Tabs value={activeTab} onValueChange={setActiveTab} className="space-y-6">
           {/* 상단에 고정되어 항상 노출되는 네비게이션 */}
-          <TabsList
-            className="grid w-full grid-cols-9 bg-black/30 backdrop-blur-sm border-2 border-yellow-400 sticky top-14 z-30 overflow-x-auto whitespace-nowrap"
-          >
-            <TabsTrigger value="dashboard" className="data-[state=active]:bg-yellow-500 data-[state=active]:text-black">
+          <TabsList className="menu-tabs">
+            <TabsTrigger value="dashboard" className="tab-button">
               <Gamepad2 className="w-4 h-4 mr-2" />
               대시보드
             </TabsTrigger>
-            <TabsTrigger value="schedule" className="data-[state=active]:bg-yellow-500 data-[state=active]:text-black">
+            <TabsTrigger value="schedule" className="tab-button">
               <Calendar className="w-4 h-4 mr-2" />
               스케줄
             </TabsTrigger>
-            <TabsTrigger value="skills" className="data-[state=active]:bg-yellow-500 data-[state=active]:text-black">
+            <TabsTrigger value="skills" className="tab-button">
               <Dumbbell className="w-4 h-4 mr-2" />
               스킬
             </TabsTrigger>
-            <TabsTrigger value="matches" className="data-[state=active]:bg-yellow-500 data-[state=active]:text-black">
+            <TabsTrigger value="matches" className="tab-button">
               <Trophy className="w-4 h-4 mr-2" />
               경기
             </TabsTrigger>
-            <TabsTrigger value="tournament" className="data-[state=active]:bg-yellow-500 data-[state=active]:text-black">
+            <TabsTrigger value="tournament" className="tab-button">
               <Crown className="w-4 h-4 mr-2" />
               토너먼트
             </TabsTrigger>
-            <TabsTrigger value="career" className="data-[state=active]:bg-yellow-500 data-[state=active]:text-black">
+            <TabsTrigger value="career" className="tab-button">
               <GraduationCap className="w-4 h-4 mr-2" />
               진로
             </TabsTrigger>
             <TabsTrigger
               value="collection"
-              className="data-[state=active]:bg-yellow-500 data-[state=active]:text-black"
+              className="tab-button"
             >
               <Medal className="w-4 h-4 mr-2" />
               컬렉션
             </TabsTrigger>
-            <TabsTrigger value="systems" className="data-[state=active]:bg-yellow-500 data-[state=active]:text-black">
+            <TabsTrigger value="systems" className="tab-button">
               <Brain className="w-4 h-4 mr-2" />
               시스템
             </TabsTrigger>
-            <TabsTrigger value="analysis" className="data-[state=active]:bg-yellow-500 data-[state=active]:text-black">
+            <TabsTrigger value="analysis" className="tab-button">
               <Star className="w-4 h-4 mr-2" />
               분석
             </TabsTrigger>
-            <TabsTrigger value="arcade" className="data-[state=active]:bg-yellow-500 data-[state=active]:text-black">
+            <TabsTrigger value="arcade" className="tab-button">
               <Rocket className="w-4 h-4 mr-2" />
               아케이드
             </TabsTrigger>
@@ -1433,7 +1431,7 @@ export default function StreetDreamsSoccer() {
           <TabsContent value="dashboard" className="space-y-6">
             <div className="dashboard-grid">
               {/* 골목축구 현황 */}
-              <Card className="bg-gradient-to-br from-orange-600 to-red-600 text-white border-2 border-orange-400">
+              <Card className="dashboard-card bg-gradient-to-br from-orange-600 to-red-600">
                 <CardHeader>
                   <CardTitle className="flex items-center">
                     <Crown className="w-5 h-5 mr-2 text-yellow-400" />
@@ -1459,7 +1457,7 @@ export default function StreetDreamsSoccer() {
               </Card>
 
               {/* 다가오는 경기 */}
-                <Card className="bg-gradient-to-br from-blue-600 to-purple-600 text-white border-2 border-blue-400">
+                <Card className="dashboard-card bg-gradient-to-br from-blue-600 to-purple-600">
                 <CardHeader>
                   <CardTitle className="flex items-center">
                     <Swords className="w-5 h-5 mr-2 text-red-400" />
@@ -1495,7 +1493,7 @@ export default function StreetDreamsSoccer() {
               </Card>
 
               {/* 업적 진행도 */}
-                <Card className="bg-gradient-to-br from-purple-600 to-pink-600 text-white border-2 border-purple-400">
+                <Card className="dashboard-card bg-gradient-to-br from-purple-600 to-pink-600">
                 <CardHeader>
                   <CardTitle className="flex items-center">
                     <Medal className="w-5 h-5 mr-2 text-yellow-400" />
@@ -1530,7 +1528,7 @@ export default function StreetDreamsSoccer() {
                 </Card>
 
               {/* 학교 지표 */}
-              <Card className="bg-gradient-to-br from-green-700 to-blue-600 text-white border-2 border-green-400">
+              <Card className="dashboard-card bg-gradient-to-br from-green-700 to-blue-600">
                 <CardHeader>
                   <CardTitle className="flex items-center">
                     <School className="w-5 h-5 mr-2 text-yellow-300" />
