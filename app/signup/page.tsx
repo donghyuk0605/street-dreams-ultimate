@@ -1,6 +1,6 @@
 "use client"
 
-import Image from "next/image"
+import { ImageWithSkeleton as Image } from "@/components/ui/image-with-skeleton"
 import Link from "next/link"
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card"
 import { Input } from "@/components/ui/input"
