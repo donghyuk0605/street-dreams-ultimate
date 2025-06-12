@@ -10,6 +10,13 @@ interface GameUIStore {
   currentActivity: string | null
   dayEvents: React.ReactNode[]
   selectedTemplate: string
+  scoreboardResult: {
+    opponent: string
+    score: string
+    result: 'win' | 'loss' | 'draw'
+    homeLogo?: string
+    opponentLogo?: string
+  } | null
   addNotification: (n: Notification) => void
   removeNotification: (id: string) => void
   setActiveTab: (tab: string) => void
@@ -22,6 +29,15 @@ interface GameUIStore {
       | ((prev: React.ReactNode[]) => React.ReactNode[]),
   ) => void
   setSelectedTemplate: (template: string) => void
+  setScoreboardResult: (
+    result: {
+      opponent: string
+      score: string
+      result: 'win' | 'loss' | 'draw'
+      homeLogo?: string
+      opponentLogo?: string
+    } | null,
+  ) => void
 }
 
 export const useGameUIStore = create<GameUIStore>((set) => ({
@@ -32,6 +48,7 @@ export const useGameUIStore = create<GameUIStore>((set) => ({
   currentActivity: null,
   dayEvents: [],
   selectedTemplate: "street_warrior",
+  scoreboardResult: null,
   addNotification: (n) => set((s) => ({ notifications: [...s.notifications, n] })),
   removeNotification: (id) =>
     set((s) => ({ notifications: s.notifications.filter((n) => n.id !== id) })),
@@ -45,4 +62,5 @@ export const useGameUIStore = create<GameUIStore>((set) => ({
         typeof events === "function" ? events(s.dayEvents) : events,
     })),
   setSelectedTemplate: (template) => set({ selectedTemplate: template }),
+  setScoreboardResult: (result) => set({ scoreboardResult: result }),
 }))

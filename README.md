@@ -66,3 +66,7 @@ The app now ships with a darker FIFA-inspired palette and Google Fonts:
 - **Inter** as the default body font
 
 Player cards can use the classes `fifa-card-gold`, `fifa-card-diamond`, or `fifa-card-legend` for special backgrounds. Use the `bg-fifa-gradient` utility for the default dark gradient background.
+
+## Scoreboard Overlay
+
+Matches now display a FIFA style scoreboard after each match. Home and away logos sit over a stadium backdrop thanks to open source imagery, giving it a proper game-day vibe. Dismiss the overlay with the **확인** button.
