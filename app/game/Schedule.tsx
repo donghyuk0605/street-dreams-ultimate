@@ -2,6 +2,7 @@
 
 import { motion } from "framer-motion"
 import { Calendar } from "lucide-react"
+import { useMemo } from "react"
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card"
 import type { GameState, Activity } from "@/lib/game/types"
 
@@ -20,6 +21,14 @@ export function Schedule({
   setSelectedDay,
   setSchedule,
 }: ScheduleProps) {
+  const activityMap = useMemo(() => {
+    const map: Record<string, Activity> = {}
+    for (const a of activities) {
+      map[a.id] = a
+    }
+    return map
+  }, [activities])
+
   return (
     <Card className="bg-gradient-to-br from-purple-600 to-pink-600 text-white border-2 border-purple-400">
       <CardHeader>
@@ -41,11 +50,11 @@ export function Schedule({
         </div>
         <div className="grid grid-cols-7 gap-1">
           {Array.from({ length: 30 }, (_, i) => i + 1).map((day) => {
-            const activity = activities.find((a) => a.id === gameState.monthlySchedule[day])
+            const activity = activityMap[gameState.monthlySchedule[day]]
             const isSelected = selectedDay === day
             const isCompleted = gameState.isMonthRunning && day < gameState.currentDay
             const isCurrent = gameState.isMonthRunning && day === gameState.currentDay
-            const isWeekend = day % 7 === 0 || day % 7 === 6
+            const isWeekend = (day - 1) % 7 === 0 || (day - 1) % 7 === 6
 
             return (
               <motion.div
