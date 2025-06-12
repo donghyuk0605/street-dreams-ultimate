@@ -25,31 +25,64 @@ export function SoundProvider({ children }: { children: React.ReactNode }) {
 
   useEffect(() => {
     setIsMounted(true)
+    let cancelled = false
+    let cleanup = () => {}
 
-    // BGM 설정
-    const backgroundMusic = new Howl({
-      src: ["/sounds/game-bgm.mp3"],
-      loop: true,
-      volume: 0.5,
-      html5: true,
-      preload: true,
-    })
-
-    // 효과음 설정
-    const soundEffects = {
-      click: new Howl({ src: ["/sounds/click.mp3"], volume: 0.7 }),
-      success: new Howl({ src: ["/sounds/success.mp3"], volume: 0.7 }),
-      levelUp: new Howl({ src: ["/sounds/level-up.mp3"], volume: 0.8 }),
-      match: new Howl({ src: ["/sounds/match.mp3"], volume: 0.7 }),
-      notification: new Howl({ src: ["/sounds/notification.mp3"], volume: 0.6 }),
+    const assetExists = async (url: string) => {
+      try {
+        const res = await fetch(url, { method: "HEAD" })
+        return res.ok
+      } catch {
+        return false
+      }
     }
 
-    setBgm(backgroundMusic)
-    setSfx(soundEffects)
+    const loadSounds = async () => {
+      let backgroundMusic: Howl | null = null
+      const soundEffects: Record<string, Howl> = {}
+
+      if (await assetExists("/sounds/game-bgm.mp3")) {
+        backgroundMusic = new Howl({
+          src: ["/sounds/game-bgm.mp3"],
+          loop: true,
+          volume: 0.5,
+          html5: true,
+          preload: true,
+        })
+        if (!cancelled) {
+          setBgm(backgroundMusic)
+        }
+      }
+
+      const effects: Array<[string, string, number]> = [
+        ["click", "/sounds/click.mp3", 0.7],
+        ["success", "/sounds/success.mp3", 0.7],
+        ["levelUp", "/sounds/level-up.mp3", 0.8],
+        ["match", "/sounds/match.mp3", 0.7],
+        ["notification", "/sounds/notification.mp3", 0.6],
+      ]
+
+      for (const [name, path, volume] of effects) {
+        if (await assetExists(path)) {
+          soundEffects[name] = new Howl({ src: [path], volume })
+        }
+      }
+
+      if (!cancelled) {
+        setSfx(soundEffects)
+      }
+
+      cleanup = () => {
+        backgroundMusic?.unload()
+        Object.values(soundEffects).forEach((sound) => sound.unload())
+      }
+    }
+
+    loadSounds()
 
     return () => {
-      backgroundMusic.unload()
-      Object.values(soundEffects).forEach((sound) => sound.unload())
+      cancelled = true
+      cleanup()
     }
   }, [])
 
