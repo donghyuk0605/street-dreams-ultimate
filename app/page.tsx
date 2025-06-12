@@ -62,335 +62,14 @@ const PhaserDemo = dynamic(() => import("@/components/phaser-demo"), {
 import { useGameUIStore } from "@/lib/store"
 import { GameMenu } from "@/components/ui/game-menu"
 import { NotificationSystem, type Notification } from "@/components/ui/notification-system"
-import { GameHud } from "@/components/ui/game-hud"
+import { GameHUD } from "@/app/game/GameHUD"
+import { Schedule } from "@/app/game/Schedule"
+import type { GameState, Activity } from "@/lib/game/types"
+import { REGIONS, WEEKLY_TEMPLATES, getEnergyColor, getMoodIcon, getRarityColor } from "@/lib/game/helpers"
 import { MatchSystem } from "@/components/match-system"
 import { ScoreboardOverlay } from "@/components/ui/scoreboard-overlay"
 
-// 지역 및 학교 데이터
-const REGIONS = {
-  seoul: {
-    name: "서울",
-    streetFields: ["홍대 골목구장", "강남 뒷골목", "명동 공터", "잠실 놀이터"],
-    elementary: ["서울중앙초", "한강초", "명동초", "강남초", "홍대초"],
-    middle: ["서울중앙중", "한강중", "명문중", "강남중", "홍익중"],
-    high: ["서울고", "경기고", "휘문고", "중앙고", "배재고"],
-    universities: ["서울대", "연세대", "고려대", "성균관대", "한양대"],
-    proTeams: ["FC서울", "서울 유나이티드"],
-    youthClubs: ["서울FC 유스", "강남 유나이티드 U-15", "홍대 드림팀"],
-  },
-  busan: {
-    name: "부산",
-    streetFields: ["해운대 해변구장", "광안리 골목", "남포동 공터", "동래 놀이터"],
-    elementary: ["부산중앙초", "해운대초", "광안초", "남포초", "동래초"],
-    middle: ["부산중앙중", "해운대중", "광안중", "남포중", "동래중"],
-    high: ["부산고", "동래고", "해운대고", "경남고", "부산외고"],
-    universities: ["부산대", "동아대", "부경대", "신라대"],
-    proTeams: ["부산 아이파크", "부산 FC"],
-    youthClubs: ["부산FC 유스", "해운대 FC", "동래 축구단"],
-  },
-  incheon: {
-    name: "인천",
-    streetFields: ["송도 센트럴파크", "부평 골목구장", "계양 공터", "연수 놀이터"],
-    elementary: ["인천중앙초", "송도초", "부평초", "계양초", "연수초"],
-    middle: ["인천중앙중", "송도중", "부평중", "계양중", "연수중"],
-    high: ["인천고", "송도고", "부평고", "인천외고", "연수고"],
-    universities: ["인천대", "인하대", "경인교대"],
-    proTeams: ["인천 유나이티드"],
-    youthClubs: ["인천FC 유스", "송도 드림팀", "부평 FC"],
-  },
-}
 
-// 게임 상태 인터페이스 (확장됨)
-interface GameState {
-  // 기본 정보
-  childName: string
-  age: number
-  month: number
-  year: number
-  region: keyof typeof REGIONS
-  level: number
-  experience: number
-  skillPoints: number
-  maxExperience: number
-
-  // 핵심 능력치 (0-100)
-  physical: number
-  technique: number
-  intelligence: number
-  social: number
-  creativity: number
-  discipline: number
-  confidence: number
-  leadership: number
-
-  // 축구 특화 능력치
-  shooting: number
-  passing: number
-  dribbling: number
-  defending: number
-  goalkeeping: number
-  speed: number
-  stamina: number
-  mentality: number
-
-  // 상태 관리
-  health: number
-  stress: number
-  happiness: number
-  fatigue: number
-  motivation: number
-  energy: number
-
-  // 관계도
-  parentRelation: number
-  friendRelation: number
-  coachRelation: number
-  teammateRelation: number
-  teacherRelation: number
-
-  // 경제
-  allowance: number
-  savings: number
-
-  // 학교 정보
-  schoolName: string
-  schoolType: "elementary" | "middle" | "high" | "university"
-  grade: string
-  schoolRank: number
-  academicGrade: string
-  attendanceRate: number
-
-  // 축구 기록
-  currentTeam: string
-  position: string
-  reputation: number
-  matchesPlayed: number
-  goals: number
-  assists: number
-  wins: number
-  losses: number
-  draws: number
-  scoutingOffers: ScoutOffer[]
-  streetCredits: number
-
-  // 트로피 & 업적
-  trophies: TrophyType[]
-  achievements: Achievement[]
-  records: Record[]
-
-  // 성장 기록
-  memories: string[]
-  growthHistory: GrowthData[]
-
-  // 스케줄 관리
-  weeklyTemplate: { [key: string]: string }
-  monthlySchedule: { [key: number]: string }
-  currentDay: number
-  isMonthRunning: boolean
-  monthProgress: number
-
-  // 특별 상태
-  isInjured: boolean
-  injuryType?: "minor" | "moderate" | "severe"
-  injuryName?: string
-  injuryDays: number
-  totalInjuryDays: number
-  specialEvents: string[]
-  upcomingMatches: Match[]
-
-  // 진로 관련
-  careerPath: "street" | "academic" | "youth" | "pro" | "undecided"
-  graduationYear: number
-  finalEnding?: EndingType
-
-  // 새로운 시스템들
-  currentSeason: "spring" | "summer" | "fall" | "winter"
-  personalityTraits: {
-    competitiveness: number
-    teamwork: number
-    creativity: number
-    discipline: number
-    confidence: number
-    calmness: number
-  }
-  rivals: Rival[]
-}
-
-// 새로운 인터페이스들
-interface GrowthData {
-  month: string
-  physical: number
-  technique: number
-  intelligence: number
-  social: number
-  shooting: number
-  passing: number
-  dribbling: number
-  defending: number
-  speed: number
-}
-
-interface Rival {
-  id: string
-  name: string
-  team: string
-  position: string
-  level: number
-  stats: {
-    shooting: number
-    passing: number
-    dribbling: number
-    defending: number
-    speed: number
-  }
-  relationship: "friendly" | "neutral" | "hostile"
-  matchHistory: {
-    wins: number
-    losses: number
-    draws: number
-    lastMatch?: {
-      result: "win" | "loss" | "draw"
-      score: string
-      date: string
-    }
-  }
-}
-
-// 기존 인터페이스들...
-interface ScoutOffer {
-  id: string
-  teamName: string
-  level: "street" | "youth" | "semi-pro" | "pro"
-  requirements: string
-  benefits: string
-  deadline: string
-}
-
-interface EndingType {
-  id: string
-  title: string
-  description: string
-  type: "university" | "pro" | "semi-pro" | "street-legend" | "other"
-  achievement: string
-  finalStats: { [key: string]: number }
-}
-
-interface TrophyType {
-  id: string
-  name: string
-  description: string
-  icon: React.ReactNode
-  rarity: "bronze" | "silver" | "gold" | "platinum" | "legendary"
-  dateEarned: string
-  category: "academic" | "soccer" | "social" | "special" | "street"
-}
-
-interface Achievement {
-  id: string
-  name: string
-  description: string
-  progress: number
-  maxProgress: number
-  reward?: string
-  icon: React.ReactNode
-}
-
-interface Record {
-  id: string
-  type: "goal" | "assist" | "match" | "academic" | "special" | "street"
-  description: string
-  date: string
-  value: number
-}
-
-interface Match {
-  id: string
-  opponent: string
-  date: string
-  type: "league" | "cup" | "friendly" | "tournament" | "street"
-  importance: "low" | "medium" | "high" | "legendary"
-  venue: string
-  result?: "win" | "loss" | "draw"
-  score?: string
-  playerPerformance?: {
-    goals: number
-    assists: number
-    rating: number
-  }
-}
-
-interface Activity {
-  id: string
-  name: string
-  description: string
-  category: "soccer" | "study" | "social" | "rest" | "special" | "school" | "street"
-  effects: { [key: string]: number }
-  requirements?: { [key: string]: number }
-  cost?: number
-  energyCost?: number
-  icon: React.ReactNode
-  mood: "happy" | "neutral" | "tired"
-  parentApproval: number
-  color: string
-  schoolActivity?: boolean
-  rarity?: "common" | "rare" | "epic" | "legendary"
-}
-
-// 주간 템플릿
-const WEEKLY_TEMPLATES = {
-  street_warrior: {
-    name: "골목축구 전사",
-    description: "골목에서 실력을 키우는 진짜 축구",
-    schedule: {
-      monday: "attend_school",
-      tuesday: "street_soccer",
-      wednesday: "attend_school",
-      thursday: "street_training",
-      friday: "attend_school",
-      saturday: "street_tournament",
-      sunday: "rest",
-    },
-  },
-  academy_star: {
-    name: "아카데미 엘리트",
-    description: "체계적인 훈련으로 프로를 꿈꾸다",
-    schedule: {
-      monday: "attend_school",
-      tuesday: "youth_training",
-      wednesday: "attend_school",
-      thursday: "team_practice",
-      friday: "attend_school",
-      saturday: "academy_match",
-      sunday: "tactical_study",
-    },
-  },
-  balanced_life: {
-    name: "균형잡힌 생활",
-    description: "공부와 축구를 균형있게",
-    schedule: {
-      monday: "attend_school",
-      tuesday: "basic_training",
-      wednesday: "attend_school",
-      thursday: "homework",
-      friday: "attend_school",
-      saturday: "team_practice",
-      sunday: "family_time",
-    },
-  },
-  study_first: {
-    name: "학업 우선",
-    description: "미래를 위한 탄탄한 기초",
-    schedule: {
-      monday: "attend_school",
-      tuesday: "homework",
-      wednesday: "attend_school",
-      thursday: "study_group",
-      friday: "attend_school",
-      saturday: "reading",
-      sunday: "family_time",
-    },
-  },
-}
 
 export default function StreetDreamsSoccer() {
   const notifications = useGameUIStore((s) => s.notifications)
@@ -1381,33 +1060,7 @@ export default function StreetDreamsSoccer() {
     )
   }, [addNotification])
 
-  // 감정 상태 아이콘
-  const getMoodIcon = () => {
-    if (gameState.happiness >= 70) return <Smile className="w-6 h-6 text-green-500" />
-    if (gameState.happiness >= 40) return <Meh className="w-6 h-6 text-yellow-500" />
-    return <Frown className="w-6 h-6 text-red-500" />
-  }
 
-  // 에너지 색상
-  const getEnergyColor = () => {
-    if (gameState.energy >= 70) return "text-green-500"
-    if (gameState.energy >= 40) return "text-yellow-500"
-    return "text-red-500"
-  }
-
-  // 레어도 색상
-  const getRarityColor = (rarity?: string) => {
-    switch (rarity) {
-      case "legendary":
-        return "from-purple-400 to-pink-400"
-      case "epic":
-        return "from-purple-300 to-blue-300"
-      case "rare":
-        return "from-blue-300 to-green-300"
-      default:
-        return "from-gray-200 to-gray-300"
-    }
-  }
 
   // 캐릭터 아바타 (게임 스타일)
   const GameCharacterSVG = () => {
@@ -1489,22 +1142,7 @@ export default function StreetDreamsSoccer() {
 
   return (
     <div className="min-h-screen bg-gradient-to-br from-[hsl(var(--gradient-start))] to-[hsl(var(--gradient-end))] relative overflow-x-hidden">
-      <GameHud
-        level={gameState.level}
-        experience={gameState.experience}
-        maxExperience={gameState.maxExperience}
-        energy={gameState.energy}
-        streetCredits={gameState.streetCredits}
-        reputation={gameState.reputation}
-        health={gameState.health}
-        happiness={gameState.happiness}
-        motivation={gameState.motivation}
-        month={gameState.month}
-        year={gameState.year}
-        currentDay={gameState.currentDay}
-        isMonthRunning={gameState.isMonthRunning}
-        monthProgress={gameState.monthProgress}
-      />
+      <GameHUD state={gameState} />
 
       <GameMenu onSave={handleSave} onLoad={handleLoad} onReset={handleReset} onExit={handleExit} />
 
@@ -1662,7 +1300,7 @@ export default function StreetDreamsSoccer() {
             </CardHeader>
             <CardContent className="space-y-3">
               {[
-                { name: "에너지", value: gameState.energy, icon: <Zap className="w-4 h-4" />, color: getEnergyColor() },
+                { name: "에너지", value: gameState.energy, icon: <Zap className="w-4 h-4" />, color: getEnergyColor(gameState.energy) },
                 { name: "행복", value: gameState.happiness, icon: <Smile className="w-4 h-4" />, color: "text-yellow-400" },
                 { name: "건강", value: gameState.health, icon: <Heart className="w-4 h-4" />, color: "text-red-400" },
                 { name: "동기", value: gameState.motivation, icon: <Flame className="w-4 h-4" />, color: "text-orange-400" },
@@ -1979,65 +1617,13 @@ export default function StreetDreamsSoccer() {
                 </CardContent>
               </Card>
 
-              {/* 30일 달력 */}
-              <Card className="bg-gradient-to-br from-purple-600 to-pink-600 text-white border-2 border-purple-400">
-                <CardHeader>
-                  <CardTitle className="flex items-center">
-                    <Calendar className="w-5 h-5 mr-2 text-purple-400" />
-                    {gameState.year}년 {gameState.month}월 스케줄
-                  </CardTitle>
-                </CardHeader>
-                <CardContent>
-                  <div className="grid grid-cols-7 gap-1 mb-4">
-                    {["일", "월", "화", "수", "목", "금", "토"].map((day) => (
-                      <div key={day} className="text-center text-xs font-bold p-1 text-purple-300">
-                        {day}
-                      </div>
-                    ))}
-                  </div>
-                  <div className="grid grid-cols-7 gap-1">
-                    {Array.from({ length: 30 }, (_, i) => i + 1).map((day) => {
-                      const activity = activities.find((a) => a.id === gameState.monthlySchedule[day])
-                      const isSelected = selectedDay === day
-                      const isCompleted = gameState.isMonthRunning && day < gameState.currentDay
-                      const isCurrent = gameState.isMonthRunning && day === gameState.currentDay
-
-                      return (
-                        <motion.div
-                          key={day}
-                          whileHover={{ scale: 1.1 }}
-                          whileTap={{ scale: 0.95 }}
-                          className={`aspect-square p-1 text-xs rounded cursor-pointer border-2 ${
-                            isSelected
-                              ? "bg-yellow-500 text-black border-yellow-300 ring-2 ring-yellow-400"
-                              : isCurrent
-                                ? "bg-green-500 text-white border-green-300 animate-pulse"
-                                : isCompleted
-                                  ? "bg-gray-600 text-gray-300 border-gray-500"
-                                  : activity
-                                    ? "bg-blue-600 text-white border-blue-400"
-                                    : "bg-black/30 text-gray-400 border-gray-600"
-                          }`}
-                          onClick={() => !gameState.isMonthRunning && setSelectedDay(day)}
-                        >
-                          <div className="font-bold">{day}</div>
-                          {activity && (
-                            <div className="text-xs truncate" title={activity.name}>
-                              {activity.name.slice(0, 4)}
-                            </div>
-                          )}
-                        </motion.div>
-                      )
-                    })}
-                  </div>
-                  {selectedDay && (
-                    <div className="mt-4 p-3 bg-black/30 rounded border border-purple-400">
-                      <div className="text-sm font-bold text-purple-300 mb-2">{selectedDay}일 선택됨</div>
-                      <div className="text-xs text-gray-300">활동을 선택하여 스케줄을 설정하세요</div>
-                    </div>
-                  )}
-                </CardContent>
-              </Card>
+              <Schedule
+                gameState={gameState}
+                activities={activities}
+                selectedDay={selectedDay}
+                setSelectedDay={setSelectedDay}
+                setSchedule={setSchedule}
+              />
             </div>
           </TabsContent>
 
