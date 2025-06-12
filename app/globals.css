@@ -39,6 +39,7 @@
     --sidebar-border: 240 5% 80%;
     --sidebar-ring: 250 67% 54%;
 
+
     --gradient-start: 0 0% 0%;
     --gradient-end: 240 28% 14%;
 
@@ -79,8 +80,10 @@
     --sidebar-border: 240 5% 25%;
     --sidebar-ring: 250 67% 54%;
 
+
     --gradient-start: 0 0% 0%;
     --gradient-end: 240 28% 14%;
+
 
   }
 }
