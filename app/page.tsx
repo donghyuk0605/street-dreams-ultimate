@@ -3,6 +3,7 @@
 import type React from "react"
 
 import { useState, useCallback } from "react"
+import { motion } from "framer-motion"
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card"
 import { Button } from "@/components/ui/button"
 import { Progress } from "@/components/ui/progress"
@@ -1413,7 +1414,7 @@ export default function StreetDreamsSoccer() {
   }
 
   return (
-    <div className="min-h-screen bg-gradient-to-br from-green-400 via-blue-500 to-purple-600 relative overflow-x-hidden">
+    <div className="min-h-screen bg-gradient-to-br from-green-300 via-blue-400 to-purple-500 relative overflow-x-hidden">
       <GameHud
         level={gameState.level}
         experience={gameState.experience}
@@ -1439,7 +1440,7 @@ export default function StreetDreamsSoccer() {
         {/* 월간 결과 모달 */}
         {monthlyResult && (
           <div className="fixed inset-0 bg-black/70 flex items-center justify-center z-50 p-4">
-            <Card className="max-w-4xl w-full bg-gradient-to-br from-purple-700 to-blue-700 text-white max-h-[80vh] overflow-y-auto border-2 border-yellow-400">
+            <Card className="max-w-4xl w-full bg-gradient-to-br from-purple-600 to-blue-600 text-white max-h-[80vh] overflow-y-auto border-2 border-yellow-400">
               <CardHeader className="bg-gradient-to-r from-yellow-500 to-orange-500 text-black rounded-t-lg">
                 <CardTitle className="text-3xl text-center font-bold flex items-center justify-center gap-2">
                   <PartyPopper className="w-6 h-6" /> MONTHLY REPORT <PartyPopper className="w-6 h-6" />
@@ -1507,7 +1508,7 @@ export default function StreetDreamsSoccer() {
         {/* 메인 대시보드 */}
         <div className="grid grid-cols-1 lg:grid-cols-4 gap-6 mb-8">
           {/* 캐릭터 카드 */}
-          <Card className="bg-gradient-to-br from-blue-700 to-purple-700 text-white border-2 border-yellow-400">
+          <Card className="bg-gradient-to-br from-blue-600 to-purple-600 text-white border-2 border-yellow-400">
             <CardHeader>
               <CardTitle className="flex items-center justify-center gap-3">
                 <GameCharacterSVG />
@@ -1534,7 +1535,7 @@ export default function StreetDreamsSoccer() {
                     {gameState.experience}/{gameState.maxExperience}
                   </span>
                 </div>
-                <Progress value={(gameState.experience / gameState.maxExperience) * 100} className="h-3 bg-gray-700" />
+                <Progress value={(gameState.experience / gameState.maxExperience) * 100} className="h-3 bg-gray-600" />
                 <div className="flex justify-between">
                   <span className="flex items-center gap-2">
                     <Crown className="w-4 h-4 text-orange-400" />
@@ -1547,7 +1548,7 @@ export default function StreetDreamsSoccer() {
           </Card>
 
           {/* 능력치 레이더 */}
-          <Card className="bg-gradient-to-br from-green-700 to-blue-700 text-white border-2 border-green-400">
+          <Card className="bg-gradient-to-br from-green-600 to-blue-600 text-white border-2 border-green-400">
             <CardHeader>
               <CardTitle className="flex items-center">
                 <Flame className="w-5 h-5 mr-2 text-red-400" />
@@ -1569,14 +1570,14 @@ export default function StreetDreamsSoccer() {
                     </span>
                     <span className={`font-bold ${skill.color}`}>{skill.value}/100</span>
                   </div>
-                  <Progress value={skill.value} className="h-2 bg-gray-700" />
+                    <Progress value={skill.value} className="h-2 bg-gray-600" />
                 </div>
               ))}
             </CardContent>
           </Card>
 
           {/* 상태 정보 */}
-          <Card className="bg-gradient-to-br from-purple-700 to-pink-700 text-white border-2 border-purple-400">
+          <Card className="bg-gradient-to-br from-purple-600 to-pink-600 text-white border-2 border-purple-400">
             <CardHeader>
               <CardTitle className="flex items-center">
                 <Heart className="w-5 h-5 mr-2 text-pink-400" />
@@ -1598,14 +1599,14 @@ export default function StreetDreamsSoccer() {
                     </span>
                     <span className={`font-bold ${stat.color}`}>{stat.value}/100</span>
                   </div>
-                  <Progress value={stat.value} className="h-2 bg-gray-700" />
+                    <Progress value={stat.value} className="h-2 bg-gray-600" />
                 </div>
               ))}
             </CardContent>
           </Card>
 
           {/* 진행 상황 */}
-          <Card className="bg-gradient-to-br from-orange-700 to-red-700 text-white border-2 border-orange-400">
+          <Card className="bg-gradient-to-br from-orange-600 to-red-600 text-white border-2 border-orange-400">
             <CardHeader>
               <CardTitle className="flex items-center">
                 <Clock className="w-5 h-5 mr-2 text-orange-400" />
@@ -1619,7 +1620,7 @@ export default function StreetDreamsSoccer() {
                     <span>이번 달:</span>
                     <span className="font-bold">{Math.round(gameState.monthProgress)}%</span>
                   </div>
-                  <Progress value={gameState.monthProgress} className="h-3 bg-gray-700" />
+                    <Progress value={gameState.monthProgress} className="h-3 bg-gray-600" />
                 </div>
 
                 {gameState.isMonthRunning ? (
@@ -1694,7 +1695,7 @@ export default function StreetDreamsSoccer() {
           <TabsContent value="dashboard" className="space-y-6">
             <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
               {/* 골목축구 현황 */}
-              <Card className="bg-gradient-to-br from-orange-700 to-red-700 text-white border-2 border-orange-400">
+              <Card className="bg-gradient-to-br from-orange-600 to-red-600 text-white border-2 border-orange-400">
                 <CardHeader>
                   <CardTitle className="flex items-center">
                     <Crown className="w-5 h-5 mr-2 text-yellow-400" />
@@ -1720,7 +1721,7 @@ export default function StreetDreamsSoccer() {
               </Card>
 
               {/* 다가오는 경기 */}
-              <Card className="bg-gradient-to-br from-blue-700 to-purple-700 text-white border-2 border-blue-400">
+                <Card className="bg-gradient-to-br from-blue-600 to-purple-600 text-white border-2 border-blue-400">
                 <CardHeader>
                   <CardTitle className="flex items-center">
                     <Swords className="w-5 h-5 mr-2 text-red-400" />
@@ -1756,7 +1757,7 @@ export default function StreetDreamsSoccer() {
               </Card>
 
               {/* 업적 진행도 */}
-              <Card className="bg-gradient-to-br from-purple-700 to-pink-700 text-white border-2 border-purple-400">
+                <Card className="bg-gradient-to-br from-purple-600 to-pink-600 text-white border-2 border-purple-400">
                 <CardHeader>
                   <CardTitle className="flex items-center">
                     <Medal className="w-5 h-5 mr-2 text-yellow-400" />
@@ -1782,7 +1783,7 @@ export default function StreetDreamsSoccer() {
                         </div>
                         <Progress
                           value={(achievement.progress / achievement.maxProgress) * 100}
-                          className="h-2 bg-gray-700"
+                          className="h-2 bg-gray-600"
                         />
                       </div>
                     ))}
@@ -1796,7 +1797,7 @@ export default function StreetDreamsSoccer() {
           <TabsContent value="schedule" className="space-y-6">
             <div className="grid grid-cols-1 lg:grid-cols-3 gap-6">
               {/* 플레이스타일 선택 */}
-              <Card className="bg-gradient-to-br from-blue-700 to-purple-700 text-white border-2 border-blue-400">
+                <Card className="bg-gradient-to-br from-blue-600 to-purple-600 text-white border-2 border-blue-400">
                 <CardHeader>
                   <CardTitle className="flex items-center">
                     <Gamepad2 className="w-5 h-5 mr-2 text-blue-400" />
@@ -1828,7 +1829,7 @@ export default function StreetDreamsSoccer() {
               </Card>
 
               {/* 활동 목록 */}
-              <Card className="bg-gradient-to-br from-green-700 to-blue-700 text-white border-2 border-green-400">
+              <Card className="bg-gradient-to-br from-green-600 to-blue-600 text-white border-2 border-green-400">
                 <CardHeader>
                   <CardTitle className="flex items-center">
                     <Target className="w-5 h-5 mr-2 text-green-400" />
@@ -1852,7 +1853,7 @@ export default function StreetDreamsSoccer() {
                         )}
                       </div>
                       <div className="text-xs text-gray-600 mb-2">{activity.description}</div>
-                      <div className="flex justify-between text-xs text-gray-700">
+                      <div className="flex justify-between text-xs text-gray-600">
                         <span>에너지: {activity.energyCost || 0}</span>
                         <span>부모 만족도: {activity.parentApproval}/10</span>
                       </div>
@@ -1865,7 +1866,7 @@ export default function StreetDreamsSoccer() {
               </Card>
 
               {/* 30일 달력 */}
-              <Card className="bg-gradient-to-br from-purple-700 to-pink-700 text-white border-2 border-purple-400">
+              <Card className="bg-gradient-to-br from-purple-600 to-pink-600 text-white border-2 border-purple-400">
                 <CardHeader>
                   <CardTitle className="flex items-center">
                     <Calendar className="w-5 h-5 mr-2 text-purple-400" />
@@ -1888,9 +1889,11 @@ export default function StreetDreamsSoccer() {
                       const isCurrent = gameState.isMonthRunning && day === gameState.currentDay
 
                       return (
-                        <div
+                        <motion.div
                           key={day}
-                          className={`aspect-square p-1 text-xs rounded cursor-pointer transition-all hover:scale-110 border-2 ${
+                          whileHover={{ scale: 1.1 }}
+                          whileTap={{ scale: 0.95 }}
+                          className={`aspect-square p-1 text-xs rounded cursor-pointer border-2 ${
                             isSelected
                               ? "bg-yellow-500 text-black border-yellow-300 ring-2 ring-yellow-400"
                               : isCurrent
@@ -1909,7 +1912,7 @@ export default function StreetDreamsSoccer() {
                               {activity.name.slice(0, 4)}
                             </div>
                           )}
-                        </div>
+                        </motion.div>
                       )
                     })}
                   </div>
@@ -1993,7 +1996,7 @@ export default function StreetDreamsSoccer() {
 
           {/* 스킬 탭 */}
           <TabsContent value="skills" className="space-y-6">
-            <Card className="bg-gradient-to-br from-red-700 to-orange-600 text-white border-2 border-red-400">
+            <Card className="bg-gradient-to-br from-red-600 to-orange-500 text-white border-2 border-red-400">
               <CardHeader>
                 <CardTitle className="flex items-center justify-between">
                   스킬 개발
@@ -2023,7 +2026,7 @@ export default function StreetDreamsSoccer() {
                         +
                       </Button>
                     </div>
-                    <Progress value={(gameState as any)[s.key]} className="h-2 bg-gray-700" />
+                    <Progress value={(gameState as any)[s.key]} className="h-2 bg-gray-600" />
                   </div>
                 ))}
               </CardContent>
@@ -2031,7 +2034,7 @@ export default function StreetDreamsSoccer() {
           </TabsContent>
 
           <TabsContent value="matches" className="space-y-6">
-            <Card className="bg-gradient-to-br from-green-700 to-blue-700 text-white border-2 border-green-400">
+            <Card className="bg-gradient-to-br from-green-600 to-blue-600 text-white border-2 border-green-400">
               <CardHeader>
                 <CardTitle>경기 시스템</CardTitle>
               </CardHeader>
@@ -2042,7 +2045,7 @@ export default function StreetDreamsSoccer() {
           </TabsContent>
 
           <TabsContent value="career" className="space-y-6">
-            <Card className="bg-gradient-to-br from-purple-700 to-pink-700 text-white border-2 border-purple-400">
+            <Card className="bg-gradient-to-br from-purple-600 to-pink-600 text-white border-2 border-purple-400">
               <CardHeader>
                 <CardTitle>진로 시스템</CardTitle>
               </CardHeader>
@@ -2053,7 +2056,7 @@ export default function StreetDreamsSoccer() {
           </TabsContent>
 
           <TabsContent value="collection" className="space-y-6">
-            <Card className="bg-gradient-to-br from-yellow-700 to-orange-600 text-white border-2 border-yellow-400">
+            <Card className="bg-gradient-to-br from-yellow-600 to-orange-500 text-white border-2 border-yellow-400">
               <CardHeader>
                 <CardTitle>컬렉션</CardTitle>
               </CardHeader>
