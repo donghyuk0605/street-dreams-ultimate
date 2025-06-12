@@ -16,11 +16,13 @@
     --success: 122 39% 49%;
     --warning: 36 100% 50%;
     --error: 4 90% 58%;
+
     --neutral-900: 0 0% 13%;
     --neutral-700: 0 0% 26%;
     --neutral-500: 0 0% 47%;
     --neutral-300: 0 0% 74%;
     --neutral-50: 0 0% 96%;
+
     --secondary: 26 100% 50%;
     --secondary-foreground: 0 0% 100%;
     --muted: 0 0% 20%;
@@ -28,7 +30,12 @@
     --accent: 26 100% 50%;
     --accent-foreground: 0 0% 100%;
     --destructive: 4 90% 58%;
+
     --destructive-foreground: 0 0% 100%;    --border: 0 0% 26%;
+
+    --destructive-foreground: 0 0% 100%;
+    --border: 0 0% 26%;
+
     --input: 0 0% 26%;
     --ring: 124 55% 24%;
     --radius: 0.5rem;
@@ -79,6 +86,7 @@
     --neutral-500: 0 0% 47%;
     --neutral-300: 0 0% 74%;
     --neutral-50: 0 0% 96%;
+
     --border: 0 0% 26%;
     --input: 0 0% 26%;
     --ring: 124 55% 24%;
@@ -114,6 +122,7 @@
     font-feature-settings: "rlig" 1, "calt" 1, "tnum" 1;
     line-height: 1.6;
     letter-spacing: -0.02em;
+
   }
 
   h1 {
@@ -133,6 +142,7 @@
 
   caption {
     font-size: 0.8rem;
+
   }
 }
 
