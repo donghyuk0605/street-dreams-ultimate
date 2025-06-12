@@ -7,6 +7,8 @@ import {
   Bebas_Neue,
 } from "next/font/google"
 import "./globals.css"
+import "../styles/animations.css"
+import "../styles/theme.css"
 
 const inter = Inter({ subsets: ["latin"], variable: "--font-inter" })
 const orbitron = Orbitron({ subsets: ["latin"], variable: "--font-orbitron" })

@@ -115,162 +115,7 @@
   font-family: var(--font-bebas);
 }
 
-/* FIFA 다크 그라데이션 배경 */
-.bg-fifa-gradient {
-  background-image: linear-gradient(
-    to bottom,
-    hsl(var(--gradient-start)),
-    hsl(var(--gradient-end))
-  );
-}
 
-/* 커스텀 애니메이션 */
-@keyframes slide-in-right {
-  from {
-    opacity: 0;
-    transform: translateX(100px);
-  }
-  to {
-    opacity: 1;
-    transform: translateX(0);
-  }
-}
-
-@keyframes slide-in-up {
-  from {
-    opacity: 0;
-    transform: translateY(100px);
-  }
-  to {
-    opacity: 1;
-    transform: translateY(0);
-  }
-}
-
-@keyframes bounce-gentle {
-  0%,
-  100% {
-    transform: translateY(0);
-  }
-  50% {
-    transform: translateY(-5px);
-  }
-}
-
-@keyframes pulse-soft {
-  0%,
-  100% {
-    opacity: 1;
-  }
-  50% {
-    opacity: 0.8;
-  }
-}
-
-@keyframes wiggle {
-  0%,
-  100% {
-    transform: rotate(0deg);
-  }
-  25% {
-    transform: rotate(1deg);
-  }
-  75% {
-    transform: rotate(-1deg);
-  }
-}
-
-@keyframes sparkle {
-  0%,
-  100% {
-    opacity: 0;
-    transform: scale(0);
-  }
-  50% {
-    opacity: 1;
-    transform: scale(1);
-  }
-}
-
-@keyframes float {
-  0%,
-  100% {
-    transform: translateY(0px);
-  }
-  50% {
-    transform: translateY(-10px);
-  }
-}
-
-@keyframes glow {
-  0%,
-  100% {
-    box-shadow: 0 0 5px rgba(59, 130, 246, 0.5);
-  }
-  50% {
-    box-shadow: 0 0 20px rgba(59, 130, 246, 0.8), 0 0 30px rgba(59, 130, 246, 0.6);
-  }
-}
-
-@keyframes spin-slow {
-  from {
-    transform: rotate(0deg);
-  }
-  to {
-    transform: rotate(360deg);
-  }
-}
-
-@keyframes matrix-rain {
-  0% {
-    transform: translateY(-100vh);
-    opacity: 1;
-  }
-  100% {
-    transform: translateY(100vh);
-    opacity: 0;
-  }
-}
-
-.animate-slide-in-right {
-  animation: slide-in-right 0.4s ease-out forwards;
-}
-
-.animate-slide-in-up {
-  animation: slide-in-up 0.4s ease-out forwards;
-}
-
-.animate-bounce-gentle {
-  animation: bounce-gentle 2s ease-in-out infinite;
-}
-
-.animate-pulse-soft {
-  animation: pulse-soft 2s ease-in-out infinite;
-}
-
-.animate-wiggle {
-  animation: wiggle 1s ease-in-out infinite;
-}
-
-.animate-sparkle {
-  animation: sparkle 1.5s ease-in-out infinite;
-}
-
-.animate-float {
-  animation: float 3s ease-in-out infinite;
-}
-
-.animate-glow {
-  animation: glow 2s ease-in-out infinite;
-}
-
-.animate-spin-slow {
-  animation: spin-slow 3s linear infinite;
-}
-
-.animate-matrix-rain {
-  animation: matrix-rain 3s linear infinite;
-}
 
 /* 부드러운 호버 효과 */
 .hover-lift {
@@ -298,28 +143,6 @@
   box-shadow: 0 0 20px rgba(59, 130, 246, 0.5);
 }
 
-/* 그라데이션 텍스트 */
-.gradient-text {
-  background: linear-gradient(45deg, #3b82f6, #8b5cf6, #ec4899);
-  -webkit-background-clip: text;
-  -webkit-text-fill-color: transparent;
-  background-clip: text;
-}
-
-.gradient-text-gold {
-  background: linear-gradient(45deg, #fbbf24, #f59e0b, #d97706);
-  -webkit-background-clip: text;
-  -webkit-text-fill-color: transparent;
-  background-clip: text;
-}
-
-.gradient-text-fire {
-  background: linear-gradient(45deg, #ef4444, #f97316, #eab308);
-  -webkit-background-clip: text;
-  -webkit-text-fill-color: transparent;
-  background-clip: text;
-}
-
 /* 카드 호버 효과 */
 .card-hover {
   transition: all 0.3s ease;
@@ -344,11 +167,6 @@
   transition: width 0.5s ease-in-out;
 }
 
-/* 활동 진행 중 이펙트 */
-.activity-glow {
-  box-shadow: 0 0 20px rgba(59, 130, 246, 0.5);
-  animation: pulse-soft 2s ease-in-out infinite;
-}
 
 /* 글래스모피즘 효과 */
 .glass {
@@ -459,50 +277,6 @@ textarea:focus {
   color: white;
 }
 
-/* 로딩 스피너 */
-.spinner {
-  border: 2px solid rgba(59, 130, 246, 0.3);
-  border-radius: 50%;
-  border-top: 2px solid #3b82f6;
-  width: 20px;
-  height: 20px;
-  animation: spin 1s linear infinite;
-}
-
-@keyframes spin {
-  0% {
-    transform: rotate(0deg);
-  }
-  100% {
-    transform: rotate(360deg);
-  }
-}
-
-/* 파티클 효과 */
-.particle {
-  position: absolute;
-  width: 4px;
-  height: 4px;
-  background: radial-gradient(circle, #3b82f6, transparent);
-  border-radius: 50%;
-  pointer-events: none;
-  animation: particle-float 3s ease-in-out infinite;
-}
-
-@keyframes particle-float {
-  0%,
-  100% {
-    transform: translateY(0) rotate(0deg);
-    opacity: 0;
-  }
-  10%,
-  90% {
-    opacity: 1;
-  }
-  50% {
-    transform: translateY(-100px) rotate(180deg);
-  }
-}
 
 /* 게임 UI 특화 스타일 */
 .game-button {
@@ -535,70 +309,6 @@ textarea:focus {
   box-shadow: 0 5px 15px rgba(59, 130, 246, 0.4);
 }
 
-/* 레벨업 효과 */
-.levelup-effect {
-  animation: levelup 1s ease-out;
-}
-
-@keyframes levelup {
-  0% {
-    transform: scale(1);
-    filter: brightness(1);
-  }
-  50% {
-    transform: scale(1.1);
-    filter: brightness(1.5) saturate(1.5);
-  }
-  100% {
-    transform: scale(1);
-    filter: brightness(1);
-  }
-}
-
-/* 성공 효과 */
-.success-effect {
-  animation: success-pulse 0.6s ease-out;
-}
-
-@keyframes success-pulse {
-  0% {
-    transform: scale(1);
-    box-shadow: 0 0 0 0 rgba(34, 197, 94, 0.7);
-  }
-  70% {
-    transform: scale(1.05);
-    box-shadow: 0 0 0 10px rgba(34, 197, 94, 0);
-  }
-  100% {
-    transform: scale(1);
-    box-shadow: 0 0 0 0 rgba(34, 197, 94, 0);
-  }
-}
-
-/* 실패 효과 */
-.error-effect {
-  animation: error-shake 0.5s ease-in-out;
-}
-
-@keyframes error-shake {
-  0%,
-  100% {
-    transform: translateX(0);
-  }
-  10%,
-  30%,
-  50%,
-  70%,
-  90% {
-    transform: translateX(-5px);
-  }
-  20%,
-  40%,
-  60%,
-  80% {
-    transform: translateX(5px);
-  }
-}
 
 /* 모바일 터치 최적화 */
 @media (hover: none) and (pointer: coarse) {
@@ -626,41 +336,4 @@ textarea:focus {
     rgba(255, 255, 255, 0.05), 0 8px 16px rgba(255, 255, 255, 0.03);
 }
 
-/* 고대비 모드 지원 */
-@media (prefers-contrast: high) {
-  .gradient-text,
-  .gradient-text-gold,
-  .gradient-text-fire {
-    background: none;
-    -webkit-text-fill-color: currentColor;
-    color: white;
-  }
 
-  .glass,
-  .glass-dark {
-    background: rgba(0, 0, 0, 0.8);
-    border: 2px solid white;
-  }
-}
-
-/* FIFA 스타일 카드 */
-.fifa-card-gold {
-  background: linear-gradient(135deg, #b87333, #ffd700);
-  border: 2px solid #ffd700;
-  border-radius: 0.75rem;
-  box-shadow: 0 4px 10px rgba(255, 215, 0, 0.5);
-}
-
-.fifa-card-diamond {
-  background: linear-gradient(135deg, #e0f7ff, #b0e0e6);
-  border: 2px solid #00d4ff;
-  border-radius: 0.75rem;
-  box-shadow: 0 4px 10px rgba(0, 212, 255, 0.5);
-}
-
-.fifa-card-legend {
-  background: linear-gradient(135deg, #ffffff, #e0e0e0);
-  border: 2px solid #ffd700;
-  border-radius: 0.75rem;
-  box-shadow: 0 4px 12px rgba(255, 215, 0, 0.7);
-}
