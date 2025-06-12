@@ -85,3 +85,19 @@ The overlay now features larger logos and bold typography for a more immersive p
 
 로그인 페이지에는 게스트로 바로 게임을 체험할 수 있는 **게스트 입장** 버튼이 추가되었습니다.
 
+
+## Player Stats and Skills
+
+A new data structure separates numeric stats and special skills for each player. See [`lib/game/player.ts`](lib/game/player.ts) for details:
+
+```ts
+export interface PlayerProfile {
+  id: string
+  name: string
+  position: string
+  stats: PlayerStats
+  skills: PlayerSkills
+}
+```
+
+Use `stats` for attributes like shooting or speed, and `skills` for abilities such as `curvingShot` or `ambidextrous`.
