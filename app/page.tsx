@@ -1856,6 +1856,40 @@ export default function StreetDreamsSoccer() {
                     ))}
                   </div>
                 </CardContent>
+                </Card>
+
+              {/* 학교 지표 */}
+              <Card className="bg-gradient-to-br from-green-700 to-blue-600 text-white border-2 border-green-400">
+                <CardHeader>
+                  <CardTitle className="flex items-center">
+                    <School className="w-5 h-5 mr-2 text-yellow-300" />
+                    학교 생활
+                  </CardTitle>
+                </CardHeader>
+                <CardContent>
+                  <div className="space-y-2 text-sm">
+                    <div className="flex justify-between">
+                      <span>학교:</span>
+                      <span className="text-yellow-400">{gameState.schoolName} ({gameState.grade})</span>
+                    </div>
+                    <div className="flex justify-between">
+                      <span>성적:</span>
+                      <span className="text-yellow-400">{gameState.academicGrade}</span>
+                    </div>
+                    <div className="flex justify-between">
+                      <span>학교 순위:</span>
+                      <span className="text-yellow-400">{gameState.schoolRank}위</span>
+                    </div>
+                    <div className="flex justify-between">
+                      <span>출석률:</span>
+                      <span className="text-yellow-400">{gameState.attendanceRate}%</span>
+                    </div>
+                    <div className="flex justify-between">
+                      <span>선생님 관계:</span>
+                      <span className="text-yellow-400">{gameState.teacherRelation}/100</span>
+                    </div>
+                  </div>
+                </CardContent>
               </Card>
             </div>
           </TabsContent>
