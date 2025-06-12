@@ -10,6 +10,9 @@ import { Button } from "@/components/ui/button"
 import { Progress } from "@/components/ui/progress"
 import { Badge } from "@/components/ui/badge"
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs"
+import { Hero } from "@/components/Hero"
+import { Gallery } from "@/components/Gallery"
+import { Footer } from "@/components/Footer"
 import {
   Heart,
   Brain,
@@ -1158,6 +1161,8 @@ export default function StreetDreamsSoccer() {
 
   return (
     <div className="min-h-screen bg-gradient-to-br from-[hsl(var(--gradient-start))] to-[hsl(var(--gradient-end))] relative overflow-x-hidden">
+      <Hero />
+      <Gallery />
       <GameHUD state={gameState} />
 
       <GameMenu onSave={handleSave} onLoad={handleLoad} onReset={handleReset} onExit={handleExit} />
@@ -1790,6 +1795,7 @@ export default function StreetDreamsSoccer() {
           </TabsContent>
         </Tabs>
       </div>
+      <Footer />
     </div>
   )
 }
