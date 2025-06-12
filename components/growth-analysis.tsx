@@ -143,14 +143,14 @@ export function GrowthAnalysis({
   const recentGrowth = calculateRecentGrowth()
 
   return (
-    <Card className="bg-gradient-to-br from-blue-900 to-purple-900 text-white border-2 border-blue-400">
+    <Card className="bg-gradient-to-br from-gray-800 to-gray-900 text-white border border-primary">
       <CardHeader>
         <CardTitle className="flex items-center justify-between">
           <div className="flex items-center gap-2">
-            <ChartIcon className="w-5 h-5 text-blue-400" />
+            <ChartIcon className="w-5 h-5 text-primary" />
             <span>성장 분석</span>
           </div>
-          <Badge className="bg-blue-500">
+          <Badge className="bg-primary">
             Lv.{playerLevel} • {playerAge}세
           </Badge>
         </CardTitle>
@@ -158,15 +158,15 @@ export function GrowthAnalysis({
       <CardContent className="space-y-4">
         <Tabs value={activeTab} onValueChange={setActiveTab} className="w-full">
           <TabsList className="grid w-full grid-cols-3 bg-black/30">
-            <TabsTrigger value="general" className="data-[state=active]:bg-blue-500 data-[state=active]:text-white">
+            <TabsTrigger value="general" className="data-[state=active]:bg-primary data-[state=active]:text-white">
               <TrendingUp className="w-4 h-4 mr-2" />
               성장 추이
             </TabsTrigger>
-            <TabsTrigger value="prediction" className="data-[state=active]:bg-blue-500 data-[state=active]:text-white">
+            <TabsTrigger value="prediction" className="data-[state=active]:bg-primary data-[state=active]:text-white">
               <Star className="w-4 h-4 mr-2" />
               성장 예측
             </TabsTrigger>
-            <TabsTrigger value="comparison" className="data-[state=active]:bg-blue-500 data-[state=active]:text-white">
+            <TabsTrigger value="comparison" className="data-[state=active]:bg-primary data-[state=active]:text-white">
               <Award className="w-4 h-4 mr-2" />
               또래 비교
             </TabsTrigger>
@@ -178,7 +178,7 @@ export function GrowthAnalysis({
                 <Badge
                   key={stat.id}
                   variant="outline"
-                  className={`cursor-pointer ${selectedStat === stat.id ? "bg-blue-500 text-white" : "bg-black/30"}`}
+                  className={`cursor-pointer ${selectedStat === stat.id ? "bg-primary text-white" : "bg-black/30"}`}
                   onClick={() => setSelectedStat(stat.id)}
                   style={{ borderColor: stat.color }}
                 >
@@ -211,13 +211,13 @@ export function GrowthAnalysis({
             </div>
 
             <div className="grid grid-cols-1 md:grid-cols-3 gap-4 mt-4">
-              <div className="p-4 bg-black/30 rounded-lg border border-blue-400">
-                <div className="text-sm text-blue-300 mb-1">최근 가장 큰 성장</div>
+              <div className="p-4 bg-black/30 rounded-lg border border-primary">
+                <div className="text-sm text-primary mb-1">최근 가장 큰 성장</div>
                 <div className="text-xl font-bold">{recentGrowth.stat}</div>
-                <div className="text-sm text-green-400">+{recentGrowth.growth} 포인트</div>
+                <div className="text-sm text-accent">+{recentGrowth.growth} 포인트</div>
               </div>
-              <div className="p-4 bg-black/30 rounded-lg border border-purple-400">
-                <div className="text-sm text-purple-300 mb-1">현재 최고 능력치</div>
+              <div className="p-4 bg-black/30 rounded-lg border border-primary">
+                <div className="text-sm text-primary mb-1">현재 최고 능력치</div>
                 <div className="text-xl font-bold">
                   {statOptions.find(
                     (stat) =>
@@ -227,10 +227,10 @@ export function GrowthAnalysis({
                         .sort(([, a], [, b]) => (b as number) - (a as number))[0][0],
                   )?.name || "데이터 없음"}
                 </div>
-                <div className="text-sm text-yellow-400">포지션 적합도: 높음</div>
+                <div className="text-sm text-accent">포지션 적합도: 높음</div>
               </div>
-              <div className="p-4 bg-black/30 rounded-lg border border-green-400">
-                <div className="text-sm text-green-300 mb-1">성장 속도</div>
+              <div className="p-4 bg-black/30 rounded-lg border border-primary">
+                <div className="text-sm text-primary mb-1">성장 속도</div>
                 <div className="text-xl font-bold">
                   {recentGrowth.growth > 5
                     ? "매우 빠름"
@@ -240,13 +240,13 @@ export function GrowthAnalysis({
                         ? "보통"
                         : "느림"}
                 </div>
-                <div className="text-sm text-blue-400">또래 평균 대비 +15%</div>
+                <div className="text-sm text-accent">또래 평균 대비 +15%</div>
               </div>
             </div>
           </TabsContent>
 
           <TabsContent value="prediction" className="space-y-4 mt-4">
-            <div className="text-sm text-blue-300 mb-4">
+            <div className="text-sm text-primary mb-4">
               현재 성장 추세를 바탕으로 향후 6개월간의 능력치 변화를 예측합니다.
             </div>
 
@@ -286,24 +286,24 @@ export function GrowthAnalysis({
               </ResponsiveContainer>
             </div>
 
-            <div className="p-4 bg-black/30 rounded-lg border border-purple-400">
-              <div className="text-lg font-bold text-purple-300 mb-2">AI 성장 예측</div>
+              <div className="p-4 bg-black/30 rounded-lg border border-primary">
+                <div className="text-lg font-bold text-primary mb-2">AI 성장 예측</div>
               <div className="text-sm text-gray-300">
                 {playerPosition === "자유포지션" ? (
                   <span>
-                    현재 성장 추세를 분석한 결과, <span className="text-yellow-400">드리블</span>과
-                    <span className="text-yellow-400"> 스피드</span> 능력이 두드러지게 발전하고 있습니다. 윙어나 공격형
+                    현재 성장 추세를 분석한 결과, <span className="text-accent">드리블</span>과
+                    <span className="text-accent"> 스피드</span> 능력이 두드러지게 발전하고 있습니다. 윙어나 공격형
                     미드필더 포지션이 적합할 것으로 예측됩니다.
                   </span>
                 ) : (
                   <span>
                     현재 {playerPosition} 포지션에서 계속 성장한다면, 6개월 후{" "}
-                    <span className="text-green-400">Lv.{playerLevel + 2}</span> 수준에 도달할 것으로 예상됩니다.
+                    <span className="text-accent">Lv.{playerLevel + 2}</span> 수준에 도달할 것으로 예상됩니다.
                   </span>
                 )}
               </div>
               <div className="mt-3 text-sm">
-                <span className="font-bold text-blue-300">추천 훈련:</span>{" "}
+                <span className="font-bold text-primary">추천 훈련:</span>{" "}
                 {selectedStat === "shooting"
                   ? "슈팅 정확도, 마무리"
                   : selectedStat === "passing"
@@ -320,7 +320,7 @@ export function GrowthAnalysis({
           </TabsContent>
 
           <TabsContent value="comparison" className="space-y-4 mt-4">
-            <div className="text-sm text-blue-300 mb-4">같은 나이대의 다른 선수들과 능력치를 비교해보세요.</div>
+            <div className="text-sm text-primary mb-4">같은 나이대의 다른 선수들과 능력치를 비교해보세요.</div>
 
             <div className="h-64 w-full bg-black/30 rounded-lg p-4">
               <ResponsiveContainer width="100%" height="100%">
@@ -358,41 +358,41 @@ export function GrowthAnalysis({
             </div>
 
             <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
-              <div className="p-4 bg-black/30 rounded-lg border border-blue-400">
-                <div className="text-lg font-bold text-blue-300 mb-2">또래 비교 분석</div>
+              <div className="p-4 bg-black/30 rounded-lg border border-primary">
+                <div className="text-lg font-bold text-primary mb-2">또래 비교 분석</div>
                 <div className="text-sm text-gray-300">
                   {selectedStat === "technique" ? (
                     <span>
-                      기술 능력이 또래 평균보다 <span className="text-green-400">15% 높습니다</span>.
+                      기술 능력이 또래 평균보다 <span className="text-accent">15% 높습니다</span>.
                     </span>
                   ) : selectedStat === "physical" ? (
                     <span>
-                      체력이 또래 평균과 <span className="text-yellow-400">비슷한 수준입니다</span>.
+                      체력이 또래 평균과 <span className="text-accent">비슷한 수준입니다</span>.
                     </span>
                   ) : selectedStat === "shooting" ? (
                     <span>
-                      슈팅 능력이 또래 평균보다 <span className="text-green-400">20% 높습니다</span>.
+                      슈팅 능력이 또래 평균보다 <span className="text-accent">20% 높습니다</span>.
                     </span>
                   ) : selectedStat === "passing" ? (
                     <span>
-                      패스 능력이 또래 평균보다 <span className="text-green-400">10% 높습니다</span>.
+                      패스 능력이 또래 평균보다 <span className="text-accent">10% 높습니다</span>.
                     </span>
                   ) : selectedStat === "dribbling" ? (
                     <span>
-                      드리블 능력이 또래 평균보다 <span className="text-green-400">25% 높습니다</span>.
+                      드리블 능력이 또래 평균보다 <span className="text-accent">25% 높습니다</span>.
                     </span>
                   ) : (
                     <span>선택한 능력치가 또래 평균과 비교됩니다.</span>
                   )}
                 </div>
               </div>
-              <div className="p-4 bg-black/30 rounded-lg border border-purple-400">
-                <div className="text-lg font-bold text-purple-300 mb-2">포지션별 적합도</div>
+              <div className="p-4 bg-black/30 rounded-lg border border-primary">
+                <div className="text-lg font-bold text-primary mb-2">포지션별 적합도</div>
                 <div className="space-y-2">
                   <div>
                     <div className="flex justify-between text-sm">
                       <span>공격수:</span>
-                      <span className="text-yellow-400">
+                      <span className="text-accent">
                         {Math.round(
                           ((growthData.length > 0
                             ? (growthData[growthData.length - 1].shooting as number) * 0.4 +
@@ -419,7 +419,7 @@ export function GrowthAnalysis({
                   <div>
                     <div className="flex justify-between text-sm">
                       <span>미드필더:</span>
-                      <span className="text-green-400">
+                      <span className="text-accent">
                         {Math.round(
                           ((growthData.length > 0
                             ? (growthData[growthData.length - 1].passing as number) * 0.4 +
@@ -446,7 +446,7 @@ export function GrowthAnalysis({
                   <div>
                     <div className="flex justify-between text-sm">
                       <span>수비수:</span>
-                      <span className="text-blue-400">
+                      <span className="text-accent">
                         {Math.round(
                           ((growthData.length > 0
                             ? (growthData[growthData.length - 1].defending as number) * 0.5 +
