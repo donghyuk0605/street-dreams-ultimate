@@ -63,6 +63,7 @@ import { useGameUIStore } from "@/lib/store"
 import { GameMenu } from "@/components/ui/game-menu"
 import { NotificationSystem, type Notification } from "@/components/ui/notification-system"
 import { GameHud } from "@/components/ui/game-hud"
+import { MatchSystem } from "@/components/match-system"
 
 // 지역 및 학교 데이터
 const REGIONS = {
@@ -1085,6 +1086,35 @@ export default function StreetDreamsSoccer() {
     [gameState.rivals, gameState.shooting, gameState.passing, gameState.dribbling, gameState.speed, addNotification],
   )
 
+  // 경기 진행 핸들러
+  const handlePlayMatch = useCallback(
+    (matchId: string, result: { result: "win" | "loss" | "draw"; score: string }) => {
+      setGameState((prev) => {
+        const newState = { ...prev }
+        const idx = newState.upcomingMatches.findIndex((m) => m.id === matchId)
+        if (idx === -1) return newState
+
+        newState.upcomingMatches[idx] = { ...newState.upcomingMatches[idx], ...result }
+
+        newState.matchesPlayed += 1
+        if (result.result === "win") newState.wins += 1
+        else if (result.result === "loss") newState.losses += 1
+        else newState.draws += 1
+
+        addNotification(
+          `경기 결과: ${result.score} ${
+            result.result === "win" ? "승리!" : result.result === "loss" ? "패배..." : "무승부"
+          }`,
+          result.result === "win" ? "success" : result.result === "loss" ? "error" : "info",
+          <Trophy className="w-4 h-4" />,
+        )
+
+        return newState
+      })
+    },
+    [addNotification],
+  )
+
   // 주간 템플릿 적용
   const applyWeeklyTemplate = useCallback(
     (templateKey: string) => {
@@ -2073,14 +2103,10 @@ export default function StreetDreamsSoccer() {
           </TabsContent>
 
           <TabsContent value="matches" className="space-y-6">
-            <Card className="bg-gradient-to-br from-green-600 to-blue-600 text-white border-2 border-green-400">
-              <CardHeader>
-                <CardTitle>경기 시스템</CardTitle>
-              </CardHeader>
-              <CardContent>
-                <p>경기 시스템이 곧 추가됩니다!</p>
-              </CardContent>
-            </Card>
+            <MatchSystem
+              matches={gameState.upcomingMatches}
+              onPlayMatch={handlePlayMatch}
+            />
           </TabsContent>
 
           <TabsContent value="career" className="space-y-6">
