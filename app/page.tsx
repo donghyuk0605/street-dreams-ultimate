@@ -1186,6 +1186,9 @@ export default function StreetDreamsSoccer() {
 
     const interval = setInterval(() => {
       let activityName: string | null = null
+      const eventsToAdd: React.ReactNode[] = []
+      let monthResult: any | null = null
+
       setGameState((prevState) => {
         const newState = { ...prevState }
         const currentDay = newState.currentDay
@@ -1205,7 +1208,7 @@ export default function StreetDreamsSoccer() {
                 }
               })
             }
-            setDayEvents((prev) => [...prev, `${currentDay}일: 에너지 부족으로 휴식`])
+            eventsToAdd.push(`${currentDay}일: 에너지 부족으로 휴식`)
           } else {
             // 활동 효과 적용
             Object.entries(activity.effects).forEach(([key, value]) => {
@@ -1232,7 +1235,7 @@ export default function StreetDreamsSoccer() {
               newState.injuryName = "근육 피로"
               newState.injuryDays = 3
               newState.totalInjuryDays = 3
-              setDayEvents((prev) => [...prev, `${currentDay}일: 경미한 부상 발생`])
+              eventsToAdd.push(`${currentDay}일: 경미한 부상 발생`)
             }
 
             if (activity.rarity === "legendary" || Math.random() < 0.1) {
@@ -1254,7 +1257,7 @@ export default function StreetDreamsSoccer() {
                 </>,
               ]
               const randomEvent = events[Math.floor(Math.random() * events.length)]
-              setDayEvents((prev) => [...prev, <span key={currentDay}>{currentDay}일: {randomEvent}</span>])
+              eventsToAdd.push(<span key={currentDay}>{currentDay}일: {randomEvent}</span>)
             }
           }
         }
@@ -1317,13 +1320,12 @@ export default function StreetDreamsSoccer() {
             },
           ]
 
-          const result = {
+          monthResult = {
             statChanges: {
               technique: Math.floor(Math.random() * 8) + 2,
               physical: Math.floor(Math.random() * 6) + 2,
               streetCredits: Math.floor(Math.random() * 20) + 5,
             },
-            events: dayEvents,
             achievements: [],
             totalCost: 0,
             parentComment: "이번 달도 열심히 했구나!",
@@ -1332,22 +1334,30 @@ export default function StreetDreamsSoccer() {
             levelInfo: `레벨 ${newState.level} (경험치: ${newState.experience}/${newState.maxExperience})`,
             regionInfo: `${REGIONS[newState.region].name} 지역`,
           }
-
-          setMonthlyResult(result)
-          setCurrentActivity(null)
-          clearInterval(interval)
         }
 
         return newState
       })
 
+      if (eventsToAdd.length) {
+        setDayEvents((prev) => [...prev, ...eventsToAdd])
+      }
+
       if (activityName) {
         setCurrentActivity(activityName)
+      }
+
+      if (monthResult) {
+        const finalEvents = useGameUIStore.getState().dayEvents
+        monthResult.events = finalEvents
+        setMonthlyResult(monthResult)
+        setCurrentActivity(null)
+        clearInterval(interval)
       }
     }, 150)
 
     return () => clearInterval(interval)
-  }, [gameState.isMonthRunning, gameState.monthlySchedule, dayEvents, gainExperience, addNotification])
+  }, [gameState.isMonthRunning, gameState.monthlySchedule, gainExperience, addNotification])
 
   // 월간 결과 확인 완료
   const completeMonth = useCallback(() => {

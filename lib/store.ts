@@ -16,7 +16,11 @@ interface GameUIStore {
   setMonthlyResult: (result: any) => void
   setSelectedDay: (day: number | null) => void
   setCurrentActivity: (activity: string | null) => void
-  setDayEvents: (events: React.ReactNode[]) => void
+  setDayEvents: (
+    events:
+      | React.ReactNode[]
+      | ((prev: React.ReactNode[]) => React.ReactNode[]),
+  ) => void
   setSelectedTemplate: (template: string) => void
 }
 
@@ -35,6 +39,10 @@ export const useGameUIStore = create<GameUIStore>((set) => ({
   setMonthlyResult: (result) => set({ monthlyResult: result }),
   setSelectedDay: (day) => set({ selectedDay: day }),
   setCurrentActivity: (activity) => set({ currentActivity: activity }),
-  setDayEvents: (events) => set({ dayEvents: events }),
+  setDayEvents: (events) =>
+    set((s) => ({
+      dayEvents:
+        typeof events === "function" ? events(s.dayEvents) : events,
+    })),
   setSelectedTemplate: (template) => set({ selectedTemplate: template }),
 }))
