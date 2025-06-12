@@ -3,6 +3,7 @@
 import type React from "react"
 
 import { useState, useCallback } from "react"
+import dynamic from "next/dynamic"
 import { motion } from "framer-motion"
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card"
 import { Button } from "@/components/ui/button"
@@ -52,7 +53,10 @@ import { SeasonEventSystem } from "@/components/season-event-system"
 import { InjurySystem } from "@/components/injury-system"
 import { PersonalitySystem } from "@/components/personality-system"
 import { RivalSystem } from "@/components/rival-system"
-import { GrowthAnalysis } from "@/components/growth-analysis"
+const GrowthAnalysis = dynamic(() => import("@/components/growth-analysis"), {
+  ssr: false,
+})
+import { useGameUIStore } from "@/lib/store"
 import { GameMenu } from "@/components/ui/game-menu"
 import { NotificationSystem, type Notification } from "@/components/ui/notification-system"
 import { GameHud } from "@/components/ui/game-hud"
@@ -384,7 +388,9 @@ const WEEKLY_TEMPLATES = {
 }
 
 export default function StreetDreamsSoccer() {
-  const [notifications, setNotifications] = useState<Notification[]>([])
+  const notifications = useGameUIStore((s) => s.notifications)
+  const addStoreNotification = useGameUIStore((s) => s.addNotification)
+  const removeStoreNotification = useGameUIStore((s) => s.removeNotification)
 
   // 게임 상태 (확장됨)
   const [gameState, setGameState] = useState<GameState>({
@@ -609,12 +615,18 @@ export default function StreetDreamsSoccer() {
     ],
   })
 
-  const [activeTab, setActiveTab] = useState("dashboard")
-  const [monthlyResult, setMonthlyResult] = useState<any>(null)
-  const [selectedDay, setSelectedDay] = useState<number | null>(null)
-  const [currentActivity, setCurrentActivity] = useState<string | null>(null)
-  const [dayEvents, setDayEvents] = useState<React.ReactNode[]>([])
-  const [selectedTemplate, setSelectedTemplate] = useState<string>("street_warrior")
+  const activeTab = useGameUIStore((s) => s.activeTab)
+  const setActiveTab = useGameUIStore((s) => s.setActiveTab)
+  const monthlyResult = useGameUIStore((s) => s.monthlyResult)
+  const setMonthlyResult = useGameUIStore((s) => s.setMonthlyResult)
+  const selectedDay = useGameUIStore((s) => s.selectedDay)
+  const setSelectedDay = useGameUIStore((s) => s.setSelectedDay)
+  const currentActivity = useGameUIStore((s) => s.currentActivity)
+  const setCurrentActivity = useGameUIStore((s) => s.setCurrentActivity)
+  const dayEvents = useGameUIStore((s) => s.dayEvents)
+  const setDayEvents = useGameUIStore((s) => s.setDayEvents)
+  const selectedTemplate = useGameUIStore((s) => s.selectedTemplate)
+  const setSelectedTemplate = useGameUIStore((s) => s.setSelectedTemplate)
 
   // 활동 목록 (기존과 동일)
   const activities: Activity[] = [
@@ -843,14 +855,17 @@ export default function StreetDreamsSoccer() {
         icon,
         duration: type === "achievement" ? 6000 : 4000,
       }
-      setNotifications((prev) => [...prev, newNotification])
+      addStoreNotification(newNotification)
     },
-    [],
+    [addStoreNotification],
   )
 
-  const removeNotification = useCallback((id: string) => {
-    setNotifications((prev) => prev.filter((n) => n.id !== id))
-  }, [])
+  const removeNotification = useCallback(
+    (id: string) => {
+      removeStoreNotification(id)
+    },
+    [removeStoreNotification],
+  )
 
   const handleSave = useCallback(() => {
     try {
