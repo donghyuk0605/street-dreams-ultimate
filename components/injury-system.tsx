@@ -177,7 +177,9 @@ export function InjurySystem({
             )}
 
             <div className="text-sm text-red-300 mt-4">
-              <div className="font-bold mb-1">⚠️ 부상 중 주의사항:</div>
+              <div className="font-bold mb-1 flex items-center gap-1">
+                <AlertTriangle className="w-4 h-4" /> 부상 중 주의사항:
+              </div>
               <ul className="list-disc pl-5 space-y-1 text-xs">
                 <li>무리한 활동은 회복을 지연시킵니다</li>
                 <li>충분한 휴식이 필요합니다</li>

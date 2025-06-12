@@ -4,7 +4,7 @@ import type React from "react"
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card"
 import { Badge } from "@/components/ui/badge"
 import { Progress } from "@/components/ui/progress"
-import { Brain, Users, Zap, Target, Shield, Flame } from "lucide-react"
+import { Brain, Users, Zap, Target, Shield, Flame, Lightbulb } from "lucide-react"
 
 interface PersonalityTrait {
   name: string
@@ -135,7 +135,9 @@ export function PersonalitySystem({ traits }: PersonalitySystemProps) {
         </div>
 
         <div className="text-sm text-purple-300 mt-4">
-          <div className="font-bold mb-1">💡 성격 시스템:</div>
+          <div className="font-bold mb-1 flex items-center gap-1">
+            <Lightbulb className="w-4 h-4" /> 성격 시스템:
+          </div>
           <ul className="list-disc pl-5 space-y-1 text-xs text-gray-300">
             <li>성격 특성은 경험과 선택에 따라 변화합니다</li>
             <li>각 특성은 게임 내 다양한 상황에 영향을 줍니다</li>

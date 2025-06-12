@@ -1,6 +1,7 @@
 "use client"
 
 import { useState, useEffect } from "react"
+import { Lightbulb } from "lucide-react"
 import { Progress } from "@/components/ui/progress"
 import { motion } from "framer-motion"
 
@@ -80,7 +81,9 @@ export function LoadingScreen({ onComplete, tips = [] }: LoadingScreenProps) {
         <Progress value={progress} className="h-3 bg-gray-800" />
         <p className="text-center text-white font-bold">{Math.round(progress)}%</p>
         <div className="bg-black/30 p-4 rounded-lg border border-blue-500">
-          <p className="text-sm text-blue-200 italic">💡 {tip}</p>
+          <p className="text-sm text-blue-200 italic flex items-center gap-1">
+            <Lightbulb className="w-4 h-4" /> {tip}
+          </p>
         </div>
       </motion.div>
     </motion.div>
