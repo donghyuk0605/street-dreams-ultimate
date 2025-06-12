@@ -104,14 +104,14 @@ export function RivalSystem({ playerStats, rivals, onChallengeRival }: RivalSyst
   }
 
   return (
-    <Card className="bg-gradient-to-br from-red-900 to-orange-900 text-white border-2 border-red-400">
+    <Card className="bg-gradient-to-br from-gray-800 to-gray-900 text-white border border-primary">
       <CardHeader>
         <CardTitle className="flex items-center justify-between">
           <div className="flex items-center gap-2">
-            <Swords className="w-5 h-5 text-red-400" />
+            <Swords className="w-5 h-5 text-primary" />
             <span>라이벌 시스템</span>
           </div>
-          <Badge className="bg-red-500">{rivals.length}명의 라이벌</Badge>
+          <Badge className="bg-primary">{rivals.length}명의 라이벌</Badge>
         </CardTitle>
       </CardHeader>
       <CardContent className="space-y-4">
@@ -123,8 +123,8 @@ export function RivalSystem({ playerStats, rivals, onChallengeRival }: RivalSyst
           {rivals.map((rival) => (
             <div
               key={rival.id}
-              className={`p-4 rounded-lg cursor-pointer transition-all hover:scale-105 border-2 bg-gradient-to-r from-gray-900 to-red-900 ${
-                selectedRival === rival.id ? "border-yellow-400 ring-2 ring-yellow-400" : "border-gray-600"
+              className={`p-4 rounded-lg cursor-pointer transition-all hover:scale-105 border bg-gradient-to-r from-gray-800 to-gray-900 ${
+                selectedRival === rival.id ? "border-accent ring-2 ring-accent" : "border-gray-600"
               }`}
               onClick={() => handleRivalSelect(rival.id)}
             >
@@ -134,10 +134,10 @@ export function RivalSystem({ playerStats, rivals, onChallengeRival }: RivalSyst
                     <img
                       src={rival.image || "/placeholder.svg"}
                       alt={rival.name}
-                      className="w-12 h-12 rounded-full object-cover border-2 border-red-400"
+                      className="w-12 h-12 rounded-full object-cover border border-primary"
                     />
                   ) : (
-                    <div className="w-12 h-12 rounded-full bg-gradient-to-r from-red-500 to-orange-500 flex items-center justify-center text-xl font-bold">
+                    <div className="w-12 h-12 rounded-full bg-gradient-to-r from-accent to-primary flex items-center justify-center text-xl font-bold">
                       {rival.name.charAt(0)}
                     </div>
                   )}
@@ -155,7 +155,7 @@ export function RivalSystem({ playerStats, rivals, onChallengeRival }: RivalSyst
 
               <div className="grid grid-cols-2 gap-4 mb-3">
                 <div>
-                  <div className="text-xs font-bold text-orange-300 mb-2">능력치 비교:</div>
+                  <div className="text-xs font-bold text-primary mb-2">능력치 비교:</div>
                   <div className="space-y-1">
                     {Object.entries(rival.stats).map(([key, value]) => (
                       <div key={key} className="flex justify-between items-center text-xs">
@@ -169,7 +169,7 @@ export function RivalSystem({ playerStats, rivals, onChallengeRival }: RivalSyst
                   </div>
                 </div>
                 <div>
-                  <div className="text-xs font-bold text-orange-300 mb-2">대결 기록:</div>
+                  <div className="text-xs font-bold text-primary mb-2">대결 기록:</div>
                   <div className="text-center p-2 bg-black/30 rounded">
                     <div className="text-sm font-bold">
                       {rival.matchHistory.wins}승 {rival.matchHistory.draws}무 {rival.matchHistory.losses}패
@@ -200,7 +200,7 @@ export function RivalSystem({ playerStats, rivals, onChallengeRival }: RivalSyst
                   </div>
                   <Button
                     onClick={handleChallengeRival}
-                    className="w-full bg-gradient-to-r from-red-600 to-orange-600 hover:from-red-700 hover:to-orange-700 text-white font-bold border border-red-400"
+                    className="w-full bg-gradient-to-r from-accent to-primary hover:opacity-90 text-white font-bold border border-primary"
                   >
                     <Swords className="w-4 h-4 mr-2" />
                     라이벌에게 도전
@@ -213,8 +213,8 @@ export function RivalSystem({ playerStats, rivals, onChallengeRival }: RivalSyst
 
         {rivals.length === 0 && (
           <div className="text-center p-6 bg-black/30 rounded-lg">
-            <Swords className="w-12 h-12 text-red-400 mx-auto mb-4" />
-            <div className="text-xl font-bold text-red-400 mb-2">아직 라이벌이 없습니다</div>
+            <Swords className="w-12 h-12 text-primary mx-auto mb-4" />
+            <div className="text-xl font-bold text-primary mb-2">아직 라이벌이 없습니다</div>
             <div className="text-sm text-gray-300">경기에 참여하고 다른 선수들과 경쟁하면 라이벌이 생깁니다.</div>
           </div>
         )}
