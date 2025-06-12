@@ -1155,6 +1155,7 @@ export default function StreetDreamsSoccer() {
     setDayEvents([])
 
     const interval = setInterval(() => {
+      let activityName: string | null = null
       setGameState((prevState) => {
         const newState = { ...prevState }
         const currentDay = newState.currentDay
@@ -1162,7 +1163,7 @@ export default function StreetDreamsSoccer() {
         const activity = activities.find((a) => a.id === activityId)
 
         if (activity) {
-          setCurrentActivity(activity.name)
+          activityName = activity.name
 
           // 에너지 체크
           if (activity.energyCost && newState.energy < activity.energyCost) {
@@ -1309,6 +1310,10 @@ export default function StreetDreamsSoccer() {
 
         return newState
       })
+
+      if (activityName) {
+        setCurrentActivity(activityName)
+      }
     }, 150)
 
     return () => clearInterval(interval)
