@@ -29,8 +29,19 @@
     --chart-3: 196 100% 54%;
     --chart-4: 32 100% 61%;
     --chart-5: 340 75% 55%;
+
+    --sidebar-background: 240 5% 90%;
+    --sidebar-foreground: 240 5% 20%;
+    --sidebar-primary: 250 67% 54%;
+    --sidebar-primary-foreground: 0 0% 100%;
+    --sidebar-accent: 217 91% 60%;
+    --sidebar-accent-foreground: 0 0% 100%;
+    --sidebar-border: 240 5% 80%;
+    --sidebar-ring: 250 67% 54%;
+
     --gradient-start: 0 0% 0%;
     --gradient-end: 240 28% 14%;
+
   }
 
   .dark {
@@ -58,8 +69,19 @@
     --chart-3: 196 100% 54%;
     --chart-4: 32 100% 61%;
     --chart-5: 340 75% 55%;
+
+    --sidebar-background: 240 5% 12%;
+    --sidebar-foreground: 0 0% 98%;
+    --sidebar-primary: 250 67% 54%;
+    --sidebar-primary-foreground: 0 0% 100%;
+    --sidebar-accent: 217 91% 60%;
+    --sidebar-accent-foreground: 0 0% 100%;
+    --sidebar-border: 240 5% 25%;
+    --sidebar-ring: 250 67% 54%;
+
     --gradient-start: 0 0% 0%;
     --gradient-end: 240 28% 14%;
+
   }
 }
 
