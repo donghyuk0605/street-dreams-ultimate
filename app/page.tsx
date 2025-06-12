@@ -68,6 +68,7 @@ import type { GameState, Activity } from "@/lib/game/types"
 import { REGIONS, WEEKLY_TEMPLATES, getEnergyColor, getMoodIcon, getRarityColor } from "@/lib/game/helpers"
 import { MatchSystem } from "@/components/match-system"
 import { ScoreboardOverlay } from "@/components/ui/scoreboard-overlay"
+import { CareerCollection } from "@/components/career-collection"
 
 
 
@@ -173,6 +174,20 @@ export default function StreetDreamsSoccer() {
       },
     ],
     records: [],
+    careerCollection: [
+      {
+        id: "youth_join",
+        name: "유소년 팀 합류",
+        description: "동네 유소년 팀에 입단했다",
+        obtained: true,
+      },
+      {
+        id: "elite_school",
+        name: "축구 명문고 합격",
+        description: "명문 고등학교 축구부에 합격했다",
+        obtained: false,
+      },
+    ],
 
     memories: ["첫 축구공을 받은 날", "홍대 골목구장에서의 첫 경기"],
     growthHistory: [
@@ -1753,14 +1768,7 @@ export default function StreetDreamsSoccer() {
           </TabsContent>
 
           <TabsContent value="career" className="space-y-6">
-            <Card className="bg-gradient-to-br from-purple-600 to-pink-600 text-white border-2 border-purple-400">
-              <CardHeader>
-                <CardTitle>진로 시스템</CardTitle>
-              </CardHeader>
-              <CardContent>
-                <p>진로 시스템이 곧 추가됩니다!</p>
-              </CardContent>
-            </Card>
+            <CareerCollection items={gameState.careerCollection} />
           </TabsContent>
 
           <TabsContent value="collection" className="space-y-6">

@@ -63,6 +63,7 @@ const defaultState: GameState = {
   trophies: [],
   achievements: [],
   records: [],
+  careerCollection: [],
   memories: [],
   growthHistory: [],
   weeklyTemplate: WEEKLY_TEMPLATES.street_warrior.schedule,
