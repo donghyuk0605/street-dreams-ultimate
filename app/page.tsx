@@ -554,7 +554,7 @@ export default function StreetDreamsSoccer() {
       icon?: React.ReactNode,
     ) => {
       const newNotification: Notification = {
-        id: Date.now().toString(),
+        id: crypto.randomUUID(),
         message,
         type,
         icon,
