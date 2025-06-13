@@ -71,7 +71,9 @@ Player cards can use the classes `fifa-card-gold`, `fifa-card-diamond`, or `fifa
 
 Matches now display a FIFA style scoreboard after each match. Home and away logos sit over a stadium backdrop thanks to open source imagery, giving it a proper game-day vibe. Dismiss the overlay with the **확인** button.
 
-The overlay now features larger logos and bold typography for a more immersive presentation.
+The overlay now features larger logos and bold typography for a more immersive presentation. It also scales gracefully on mobile thanks to responsive text utilities, and the confirm button has a subtle lift effect on hover.
+
+Buttons can use the new **game** variant which applies the `game-button` style for a glossy gradient look. It's showcased in the scoreboard overlay and login page.
 
 ## Tournament System
 
@@ -79,7 +81,7 @@ A lightweight knockout tournament is now available under the **토너먼트** ta
 
 ## 로그인 화면
 
-`/login` 경로에서 만나볼 수 있는 로그인 페이지는 어두운 배경과 팀 로고가 돋보이는 카드 레이아웃을 사용합니다. 이메일과 비밀번호 입력 필드를 제공하며 애니메이션 효과로 부드럽게 등장합니다.
+`/login` 경로에서 만나볼 수 있는 로그인 페이지는 어두운 배경과 팀 로고가 돋보이는 카드 레이아웃을 사용합니다. 카드에 글래스모피즘 효과와 3D 그림자를 적용해 입체감을 주었으며, 주요 버튼은 호버 시 살짝 떠오르는 애니메이션을 보여줍니다. 이메일과 비밀번호 입력 필드를 제공하며 애니메이션 효과로 부드럽게 등장합니다.
 
 ## 회원가입 화면
 

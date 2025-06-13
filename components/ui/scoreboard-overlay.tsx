@@ -26,7 +26,7 @@ export function ScoreboardOverlay({ data, onClose }: ScoreboardOverlayProps) {
   return (
     <div className="fixed inset-0 z-50 flex items-center justify-center bg-black/80 p-4">
 
-      <Card className="relative w-full max-w-lg overflow-hidden text-white border-4 border-yellow-500 bg-fifa-gradient animate-slide-in-up">
+      <Card className="relative w-full max-w-lg overflow-hidden text-white border-4 border-yellow-500 bg-fifa-gradient glass-dark shadow-3d card-hover animate-slide-in-up">
         <Image
           src="https://images.unsplash.com/photo-1517927033932-b3d18e61fb3a?auto=format&fit=crop&w=1200&q=60"
           alt="scoreboard background"
@@ -45,8 +45,8 @@ export function ScoreboardOverlay({ data, onClose }: ScoreboardOverlayProps) {
             <div className="mt-1 font-bebas text-xl">Street Dreams</div>
           </div>
           <div className="text-center">
-            <CardTitle className="text-5xl font-russo">{data.score}</CardTitle>
-            <div className="mt-1 text-2xl font-bold">{resultText}</div>
+            <CardTitle className="text-5xl text-responsive-xl font-russo">{data.score}</CardTitle>
+            <div className="mt-1 text-2xl text-responsive-lg font-bold">{resultText}</div>
           </div>
           <div className="flex flex-col items-center">
             <Image
@@ -69,7 +69,7 @@ export function ScoreboardOverlay({ data, onClose }: ScoreboardOverlayProps) {
           className="object-cover opacity-30"
         />
         <CardHeader className="relative z-10">
-          <CardTitle className="text-center text-4xl font-orbitron">
+          <CardTitle className="text-center text-4xl text-responsive-xl font-orbitron">
             {data.score}
           </CardTitle>
         </CardHeader>
@@ -81,7 +81,7 @@ export function ScoreboardOverlay({ data, onClose }: ScoreboardOverlayProps) {
               width={40}
               height={40}
             />
-            <div className="text-2xl font-bold">{resultText}</div>
+            <div className="text-2xl text-responsive-lg font-bold">{resultText}</div>
             <Image
               src={data.opponentLogo ?? "/placeholder-logo.png"}
               alt={data.opponent}
@@ -93,7 +93,7 @@ export function ScoreboardOverlay({ data, onClose }: ScoreboardOverlayProps) {
             Street Dreams <span className="text-yellow-400">vs</span> {data.opponent}
           </div>
 
-          <Button onClick={onClose} className="w-full bg-primary text-primary-foreground">
+          <Button onClick={onClose} variant="game" className="w-full hover-lift">
             확인
           </Button>
         </CardContent>
