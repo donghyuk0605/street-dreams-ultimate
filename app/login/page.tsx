@@ -16,7 +16,7 @@ export default function LoginPage() {
         fill
         className="object-cover opacity-40"
       />
-      <Card className="relative z-10 w-full max-w-sm border-4 border-yellow-500 bg-black/70 backdrop-blur-md animate-slide-in-up">
+      <Card className="relative z-10 w-full max-w-sm border-4 border-yellow-500 glass-dark shadow-3d card-hover animate-slide-in-up">
         <CardHeader className="flex flex-col items-center gap-2">
           <Image src={logoSrc} alt="Street Dreams" width={80} height={80} />
           <CardTitle className="text-center font-bebas text-4xl">로그인</CardTitle>
@@ -24,7 +24,7 @@ export default function LoginPage() {
         <CardContent className="space-y-4">
           <Input type="email" placeholder="이메일" />
           <Input type="password" placeholder="비밀번호" />
-          <Button variant="game" className="w-full">입장하기</Button>
+          <Button variant="game" className="w-full hover-lift">입장하기</Button>
           <Button asChild variant="secondary" className="w-full">
             <Link href="/">게스트 입장</Link>
           </Button>
