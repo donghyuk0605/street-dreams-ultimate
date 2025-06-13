@@ -33,6 +33,8 @@ export function GameMenu({ onSave, onLoad, onReset, onExit }: GameMenuProps) {
   if (!isOpen) {
     return (
       <button
+        aria-label="메뉴 열기"
+        title="메뉴 열기"
         onClick={toggleMenu}
         className="fixed top-20 right-4 z-50 bg-primary p-3 rounded-full shadow-lg border-2 border-primary hover:scale-110 transition-transform"
       >
@@ -46,7 +48,13 @@ export function GameMenu({ onSave, onLoad, onReset, onExit }: GameMenuProps) {
       <div className="bg-background rounded-lg border-2 border-primary shadow-2xl w-full max-w-md overflow-hidden">
         <div className="flex justify-between items-center p-4 border-b border-primary">
           <h2 className="text-2xl font-bold text-white">게임 메뉴</h2>
-          <Button variant="ghost" size="icon" onClick={toggleMenu} className="rounded-full hover:bg-primary/50">
+          <Button
+            variant="ghost"
+            size="icon"
+            onClick={toggleMenu}
+            aria-label="메뉴 닫기"
+            className="rounded-full hover:bg-primary/50"
+          >
             <X className="w-5 h-5 text-gray-300" />
           </Button>
         </div>
