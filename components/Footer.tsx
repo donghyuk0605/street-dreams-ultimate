@@ -6,7 +6,7 @@ export function Footer() {
       className="relative bg-cover bg-center text-white py-16"
       style={{
         backgroundImage:
-          "url('https://images.unsplash.com/photo-1523978591478-c753949ff840?auto=format&fit=crop&w=1350&q=80')",
+          "url('https://plus.unsplash.com/premium_photo-1664304634915-36c858c860bf?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3wxMjA3fDB8MXxzZWFyY2h8MXx8Zm9vdGJhbGwlMjBzdGFkaXVtJTIwbmlnaHR8ZW58MHx8fHwxNzQ5ODgyNzkwfDA&ixlib=rb-4.1.0&q=80&w=1080')",
       }}
     >
       <div className="absolute inset-0 bg-black/60" />
