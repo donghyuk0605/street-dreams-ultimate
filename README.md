@@ -52,7 +52,13 @@ NEXT_PUBLIC_FIREBASE_MEASUREMENT_ID=YOUR_MEASUREMENT_ID
 
 ## Firebase Client
 
-The Firebase client is initialized in [`lib/firebase.ts`](lib/firebase.ts) and exports the Firestore instance and Analytics (when supported).
+The Firebase client is initialized in [`lib/firebase.ts`](lib/firebase.ts) and
+exports the Firestore instance, Authentication and Analytics (when supported).
+Enable **Email/Password** authentication in the Firebase console and make sure
+the environment variables listed above are set in `.env.local`.
+
+The `/login` and `/signup` pages use `signInWithEmailAndPassword` and
+`createUserWithEmailAndPassword` with the exported `auth` instance.
 
 ## Phaser Mini Game
 
