@@ -9,7 +9,7 @@ export function Hero() {
         className="absolute inset-0 bg-cover bg-center"
         style={{
           backgroundImage:
-            "url('https://images.unsplash.com/photo-1509021436665-8f07dbf5bf1d?auto=format&fit=crop&w=1350&q=80')",
+            "url('https://plus.unsplash.com/premium_photo-1667482654587-e7091bb42e0c?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3wxMjA3fDB8MXxzZWFyY2h8MXx8bmVvbiUyMGNpdHl8ZW58MHx8fHwxNzQ5ODgyNzc3fDA&ixlib=rb-4.1.0&q=80&w=1080')",
         }}
         initial={{ scale: 1.2 }}
         animate={{ scale: 1 }}
