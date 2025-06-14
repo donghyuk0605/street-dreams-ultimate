@@ -1,6 +1,7 @@
 import { initializeApp } from 'firebase/app'
 import { getAnalytics, isSupported } from 'firebase/analytics'
 import { getFirestore } from 'firebase/firestore'
+import { getAuth } from 'firebase/auth'
 
 const firebaseConfig = {
   apiKey: process.env.NEXT_PUBLIC_FIREBASE_API_KEY,
@@ -14,6 +15,8 @@ const firebaseConfig = {
 
 const app = initializeApp(firebaseConfig)
 
+export const auth = getAuth(app)
+
 let analytics: ReturnType<typeof getAnalytics> | undefined
 if (typeof window !== 'undefined') {
   isSupported().then((supported) => {
@@ -22,4 +25,4 @@ if (typeof window !== 'undefined') {
 }
 
 export const db = getFirestore(app)
-export { app, analytics }
+export { app, analytics, auth }
