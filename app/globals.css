@@ -4,40 +4,38 @@
 
 @layer base {
   :root {
-    --background: 260 60% 6%;
-    --foreground: 220 25% 96%;
-    --card: 262 60% 10%;
+    --background: 220 38% 6%;
+    --foreground: 220 18% 94%;
+    --card: 217 46% 10%;
     --card-foreground: 0 0% 100%;
-    --popover: 262 60% 12%;
+    --popover: 222 42% 12%;
     --popover-foreground: 0 0% 100%;
-    --primary: 312 74% 52%;
-    --primary-light: 312 74% 65%;
-    --primary-foreground: 0 0% 100%;
-    --success: 122 39% 49%;
-    --warning: 36 100% 50%;
+    --primary: 160 84% 44%;
+    --primary-light: 160 84% 58%;
+    --primary-foreground: 0 0% 10%;
+    --success: 146 65% 48%;
+    --warning: 34 100% 50%;
     --error: 4 90% 58%;
 
-    --neutral-900: 0 0% 13%;
-    --neutral-700: 0 0% 26%;
-    --neutral-500: 0 0% 47%;
-    --neutral-300: 0 0% 74%;
-    --neutral-50: 0 0% 96%;
+    --neutral-900: 218 28% 12%;
+    --neutral-700: 216 24% 22%;
+    --neutral-500: 216 19% 40%;
+    --neutral-300: 214 13% 63%;
+    --neutral-50: 220 16% 92%;
 
-    --secondary: 194 89% 56%;
+    --secondary: 202 92% 52%;
     --secondary-foreground: 0 0% 100%;
-    --muted: 260 12% 30%;
-    --muted-foreground: 260 25% 85%;
-    --accent: 50 100% 60%;
-    --accent-foreground: 0 0% 15%;
+    --muted: 220 24% 20%;
+    --muted-foreground: 220 18% 82%;
+    --accent: 48 100% 56%;
+    --accent-foreground: 0 0% 10%;
     --destructive: 4 90% 58%;
 
-    --destructive-foreground: 0 0% 100%;    --border: 0 0% 26%;
-
     --destructive-foreground: 0 0% 100%;
-    --border: 0 0% 26%;
+    --border: 216 32% 25%;
 
-    --input: 0 0% 26%;
-    --ring: 283 86% 55%;
+    --input: 216 32% 25%;
+    --ring: 160 84% 44%;
     --radius: 0.5rem;
     --chart-1: 250 67% 54%;
     --chart-2: 217 91% 60%;
@@ -45,69 +43,69 @@
     --chart-4: 32 100% 61%;
     --chart-5: 340 75% 55%;
 
-    --sidebar-background: 240 5% 90%;
-    --sidebar-foreground: 240 5% 20%;
-    --sidebar-primary: 250 67% 54%;
-    --sidebar-primary-foreground: 0 0% 100%;
-    --sidebar-accent: 217 91% 60%;
+    --sidebar-background: 218 20% 10%;
+    --sidebar-foreground: 0 0% 98%;
+    --sidebar-primary: 160 84% 44%;
+    --sidebar-primary-foreground: 0 0% 10%;
+    --sidebar-accent: 202 92% 52%;
     --sidebar-accent-foreground: 0 0% 100%;
-    --sidebar-border: 240 5% 80%;
-    --sidebar-ring: 250 67% 54%;
+    --sidebar-border: 218 32% 20%;
+    --sidebar-ring: 160 84% 44%;
 
 
-    --gradient-start: 312 74% 52%;
-    --gradient-end: 194 89% 56%;
+    --gradient-start: 160 84% 32%;
+    --gradient-end: 202 92% 36%;
 
   }
 
   .dark {
-    --background: 260 70% 8%;
+    --background: 218 44% 6%;
     --foreground: 0 0% 100%;
-    --card: 262 60% 12%;
+    --card: 217 50% 12%;
     --card-foreground: 0 0% 100%;
-    --popover: 262 60% 15%;
+    --popover: 222 45% 14%;
     --popover-foreground: 0 0% 100%;
-    --primary: 283 86% 60%;
-    --primary-light: 283 86% 75%;
-    --primary-foreground: 0 0% 100%;
-    --success: 122 39% 49%;
-    --warning: 36 100% 50%;
+    --primary: 160 84% 52%;
+    --primary-light: 160 84% 65%;
+    --primary-foreground: 0 0% 10%;
+    --success: 146 65% 48%;
+    --warning: 34 100% 50%;
     --error: 4 90% 58%;
-    --secondary: 198 93% 65%;
+    --secondary: 202 92% 52%;
     --secondary-foreground: 0 0% 100%;
-    --muted: 260 20% 35%;
-    --muted-foreground: 260 25% 90%;
-    --accent: 50 100% 50%;
-    --accent-foreground: 0 0% 15%;
+    --muted: 220 26% 22%;
+    --muted-foreground: 220 18% 88%;
+    --accent: 48 100% 56%;
+    --accent-foreground: 0 0% 10%;
     --destructive: 4 90% 58%;
     --destructive-foreground: 0 0% 100%;
-    --neutral-900: 0 0% 13%;
-    --neutral-700: 0 0% 26%;
-    --neutral-500: 0 0% 47%;
-    --neutral-300: 0 0% 74%;
-    --neutral-50: 0 0% 96%;
+    --neutral-900: 218 28% 12%;
+    --neutral-700: 216 24% 22%;
+    --neutral-500: 216 19% 40%;
+    --neutral-300: 214 13% 63%;
+    --neutral-50: 220 16% 92%;
 
-    --border: 0 0% 26%;
-    --input: 0 0% 26%;
-    --ring: 283 86% 60%;
-    --chart-1: 250 67% 54%;
-    --chart-2: 217 91% 60%;
-    --chart-3: 196 100% 54%;
-    --chart-4: 32 100% 61%;
-    --chart-5: 340 75% 55%;
+    --border: 216 32% 28%;
+    --input: 216 32% 28%;
+    --ring: 160 84% 52%;
+    --chart-1: 160 84% 52%;
+    --chart-2: 202 92% 52%;
+    --chart-3: 48 100% 56%;
+    --chart-4: 210 78% 55%;
+    --chart-5: 280 70% 60%;
 
-    --sidebar-background: 240 5% 12%;
+    --sidebar-background: 218 24% 10%;
     --sidebar-foreground: 0 0% 98%;
-    --sidebar-primary: 250 67% 54%;
-    --sidebar-primary-foreground: 0 0% 100%;
-    --sidebar-accent: 217 91% 60%;
+    --sidebar-primary: 160 84% 52%;
+    --sidebar-primary-foreground: 0 0% 10%;
+    --sidebar-accent: 202 92% 52%;
     --sidebar-accent-foreground: 0 0% 100%;
-    --sidebar-border: 240 5% 25%;
-    --sidebar-ring: 250 67% 54%;
+    --sidebar-border: 218 32% 22%;
+    --sidebar-ring: 160 84% 52%;
 
 
-    --gradient-start: 312 74% 60%;
-    --gradient-end: 194 89% 45%;
+    --gradient-start: 160 84% 38%;
+    --gradient-end: 202 92% 34%;
 
 
   }
@@ -122,6 +120,12 @@
     font-feature-settings: "rlig" 1, "calt" 1, "tnum" 1;
     line-height: 1.6;
     letter-spacing: -0.02em;
+
+    background-image:
+      radial-gradient(circle at 15% 20%, rgba(64, 204, 164, 0.12), transparent 25%),
+      radial-gradient(circle at 80% 10%, rgba(38, 153, 255, 0.14), transparent 28%),
+      linear-gradient(120deg, rgba(18, 33, 59, 0.9), rgba(9, 15, 24, 0.85));
+    background-attachment: fixed;
 
   }
 
@@ -400,9 +404,29 @@ textarea:focus {
     rgba(255, 255, 255, 0.05), 0 8px 16px rgba(255, 255, 255, 0.03);
 }
 
+.pitch-grid {
+  background-image:
+    linear-gradient(rgba(80, 224, 155, 0.06) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(80, 224, 155, 0.06) 1px, transparent 1px);
+  background-size: 48px 48px, 48px 48px;
+  mask-image: radial-gradient(circle at center, rgba(0, 0, 0, 0.9), transparent 75%);
+}
+
+.fm-panel {
+  @apply bg-card/80 backdrop-blur-xl border border-primary/30 shadow-[0_12px_60px_-24px_rgba(0,0,0,0.9)] rounded-2xl;
+}
+
+.fm-badge {
+  @apply inline-flex items-center gap-2 rounded-full bg-primary/20 px-3 py-1 text-xs font-semibold uppercase tracking-wider text-primary-foreground;
+}
+
+.fm-chip {
+  @apply inline-flex items-center gap-2 rounded-md bg-secondary/10 px-2.5 py-1 text-[11px] font-semibold text-secondary-foreground;
+}
+
 /* 메뉴 탭 개선 */
 .menu-tabs {
-  @apply grid w-full grid-cols-9 sticky top-14 z-30 overflow-x-auto whitespace-nowrap bg-background/70 backdrop-blur-md border-b border-yellow-400 shadow-md rounded-b-md;
+  @apply grid w-full grid-cols-9 sticky top-14 z-30 overflow-x-auto whitespace-nowrap bg-slate-900/80 backdrop-blur-lg border-b border-primary/40 shadow-lg rounded-b-md;
 }
 
 .menu-tabs .tab-button {
@@ -411,7 +435,7 @@ textarea:focus {
 
 /* 대시보드 카드 스타일 */
 .dashboard-card {
-  @apply bg-card text-card-foreground border border-border rounded-lg shadow-md;
+  @apply bg-slate-900/70 text-card-foreground border border-primary/20 rounded-2xl shadow-xl backdrop-blur;
 }
 
 
