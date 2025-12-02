@@ -1159,19 +1159,169 @@ export default function StreetDreamsSoccer() {
     )
   }
 
+  const readinessScore = Math.round((gameState.energy + gameState.motivation + gameState.discipline) / 3)
+  const moraleScore = Math.round((gameState.happiness + gameState.confidence + gameState.leadership) / 3)
+
+  const managerHighlights = [
+    {
+      title: "컨디션", 
+      value: `${gameState.energy}%`,
+      accent: "ENERGY", 
+      progress: gameState.energy,
+      icon: <Zap className="w-4 h-4" />,
+    },
+    {
+      title: "멘탈",
+      value: `${gameState.happiness}%`,
+      accent: "MORALE",
+      progress: moraleScore,
+      icon: <Smile className="w-4 h-4" />,
+    },
+    {
+      title: "학업 밸런스",
+      value: gameState.academicGrade,
+      accent: "SCHOOL",
+      progress: gameState.attendanceRate,
+      icon: <BookOpen className="w-4 h-4" />,
+    },
+    {
+      title: "명성",
+      value: `${gameState.streetCredits}`,
+      accent: "STREET",
+      progress: Math.min(100, gameState.streetCredits / 2),
+      icon: <Flame className="w-4 h-4" />,
+    },
+  ]
+
   return (
-    <div className="min-h-screen bg-gradient-to-br from-[hsl(var(--gradient-start))] to-[hsl(var(--gradient-end))] relative overflow-x-hidden">
-      <Hero />
-      <Gallery />
-      <GameHUD state={gameState} />
+    <div className="min-h-screen relative overflow-x-hidden text-foreground">
+      <div className="absolute inset-0 pointer-events-none">
+        <div className="pitch-grid absolute inset-0 opacity-60" />
+        <div className="absolute inset-0 bg-gradient-to-b from-primary/10 via-background/60 to-background" />
+        <div className="absolute inset-x-0 top-0 h-32 bg-gradient-to-b from-primary/30 to-transparent blur-3xl" />
+      </div>
 
-      <GameMenu onSave={handleSave} onLoad={handleLoad} onReset={handleReset} onExit={handleExit} />
+      <div className="relative z-10">
+        <div className="max-w-7xl mx-auto px-4 pt-10 space-y-6">
+          <div className="fm-panel p-6 flex flex-col gap-4 md:flex-row md:items-center md:justify-between">
+            <div className="space-y-2">
+              <div className="fm-badge">
+                <Crown className="w-4 h-4" /> STREET DREAMS MANAGER VIEW
+              </div>
+              <div className="text-2xl md:text-3xl font-bold tracking-tight">시즌 제어실</div>
+              <p className="text-sm text-muted-foreground">
+                팀 분위기, 다음 일정, 컨디션을 한눈에 확인하고 결정하세요. FM 스타일의 패널을 통해 즉각적인 정보를 제공합니다.
+              </p>
+            </div>
+            <div className="grid grid-cols-2 md:grid-cols-4 gap-3 w-full md:w-auto">
+              {["폼", "체력", "멘탈", "스카우팅"].map((label, idx) => (
+                <div key={label} className="fm-chip justify-center">
+                  <Star className="w-3 h-3" />
+                  <span>
+                    {label}
+                    <span className="ml-1 text-xs text-muted-foreground">{idx === 1 ? `${gameState.energy}%` : idx === 2 ? `${moraleScore}%` : "LIVE"}</span>
+                  </span>
+                </div>
+              ))}
+            </div>
+          </div>
 
-      <NotificationSystem notifications={notifications} onRemove={removeNotification} />
+          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-4">
+            {managerHighlights.map((highlight) => (
+              <Card key={highlight.title} className="fm-panel h-full">
+                <CardHeader className="pb-2">
+                  <div className="flex items-center justify-between text-xs text-muted-foreground uppercase tracking-widest">
+                    <span className="flex items-center gap-2 font-semibold text-primary">
+                      {highlight.icon} {highlight.accent}
+                    </span>
+                    <span className="text-[11px] bg-primary/10 px-2 py-1 rounded-md">LIVE</span>
+                  </div>
+                  <CardTitle className="text-lg text-foreground">{highlight.title}</CardTitle>
+                </CardHeader>
+                <CardContent className="space-y-3">
+                  <div className="flex items-end justify-between">
+                    <span className="text-3xl font-bold text-primary-foreground">{highlight.value}</span>
+                    <Badge variant="outline" className="border-primary/40 text-primary-foreground bg-primary/10">
+                      시즌 {gameState.year}
+                    </Badge>
+                  </div>
+                  <Progress value={highlight.progress} className="h-2 bg-slate-800" />
+                  <div className="text-xs text-muted-foreground flex items-center gap-2">
+                    <Clock className="w-3 h-3" /> 실시간 컨디션 추적
+                  </div>
+                </CardContent>
+              </Card>
+            ))}
+          </div>
 
-      <ScoreboardOverlay data={scoreboardResult} onClose={() => setScoreboardResult(null)} />
+          <div className="grid grid-cols-1 lg:grid-cols-3 gap-4">
+            <Card className="fm-panel lg:col-span-2">
+              <CardHeader className="flex flex-col gap-2 md:flex-row md:items-center md:justify-between">
+                <div>
+                  <CardTitle className="text-xl">매니저 인사이트</CardTitle>
+                  <p className="text-xs text-muted-foreground">
+                    컨디션과 멘탈을 종합해 FM 스타일 리포트로 보여줍니다.
+                  </p>
+                </div>
+                <Badge className="bg-primary text-primary-foreground">레벨 {gameState.level}</Badge>
+              </CardHeader>
+              <CardContent className="grid grid-cols-1 md:grid-cols-2 gap-4">
+                <div className="space-y-2">
+                  <div className="flex items-center justify-between text-sm">
+                    <span className="flex items-center gap-2">
+                      <Rocket className="w-4 h-4 text-primary" /> 경기 대비도
+                    </span>
+                    <span className="font-semibold">{readinessScore}%</span>
+                  </div>
+                  <Progress value={readinessScore} className="h-2 bg-slate-800" />
+                  <div className="text-xs text-muted-foreground">체력·동기·규율을 평균낸 지수</div>
+                </div>
+                <div className="space-y-2">
+                  <div className="flex items-center justify-between text-sm">
+                    <span className="flex items-center gap-2">
+                      <Smile className="w-4 h-4 text-primary" /> 드레싱룸 분위기
+                    </span>
+                    <span className="font-semibold">{moraleScore}%</span>
+                  </div>
+                  <Progress value={moraleScore} className="h-2 bg-slate-800" />
+                  <div className="text-xs text-muted-foreground">행복도·자신감·리더십 기반 팀 사기</div>
+                </div>
+              </CardContent>
+            </Card>
+            <Card className="fm-panel">
+              <CardHeader>
+                <CardTitle className="text-xl">다음 일정</CardTitle>
+              </CardHeader>
+              <CardContent className="space-y-3">
+                {gameState.upcomingMatches.map((match) => (
+                  <div key={match.id} className="p-3 rounded-xl bg-slate-900/70 border border-primary/20">
+                    <div className="flex items-center justify-between text-sm">
+                      <span className="font-semibold text-primary">vs {match.opponent}</span>
+                      <Badge variant="outline" className="border-primary/40 bg-primary/10 text-primary-foreground">
+                        {match.type === "street" ? "스트리트" : "정식"}
+                      </Badge>
+                    </div>
+                    <div className="text-xs text-muted-foreground flex items-center gap-2 mt-1">
+                      <Calendar className="w-3 h-3" /> {match.date} · {match.venue}
+                    </div>
+                  </div>
+                ))}
+              </CardContent>
+            </Card>
+          </div>
+        </div>
 
-      <div className="max-w-7xl mx-auto relative z-10 pt-20">
+        <Hero />
+        <Gallery />
+        <GameHUD state={gameState} />
+
+        <GameMenu onSave={handleSave} onLoad={handleLoad} onReset={handleReset} onExit={handleExit} />
+
+        <NotificationSystem notifications={notifications} onRemove={removeNotification} />
+
+        <ScoreboardOverlay data={scoreboardResult} onClose={() => setScoreboardResult(null)} />
+
+        <div className="max-w-7xl mx-auto relative z-10 pt-16 px-4">
         {/* 월간 결과 모달 */}
         {monthlyResult && (
           <div className="fixed inset-0 bg-black/70 flex items-center justify-center z-50 p-4">
@@ -1243,7 +1393,7 @@ export default function StreetDreamsSoccer() {
         {/* 메인 대시보드 */}
         <div className="grid grid-cols-1 lg:grid-cols-4 gap-6 mb-8">
           {/* 캐릭터 카드 */}
-          <Card className="bg-background text-white border-2 border-primary">
+          <Card className="fm-panel text-white">
             <CardHeader>
               <CardTitle className="flex items-center justify-center gap-3">
                 <GameCharacterSVG />
@@ -1283,7 +1433,7 @@ export default function StreetDreamsSoccer() {
           </Card>
 
           {/* 능력치 레이더 */}
-          <Card className="bg-gradient-to-br from-green-600 to-blue-600 text-white border-2 border-green-400">
+          <Card className="fm-panel bg-gradient-to-br from-emerald-700/80 via-emerald-600/60 to-sky-700/70 text-white">
             <CardHeader>
               <CardTitle className="flex items-center">
                 <Flame className="w-5 h-5 mr-2 text-red-400" />
@@ -1312,7 +1462,7 @@ export default function StreetDreamsSoccer() {
           </Card>
 
           {/* 상태 정보 */}
-          <Card className="bg-gradient-to-br from-purple-600 to-pink-600 text-white border-2 border-purple-400">
+          <Card className="fm-panel bg-gradient-to-br from-slate-800/90 via-purple-700/70 to-fuchsia-700/70 text-white">
             <CardHeader>
               <CardTitle className="flex items-center">
                 <Heart className="w-5 h-5 mr-2 text-pink-400" />
